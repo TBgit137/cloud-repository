@@ -4,11 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="edec92a1-a234-485d-8619-4b3f53045afc" name="更改" comment="" />
+    <list default="true" id="edec92a1-a234-485d-8619-4b3f53045afc" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Javaweb/Prac/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Javaweb/Prac/JDBC/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Javaweb/Prac/JDBC/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Javaweb/Prac/JDBC/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Javaweb/Prac/JDBC/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Javaweb/Prac/JDBC/JDBC.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Javaweb/Prac/JDBC/jdbc-prac/jdbc-prac.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Javaweb/Prac/JDBC/jdbc-prac/lib/mysql-connector-j-9.2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Javaweb/Prac/JDBC/jdbc-prac/src/com/xiaoyu/jdbc/JDBCprac.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Javaweb/Prac/JDBC/out/production/jdbc-prac/com/xiaoyu/jdbc/JDBCprac.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Web/Software Structure Assignment/weather-virtualization-tool" beforeDir="false" afterPath="$PROJECT_DIR$/../Web/Software Structure Assignment/weather-virtualization-tool" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -18,25 +34,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "com.codeium.enabled": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Work/Java/Leetcode",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Work/work/Code/Java&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDK&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
       </set>
     </attachedChunks>
   </component>
@@ -50,6 +71,8 @@
       <updated>1741831882468</updated>
       <workItem from="1741831883506" duration="2174000" />
       <workItem from="1741837347047" duration="33000" />
+      <workItem from="1744627823922" duration="178000" />
+      <workItem from="1744630299832" duration="84000" />
     </task>
     <servers />
   </component>
