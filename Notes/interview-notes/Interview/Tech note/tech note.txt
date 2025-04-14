@@ -1,0 +1,18 @@
+Nginx: 反向代理web服务器，内存占用少，并发能力强，支持热部署，可以几个月都不用重启
+Nginx常用命令：
+	./nginx  启动
+	./nginx -s stop  停止
+	./nginx -s quit  安全退出
+	./nginx -s reload  重新加载配置文件  如果我们修改了配置文件，就需要重新加载。
+	ps aux|grep nginx  查看nginx进程
+
+正向代理：Forward Proxy
+	代理用户向服务器发送请求，避免ip泄露，帮助访问到受限网址
+反向代理：Reverse Proxy
+	代理用户向服务器发送请求，避免服务器攻击，帮助服务器负载均衡
+
+调式系统脚本（开机运行之类的）时，可能导致系统崩溃的脚本（自动重启）先注释掉
+
+Linux 脚本 if []内前后都要有空格
+
+archive_name="backup_$(date +"%Y%m%d%H%M%S").tar.gz"备份文件命名，包含创建时间保证唯一性，很有用

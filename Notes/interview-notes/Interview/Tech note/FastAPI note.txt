@@ -1,0 +1,55 @@
+``–reload`: 文件修改时自动重启服务，仅开发时使用⚠️
+
+路由匹配采取自上而下的顺序，靠上的先匹配到
+	@app.get("/users/me")
+	@app.get("/users/{user_id}")
+
+from enum import Enum(定义参数值的可选值)
+	class ModelName(str, Enum):
+    		al = "alexnet"
+    		re = "resnet"
+    		le = "lenet"
+
+访问时可获取地址栏参数 /items/?skip=0&limit=10
+	@app.get("/items/")
+	async def read_item(skip: int = 0, limit: int = 10):
+如果需要参数非必填可写为：
+	@app.get("/items/{item_id}")
+	async def read_item(item_id: str, q: str | None = None):
+	async def read_item(item_id: str, q: Union[str, None] = None):
+**如何设定必填参数？**不传默认值即可
+
+不能通过GET请求发送请求体
+发送请求体数据，必须使用以下几种方法之一：POST（最常见）、PUT、DELETE、PATCH
+
+BaseModel定义请求体数据模型
+	class Item(BaseModel):
+    	name: str
+	desc: str | None = None  # 可选参数
+对应请求数据格式：
+	{
+    "name": "Foo",
+    "desc": "desc 是选填参数，当前键值对可不传！", 
+	}
+将定义好的模型添加到路径操作中：
+	@app.post("/items/")
+	async def create_item(item: Item):
+	   	return item
+
+查询参数：
+	q: str = Query(None，  max_length=50)  # 可选
+	q: str = Query(... ， max_length=50)  # 必选
+
+
+
+
+
+
+
+
+
+
+
+
+
+

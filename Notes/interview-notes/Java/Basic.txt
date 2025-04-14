@@ -1,0 +1,4 @@
+JVM(Java Virtual Machine) + 核心类库 + 开发工具(javac, java, jdb(debug), jhat(内存分析工具)) = JDK(Java Development kit)
+
+JVM + 核心类库 + 运行工具 = JRE(Java Runtime Environment)
+
