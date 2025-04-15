@@ -41,7 +41,7 @@ public class JDBCprac {
             throw new RuntimeException(e);
         }
 
-        // 11. Close the resources
+        // 10. Close the resources
         stmt.close();
         conn.close();
     }
