@@ -1,0 +1,10 @@
+奖励兑换功能开发
+已完成奖励页面的基础架构搭建，包含以下组件：
+RewardView.vue（奖励主页面）
+RewardCard.vue（单个奖励卡片）
+PointsDisplay.vue（积分显示组件）
+路由配置已集成至 /rewards 路径（src/router/index.ts）。
+导航栏已添加入口（App.vue）。
+
+构建登录界面AuthPage.vue，实现用户账号与密码的表单输入与校验。
+通过 Axios 向后端发送登录请求，完成用户身份认证与数据交互。
