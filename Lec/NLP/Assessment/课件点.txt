@@ -1,0 +1,7 @@
+Segmentation
+
+CFG/PCFG CNF Probabilistic CKY Parsing
+
+N-gram Models, Add-one (Laplace) Smoothing, Interpolation, Stupid Backoff, Extrinsic (in-vivo) Evaluation, Intrinsic (in-vitro) Evaluation
+
+Information Theory, entropy

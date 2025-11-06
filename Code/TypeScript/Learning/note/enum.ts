@@ -10,4 +10,18 @@ enum Week{
     Saturday,
     Sunday
 }
-console.log();
+console.log(Week[1]); // Monday可以由值取key，也可以由key取值
+
+enum StringWeek{
+    Monday = "theMonday",
+    Tuesday = "Tuesday",
+    Wednesday = "Wednesday",
+    Thursday = "Thursday",
+    Friday = "Friday",
+    Saturday = "Saturday",
+    Sunday = "Sunday"
+}
+
+console.log(StringWeek.Monday); // √
+console.log(StringWeek["Monday"]); // √
+// × 不可以由值取key，只能由key到值
