@@ -1,0 +1,143 @@
+战士	Fighter
+
+法师	Wizard
+
+游侠	Ranger
+
+血量	Hit Points (HP)
+
+防御值	Armour Class (AC)
+
+法术位	Spell Slot
+
+巨剑	Greatsword
+
+法杖	Staff
+
+法术	Spell
+
+复合弓	Longbow / Heavy Crossbow
+
+匕首	Dagger
+
+偷袭	Sneak Attack
+
+受惊状态	Frightened / Surprised
+
+火焰箭	Fire Bolt
+
+冷冻射线	Ray of Frost
+
+雷鸣波	Thunderwave
+
+魔法飞弹	Magic Missile
+
+护盾术	Shield
+
+迷踪步	Misty Step
+
+鹦鹉螺号	Nautiloid
+
+夺心魔	Mind Flayer / Illithid
+
+夺心魔贮囊	Mind Flayer Pod / Nautiloid Pod
+
+夺心魔蝌蚪育儿室	Mind Flayer Tank / Brine Pool
+
+卤水	Brine
+
+夺心魔蝌蚪	Illithid Tadpole
+
+修复贮囊	Restoration Pod
+
+括约肌瓣膜	Cranial Valve / Cerebral Valve / Flesh-Woven Door
+
+地精	Goblin
+
+高精灵	High Elf
+
+灵吸怪石板	Illithid Stone Tablet / Inscribed Slate
+
+贮脑罐	Brain Jar / Brain Container
+
+卤灯	Brine Light / Pulsing Light
+
+小魔鬼	Imp
+
+割裂	Lacerate / Gash
+
+主手攻击	Main Hand Attack
+
+动作	Action
+
+回气	Second Wind (战士技能) / Cure Wounds (法术)
+
+附赠动作	Bonus Action
+
+剑柄打击	Pommel Strike / Hilt Bash
+
+搜刮尸体	Loot / Pillage
+
+治疗药水	Potion of Healing
+
+短弓	Shortbow
+
+轻弩	Light Crossbow
+
+动脉网	Vein Mesh / Organic Web
+
+精致的圣物箱	Elaborate Reliquary
+
+鹦鹉螺的储液罐	Nautiloid Tank / Brine Tank
+
+诡异符文	Weird Rune / Strange Sigil
+
+软骨箱	Cartilage Chest / Organic Container
+
+牧师	Cleric
+
+噬脑怪	Intellect Devourer
+
+阿斯莫	Aasimar
+
+圣骑士	Paladin
+
+使徒硬头锤	Mace of the Absolute / Absolute's Mace
+
+坎比翁	Cambion
+
+地狱野猪	Hell Boar
+
+传送器	Transponder / Helm / Navigation Console
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

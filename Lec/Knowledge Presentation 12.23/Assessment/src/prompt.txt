@@ -1,0 +1,41 @@
+我们正在进行一项关于知识表示的小组作业，要求设计并实现一个知识密集型 AI 系统。
+
+一、作业核心要求 (Knowledge Representation, JC4002)
+主要项目： 制作一个回合制、基于文字交互的文本冒险游戏（互动式小说）。
+
+实现技术：
+
+游戏核心逻辑必须使用 Prolog（SWI-Prolog）实现，通过事实、规则和动态事实来构建和管理游戏世界的知识库（包括地图、物品、玩家状态等）。
+
+Prolog 逻辑必须包含算术函数和随机性/不确定性（如投骰子、伤害计算）。
+
+智能对手（AI）： 必须建模一个或多个智能对手，其行为由 PDDL（规划领域描述语言，推荐使用 STRIPS 级别的 Pyperplan）驱动。
+
+Prolog 程序需负责调用外部规划器，根据游戏状态为对手生成行动计划。
+
+对手的计划必须具备动态性，能随着游戏进程演变或协同工作。
+
+提交内容： 需提交 Prolog 源代码 (.pl)、PDDL 领域文件 (adversary_domain.pddl)、PDDL 问题文件 (adversary_problem.pddl)、成功通关脚本 (transcript.txt) 和一份详细的技术报告 (report.pdf)。
+
+二、游戏设计框架：《逃离鹦鹉螺号》
+游戏名称： Escape the Nautiloid（逃离鹦鹉螺号）。
+
+背景设定： 仿照《博德之门 3》的开场，玩家在夺心魔飞船（Nautiloid）上苏醒，任务是逃离飞船。
+
+玩家系统： 玩家可以选择战士 (Fighter)、法师 (Wizard) 或 游侠 (Ranger) 身份，每种职业拥有不同的 HP、AC、初始装备和独特技能（如法师的 Fire Bolt、游侠的 Sneak Attack）。
+
+核心玩法：
+
+探索解谜： 玩家在鹦鹉螺号的船舱和走廊中移动，通过括约肌瓣膜进入下一个区域，并与贮囊、贮脑罐、灵吸怪石板等物品进行交互，获取道具和知识。
+
+回合制战斗： 游戏包含回合制战斗，玩家和敌人轮流消耗 动作 (Action) 和 附赠动作 (Bonus Action) 进行攻击（如 Main Hand Attack、Divine Smite）或恢复（如 Second Wind）。攻击结果需要通过 Prolog 实现投骰子判定和伤害计算。
+
+PDDL 对手：
+
+初级敌人为 小魔鬼 (Imp) 或 噬脑怪 (Intellect Devourer)。
+
+终极 Boss 预计为 坎比翁 (Cambion)。
+
+对手的行动（如攻击、移动、召唤援军）将由 PDDL 规划器实时生成，以实现高水平的动态 AI。
+
+获胜条件： 玩家成功操作舰桥上的传送器 (Transponder) 逃离飞船。
