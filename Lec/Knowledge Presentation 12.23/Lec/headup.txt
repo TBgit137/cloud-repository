@@ -27,12 +27,18 @@
 --（#show）指令：用于指定在最终输出中显示哪些原子，从而呈现问题的解。
 
 1、大题1：给定一系列表达式，指出其scope of the quantifiers, free variables, 是否well-formed, 是否为FOL sentence
+
 2、大题2：对于“every woman loves John”的一个翻译，利用knowledge base的知识，给出一个interpretation choice作为反例，说明给定的翻译表达式是错误的（我记得去年的例题还是PPT有类似的问题）
+
 3、大题3：将给定的句子转换为Horn clauses，其中有一句需要carry out a resolution proof.
+
 4、大题4：写generate-and-test Prolog程序生成指定范围（最大值）内所有勾股定理数
+
 5、大题5：构建knowledge base（给定实体、关系），从而将题目给定的命题逐一用suitable GCI、equivalance axioms或assertion表示，并给出指定命题的pseudo-proof（step-by-step justification）（分值较重，有类似的作业题）
+
 6、大题6：将大题5的sentences转换为OWL functional-style syntax（写出class definitions即可）
-7、大题7：写一个ASP程序求解Knapsack问题（题目给定了一系列事实、约束等的表述，程序必须依照其思路实现）。
+
+7、大题7：写一个ASP程序求解Knapsack问题（题目给定了一系列事实、约束等的表述，程序必须依照其思路实现）
 
 
 
