@@ -1,0 +1,25 @@
+{
+  "algorithm": "Genetic Algorithm",
+  "timestamp": "20260327_115523",
+  "airport": "SBGR",
+  "n_runways": 5,
+  "safety_interval_minutes": 3,
+  "total_flights": 20009,
+  "generations": 100,
+  "total_penalty": 25438.6304,
+  "delay_stats": {
+    "delayed_flights": 9973,
+    "early_flights": 0,
+    "on_time_flights": 10036,
+    "delay_ratio_pct": 49.84,
+    "early_ratio_pct": 0.0,
+    "on_time_ratio_pct": 50.16,
+    "avg_delay_minutes": 2.5508,
+    "max_delay_minutes": 8.0,
+    "avg_early_minutes": 0.0,
+    "max_early_minutes": 0.0
+  },
+  "constraint_violations": {
+    "runway_interval_violations": 0
+  }
+}
