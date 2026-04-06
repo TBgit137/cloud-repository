@@ -42,7 +42,7 @@
             <div class="param-row">
               <label class="param-label">可同时使用跑道数</label>
               <input v-model.number="form.nRunways" class="param-input" type="number"
-                min="1" max="20" placeholder="默认 5" />
+                min="1" max="20" placeholder="默认 3" />
             </div>
             <div class="param-row">
               <label class="param-label">同跑道最短安全间隔（分钟）</label>
@@ -341,7 +341,7 @@ async function onSubmit() {
       form.file,
       {
         airport:        form.airport || 'SBGR',
-        nRunways:       form.nRunways || 5,
+        nRunways:       form.nRunways || 3,
         safetyInterval: form.safetyInterval || 3,
         startDate:      form.dateRange.start,
         endDate:        form.dateRange.end,
