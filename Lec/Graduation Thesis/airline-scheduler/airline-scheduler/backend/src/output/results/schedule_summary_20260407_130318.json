@@ -1,0 +1,8 @@
+{
+  "algorithm": "Genetic Algorithm",
+  "penalty": 41923.78163784318,
+  "total_scheduled": 22729,
+  "airport": "SBGR",
+  "n_runways": 3,
+  "safety_interval": 3
+}
