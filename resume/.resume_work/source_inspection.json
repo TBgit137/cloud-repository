@@ -1,0 +1,3222 @@
+{
+  "source": "D:\\work\\cloud-repository\\resume\\个人简历.docx",
+  "sha256": "713ecaf2a6e4db51096a9f1d53d2f01da3d31176ab53adcc127bdcf06b63212d",
+  "paragraphs": [
+    {
+      "index": 0,
+      "text": "个人简历",
+      "style": "Normal",
+      "alignment": "CENTER (1)",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": null,
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "个人简历",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": null,
+          "font_size_pt": 24.0,
+          "font_color": null,
+          "fonts": {}
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "text": "",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0416666666666667",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": []
+    },
+    {
+      "index": 2,
+      "text": "姓名：罗霄羽   出生年月：2004年8月  身高：175cm  ",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0416666666666667",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "姓名：罗霄羽   出生年月：2004年8月  身高：175cm  ",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": null,
+          "font_size_pt": 12.0,
+          "font_color": "545454",
+          "fonts": {}
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "text": "联系方式：+86 13631635573/+852 91967880 13310831343@163.com",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0416666666666667",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "联系方式：",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": null,
+          "font_size_pt": 12.0,
+          "font_color": "545454",
+          "fonts": {}
+        },
+        {
+          "text": "+86 ",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": null,
+          "font_size_pt": 12.0,
+          "font_color": "545454",
+          "fonts": {}
+        },
+        {
+          "text": "13631635573",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": null,
+          "font_size_pt": 12.0,
+          "font_color": "545454",
+          "fonts": {}
+        },
+        {
+          "text": "/+852 91967880",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": null,
+          "font_size_pt": 12.0,
+          "font_color": "545454",
+          "fonts": {}
+        },
+        {
+          "text": " ",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": null,
+          "font_size_pt": 12.0,
+          "font_color": "545454",
+          "fonts": {}
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "text": "",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": []
+    },
+    {
+      "index": 5,
+      "text": "教育背景",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "教育背景",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 12.0,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "text": "华南师范大学 - 软件工程 - 本科       2022-09 ~ 2026-07",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0416666666666667",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "华南师范大学 - 软件工程 - 本科",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "      ",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": " 2022-09 ~ ",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": null,
+          "font_size_pt": null,
+          "font_color": null,
+          "fonts": {}
+        },
+        {
+          "text": "2026-07",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": null,
+          "font_size_pt": null,
+          "font_color": null,
+          "fonts": {}
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "text": "专业成绩：GPA 3.33",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0416666666666667",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "专业成绩：",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "GPA",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": " ",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": null,
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "3.",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "33",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "text": "主修课程：Python程序设计基础，计算机体系结构，面向对象程序设计，软件工程导论，Java语言程序设计，数据结构与算法，算法设计与分析，操作系统原理，数据库系统原理与实践，Web应用程序开发，Linux系统，计算机网络，软件系统设计，软件测试，人工智能基础，网络安全技术，数据挖掘，机器人技术，软件设计，分布式系统，知识表示，自然语言处理，计算智能。",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0416666666666667",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "主修课程：",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "Python程序设计基础，计算机体系结构，面向对象程序设计，软件工程导论，J",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "ava",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "语言程序设计，数据结",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "构与算法，算",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "法",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "设计与分析，操作系统原理，数据库系统原理与实践，Web应用程序开发，Linux系统，计算机网络",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "，软件系统设计，软件测试，人工智能基础，网络安全技术",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "，数据挖掘，机器人技术，软件设计",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "，分布式系统，知识表示，自然语言处理，计算智能",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "。",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "text": "",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": []
+    },
+    {
+      "index": 10,
+      "text": "项目经验",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "项目经验",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 12.0,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "text": "线上实时公交查询网站 - 前端页面设计    2023-09 ~ 2024-1",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": null,
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "线上实时公交查询网站",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": " ",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": null,
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "-",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "878787",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": " ",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": null,
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "前端",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "页面设计",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "    ",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "2023-09",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": " ",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": null,
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "~",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "878787",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": " ",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": null,
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "2024-1",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "text": "整个系统主要分为前后端两个部分，后端负责接收前端数据请求并将请求通过API发送给第三方网站然后发送实时信息至前端。本人主要负责前端登录界面和搜索界面的CSS以及JS代码的编写和调试。过程中初步了解了网页的运行逻辑，学习了HTML，CSS，JS的基础编写技能以及vue架构的运行逻辑。",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0416666666666667",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "整个系统主要分为前后端两",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "个部分，后端负责接收前端数据请求并将请求通过API发送给第三方网站然后发送实时信息至前端。",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "本人主要负责前端登录界面和搜索界面的CSS以及JS代码的编写和调试。过程中初步了解了网页的运行逻辑",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "，学习了HTML，CSS，JS",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "的基础编写技能以及vu",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "e架构的运行逻辑。",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "text": "通过项目我了解了这个项目的运行流程以及前端编写知识，在前后端对接过程中也一并学习了后端数据库API等内容以及UML的绘图过程。",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0416666666666667",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "通过项目",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "我",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "了解了",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "这个",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "项目的运行流程以及前端编写知识，在前",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "后端对接过程中也",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "一并",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "学习了后端数据库API等内容以及UML的绘图",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "过程。",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "text": "",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": []
+    },
+    {
+      "index": 15,
+      "text": "服务器运维（实习）\t2024-10 ~ 2024-12",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "服务器运维（实习）",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "\t",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "202",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "4",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "-",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "10",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": " ",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": null,
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "~",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "878787",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": " ",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": null,
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "202",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "4",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "-",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "12",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "text": "期间在广州网律互联网科技有限公司进行过时长为一个月的实习工作，主要负责服务器的运维工作，包括后端服务器算法的优化，编写堡垒机数据漂移脚本等。在这段实习经历中熟悉了基于Python的FastAPI框架下的后端服务器搭建以及运维过程，nginx代理的原理及运用以及Linux系统的基本操作和脚本编写。同时也了解到了软件项目的生命周期包括但不限于开始的需求分析，到代码的提交和评审，到最后的部署。同时也体验到了工作中与同事交流合作的过程。",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "期间在",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "广州网律互联网科技有限公司",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "进行过时长为一个月的实习工作，主要负责服务器的运维工作，包括",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "后端服务器算法的优化，编写堡垒机数据漂移脚本等。在这段实习经历中熟悉了基于Python的FastAPI框架下的后端服务器搭建以及运维过程，nginx代理的原理及运用以及Linux系统的基本操作和脚本编写。同时也了解到了软件项目的生命周期包括但不限于开始的需求分析，到代码的提交和评审，到最后的部署",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "。同时也体验到了工作中与",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "同事",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "交流合作的过程。",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "text": "",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": []
+    },
+    {
+      "index": 18,
+      "text": "线上实时天气查询网站 – 后端服务器搭建及运维\t\t2024-09 ~ 2025-1",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "线上实时天气查询网站 ",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "–",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": " 后端服务器",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "搭建及运维",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "\t",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "\t",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "202",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "4",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "-09",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": " ",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": null,
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "~",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "878787",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": " ",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": null,
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "202",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "5",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "-1",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "text": "经过之前实习的经验积累，本人将实习中学到的技术和经验立马应用到了实践开发过程中。在开发过程中负责后端代码编写，服务器运维以及一部分前后端对接的代码编写。同时还负责前期的图表准备工作包括类图、CRC图、活动图、交互图等，深入参与了整个软件开发的过程。",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "经过之前实习的经验积累，本人将实习中学到的技术和经验立马应用到了实践开发过程中。在开发过程中负责后端代码编写，服务器运维以及一部分前后端对接的代码编写。同时还负责前期的图表准备工作包括类图、CRC图、活动图、交互图等，深入参与了整个软件开发的过程。",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "text": "",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": []
+    },
+    {
+      "index": 21,
+      "text": "线上笔记协作平台 – 后端服务器及数据库搭建及运维\t\t2025-02 ~ 2025-5",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "线上笔记协作平台 ",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "–",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": " 后端服务器及数据库搭建及运维",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "\t",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "\t",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "202",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "5",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "-0",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "2",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": " ",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": null,
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "~",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "878787",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": " ",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": null,
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "202",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "5",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "-",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "5",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "text": "之前的后端搭建主要建立在轻量化的FastAPI框架下，不能很好的支持后端业务层与数据库的交互，这次的开发尝试了基于Java的中大型框架也就是常说的Spring Boot框架。从最基础的Javaweb开始学习，直到搭建复杂的spring boot框架，全面地了解了企业级开发的基本流程。项目采用了分层架构，将整体服务器分为表示层，业务层和数据层，分别用于接收前端数据，处理业务逻辑，增删改查用户数据。",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "之前的后端搭建主要建立在轻量化的FastAPI框架下，不能很好的支持后端业务层与数据库的交互，这次的开发尝试了基于Java的中大型框架也就是常说的",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "S",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "pring ",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "B",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "oot框架。从最基础的Javaweb开始学习，直到搭建复杂的spring boot框架，全面地了解了企业级开发的基本流程",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "。项目采用了分层架构，将整体服务器分为表示层，业务层和数据层，分别用于接收前端数据，处理业务逻辑，增删改查用户数据。",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "text": "",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": []
+    },
+    {
+      "index": 24,
+      "text": "二进制模糊测试agent（实习） – 整体开发\t\t2025-07 ~ 2025-9",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "二进制模糊测试agent（实习） ",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "–",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": " 整体开发",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "\t",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "\t",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "202",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "5",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "-0",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "7",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": " ",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": null,
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "~",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "878787",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": " ",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": null,
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "202",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "5",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "-",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "9",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 25,
+      "text": "在北京雁翎网卫智能科技有限公司进行了时长三个月的实习工作。主要负责一个二进制模糊测试agent的开发。期间学习了漏洞检测领域中的污点分析和模糊测试技术，主要以二进制可执行程序为测试对象。后期的主要工作聚焦于模糊测试agent的开发，旨在开发一个基于AFL的自动化模糊测试agent，将llm应用到模糊测试的初始样例生成，种子变异，结果分析以及报告生成等环节中去。",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "在",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "北京雁翎网卫智能科技有限公司",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "进行了时长三个月的实习工作。主要负责一个二进制模糊测试agent的开发。期间学习了漏洞检测领域中的污点分析和模糊测试技术，主",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "要以二进制可执行程序为测试对象",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "。后期的主要工作聚焦于模糊测试agent的开发，旨在开发一个基于AFL的自动化模糊测试agent，将llm应用到模糊测试的初始样例生成，种子变异，结果分析以及报告生成等环节中去。",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 26,
+      "text": "",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": []
+    },
+    {
+      "index": 27,
+      "text": "技能特长",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "技能",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 12.0,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "特长",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 12.0,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 28,
+      "text": "计算机：熟练掌握Python、Java、C等编程语言的基础语法，能够读懂基本的汇编语言并完成简单的编写，进行过数据库操作学习，熟练掌握MYSQL的语法规则，系统学习过Linux的基础操作，能够完成基础脚本的编写，有Web程序开发的经验，能够熟练完成原生HTML，CSS以及JS的编写并且熟悉vue架构的网页开发，熟练掌握FastAPI、Spring Boot框架下的后端服务器结构。",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "计算机：",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "熟练掌握",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "Python",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "、",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "Java、C",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "等编程语言的基础语法",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "，能够读懂基本的汇编语言并完成简单的编写，进行过数据库操作学",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "习，熟练掌握MYSQL的语法规则，系统学习过Linux的基础操作，能够完成基础脚本",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "的编写，有Web程序开发的经验，能够熟练完成",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "原生HTM",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "L，CSS以及JS的编写并且熟悉vue架构的网页开发",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "，熟练掌握FastAPI",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "、Spring Boot",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "框架下的后端服务器",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "结构",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "。",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 29,
+      "text": "团队能力：具备高效沟通能力，能很好地处理与其他成员的工作关系，通过曾参与的项目初步了解了关于任务分配，版本控制，合作分工等步骤。",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "团队能力：",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "具备高效沟通能力，能很好地处理与其他成员的工作关系，通过曾参与的项目初步了解了关于任务分配",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "000000",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "，版本控制，合作",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "000000",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "分工等步",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "000000",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "骤。",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "000000",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 30,
+      "text": "语言能力：雅思成绩7.0，能够无障碍浏览全英文本，能够自如用英语与他人交流。",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0416666666666667",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "语言能力：",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "雅思成绩7.0，",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "能够无障碍浏览全英文本，能够自如用英语与他人交流。",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 31,
+      "text": "",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0416666666666667",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": []
+    },
+    {
+      "index": 32,
+      "text": "自我评价",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0416666666666667",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "自我",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 12.0,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "评价",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 12.0,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 33,
+      "text": "对待任务用心负责，能够提前完成绝对不拖延。有良好的自学能力和经验，可以熟练使用互联网上的各种资源解决遇到的问题，有自己的AI助手工具链，除了专业技能还学习了很多包括视频图片音频文本编辑的基本技能。掌握了很多软件工程基础技能，对技能实践十分看重。非常希望能有更多参与实践开发的机会积攒经验，了解行业内的运行流程和原理。",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0125",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "对待任务用心负责，能够提前完成绝对不拖延。有良好的自学能力和经验，可以熟练使用互联网上的各种资源解决遇到的问题",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "，有自己的AI助手工具链",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "，除了专业技能还学习了很多包括视频图片音频文本编辑的基本技能。掌握了很多软件工程基础技能，对技能实践十分看重",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "。",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        },
+        {
+          "text": "非常希望能有更多参与实践开发的机会积攒经验，了解行业内的运行流程和原理。",
+          "bold": null,
+          "italic": null,
+          "underline": null,
+          "font_name": "宋体",
+          "font_size_pt": 9.5,
+          "font_color": "545454",
+          "fonts": {
+            "ascii": "宋体",
+            "hAnsi": "宋体",
+            "eastAsia": "宋体",
+            "cs": "宋体"
+          }
+        }
+      ]
+    },
+    {
+      "index": 34,
+      "text": "",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "210820",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": []
+    },
+    {
+      "index": 35,
+      "text": "本科阶段学的东西比较多且只触及皮毛，本人希望能够通过实习更加深入学习项目开发过程中的高层逻辑以及底层原理如数据处理、软件开发等。",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": "1.0416666666666667",
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": [
+        {
+          "text": "本科阶段学的东西比较多且只触及皮毛，本人希望能够通过实习更加深入学习项目开发过程中的高层逻辑以及底层原理如数据处理、",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "仿宋",
+          "font_size_pt": 12.0,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "仿宋",
+            "hAnsi": "仿宋",
+            "eastAsia": "仿宋",
+            "cs": "仿宋"
+          }
+        },
+        {
+          "text": "软件",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "仿宋",
+          "font_size_pt": 12.0,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "仿宋",
+            "hAnsi": "仿宋",
+            "eastAsia": "仿宋",
+            "cs": "仿宋"
+          }
+        },
+        {
+          "text": "开发等。",
+          "bold": true,
+          "italic": null,
+          "underline": null,
+          "font_name": "仿宋",
+          "font_size_pt": 12.0,
+          "font_color": "323232",
+          "fonts": {
+            "ascii": "仿宋",
+            "hAnsi": "仿宋",
+            "eastAsia": "仿宋",
+            "cs": "仿宋"
+          }
+        }
+      ]
+    },
+    {
+      "index": 36,
+      "text": "",
+      "style": "Normal",
+      "alignment": "None",
+      "left_indent_pt": null,
+      "right_indent_pt": null,
+      "first_line_indent_pt": null,
+      "space_before_pt": null,
+      "space_after_pt": null,
+      "line_spacing": null,
+      "keep_with_next": null,
+      "page_break_before": null,
+      "runs": []
+    }
+  ],
+  "tables": [],
+  "sections": [
+    {
+      "index": 0,
+      "page_width_in": 8.268055555555556,
+      "page_height_in": 11.693055555555556,
+      "top_margin_in": 0.8423611111111111,
+      "bottom_margin_in": 1.0,
+      "left_margin_in": 1.054861111111111,
+      "right_margin_in": 1.054861111111111,
+      "header_distance_in": 0.5909722222222222,
+      "footer_distance_in": 0.6888888888888889
+    }
+  ],
+  "headers": [
+    [
+      {
+        "index": null,
+        "text": "",
+        "style": "Normal",
+        "alignment": "None",
+        "left_indent_pt": null,
+        "right_indent_pt": null,
+        "first_line_indent_pt": null,
+        "space_before_pt": null,
+        "space_after_pt": null,
+        "line_spacing": null,
+        "keep_with_next": null,
+        "page_break_before": null,
+        "runs": []
+      }
+    ]
+  ],
+  "footers": [
+    [
+      {
+        "index": null,
+        "text": "",
+        "style": "Normal",
+        "alignment": "None",
+        "left_indent_pt": null,
+        "right_indent_pt": null,
+        "first_line_indent_pt": null,
+        "space_before_pt": null,
+        "space_after_pt": null,
+        "line_spacing": null,
+        "keep_with_next": null,
+        "page_break_before": null,
+        "runs": []
+      }
+    ]
+  ],
+  "inline_shapes": 0,
+  "package_parts": [
+    {
+      "path": "[Content_Types].xml",
+      "size": 1437,
+      "sha256": "bda1ffc7b056aa39e84d557fd224ff3a2e26099961c5133d6c7367208b1351dc"
+    },
+    {
+      "path": "_rels/.rels",
+      "size": 737,
+      "sha256": "c30fe099dbcfed4ecc4ae544ccf82f432c8d3bb665e2a301df283738b196d803"
+    },
+    {
+      "path": "word/document.xml",
+      "size": 58495,
+      "sha256": "a242adc87abd24e2b4e0a06d786aa894ab4469dc9a508de6350334f4ecab4327"
+    },
+    {
+      "path": "word/_rels/document.xml.rels",
+      "size": 985,
+      "sha256": "e5965b22202f0c917c1574e1c6c1579715ef6c0a89dc6c7874debdff5e613d0c"
+    },
+    {
+      "path": "word/theme/theme1.xml",
+      "size": 6353,
+      "sha256": "6bcd44bfa9489daaaf8b1ed54a405f9a1ab7acd9132233cbc6d3f78112b0e70b"
+    },
+    {
+      "path": "word/settings.xml",
+      "size": 4421,
+      "sha256": "65ef037bf1f8b079d38b9178b0fcb309fa877e48db2ae69a6e8d77fef2acead4"
+    },
+    {
+      "path": "word/styles.xml",
+      "size": 22874,
+      "sha256": "6be5bf1644c9384447794700d67b8b1b0d57220cd0d4bcc18fa20291c95b6746"
+    },
+    {
+      "path": "word/webSettings.xml",
+      "size": 1018,
+      "sha256": "3346314c93078070b454a95d0485bf9721dade13d89cfaa579cc32645fa7edef"
+    },
+    {
+      "path": "word/fontTable.xml",
+      "size": 2387,
+      "sha256": "03df3db53b9ab972a1cf75d5ae4d770037ae32557ccd08437e283eb7f7abc667"
+    },
+    {
+      "path": "docProps/core.xml",
+      "size": 644,
+      "sha256": "075988d291501fbbaa055350a86e49e6a0e51bccf1fc7d501bccf5cb029da8f0"
+    },
+    {
+      "path": "docProps/app.xml",
+      "size": 714,
+      "sha256": "08e98cfe5055b8a5d517c1cfe05aac8736da58899062663bf6fabc3740c7c89c"
+    },
+    {
+      "path": "docProps/custom.xml",
+      "size": 529,
+      "sha256": "f60386b0d399907de1156b413df4e2fcc96375b90f4b2d9b9fd7480e5151938c"
+    }
+  ]
+}
