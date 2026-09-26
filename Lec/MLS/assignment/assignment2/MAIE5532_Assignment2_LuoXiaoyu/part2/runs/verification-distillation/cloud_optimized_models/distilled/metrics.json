@@ -1,0 +1,70 @@
+{
+  "variant": "distilled",
+  "smoke_test": true,
+  "epochs": 2,
+  "best_epoch": 2,
+  "test_accuracy": 0.1328125,
+  "test_loss": 2.2899093627929688,
+  "parameters": 324394,
+  "weight_bytes": 1297576,
+  "model_size_bytes": 1377992,
+  "model_path": "cloud_optimized_models/distilled/best_model.keras",
+  "training_wall_seconds": 5.36447791899991,
+  "epoch_train_seconds": [
+    4.4916918449998775,
+    0.07864961400014181
+  ],
+  "steady_train_images_per_second": 13019.771463826302,
+  "throughput_scope": "排除第一轮编译预热、验证和检查点保存；包含输入管线及梯度更新",
+  "train_examples": 1024,
+  "validation_examples": 256,
+  "test_examples": 256,
+  "micro_batch_size": 128,
+  "effective_batch_size": 128,
+  "optimizer_updates": 16,
+  "model_file_scope": "未编译的 Keras 网络，不含优化器和自定义训练器状态",
+  "initial_weights_sha256": "01a4a70e0afec947659418315394adde6c9809a6d9cbd21e51f90adc85226eae",
+  "training_memory_before": {
+    "GPU:0": {
+      "current": 8218368,
+      "peak": 8218368
+    }
+  },
+  "training_memory_peak": {
+    "GPU:0": {
+      "current": 11470336,
+      "peak": 456129792
+    }
+  },
+  "memory_scope": "TensorFlow 分配器统计，包含驻留模型及训练张量；不是进程总显存；逻辑 GPU 统计不可简单相加",
+  "inference": {
+    "1": {
+      "batch_size": 1,
+      "mean_ms": 0.8458864999965954,
+      "median_ms": 0.788304000025164,
+      "p95_ms": 1.0547455499249734,
+      "images_per_second": 1182.191700664362
+    },
+    "128": {
+      "batch_size": 128,
+      "mean_ms": 1.1444422999602466,
+      "median_ms": 1.0666744998388822,
+      "p95_ms": 1.4037059999623125,
+      "images_per_second": 111844.86977145655
+    }
+  },
+  "inference_scope": "普通导出模型单设备推理，包含输出传回主机，不含预处理或加载",
+  "simulated": false,
+  "replicas": 1,
+  "gpu_name": "NVIDIA GeForce RTX 4070 Ti",
+  "physical_gpu_count_used": 1,
+  "logical_gpu_limit_mb": null,
+  "tensorflow_version": "2.15.1",
+  "python_version": "3.11.16",
+  "precision": "float32",
+  "seed": 42,
+  "teacher_parameters": 628378,
+  "teacher_parameter_ratio": 1.9370826834035155,
+  "temperature": 4.0,
+  "supervised_loss_weight": 0.5
+}

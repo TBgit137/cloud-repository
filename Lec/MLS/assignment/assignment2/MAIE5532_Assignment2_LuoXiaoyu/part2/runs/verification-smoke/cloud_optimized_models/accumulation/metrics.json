@@ -1,0 +1,73 @@
+{
+  "variant": "accumulation",
+  "smoke_test": true,
+  "epochs": 2,
+  "best_epoch": 1,
+  "test_accuracy": 0.1328125,
+  "test_loss": 2.298809051513672,
+  "parameters": 324394,
+  "weight_bytes": 1297576,
+  "model_size_bytes": 1377992,
+  "model_path": "cloud_optimized_models/accumulation/best_model.keras",
+  "training_wall_seconds": 5.1045631029999186,
+  "epoch_train_seconds": [
+    4.282603998000013,
+    0.1240430700000843
+  ],
+  "steady_train_images_per_second": 8255.197166591444,
+  "throughput_scope": "排除第一轮编译预热、验证和检查点保存；包含输入管线及梯度更新",
+  "train_examples": 1024,
+  "validation_examples": 256,
+  "test_examples": 256,
+  "micro_batch_size": 64,
+  "effective_batch_size": 256,
+  "optimizer_updates": 8,
+  "model_file_scope": "未编译的 Keras 网络，不含优化器和自定义训练器状态",
+  "initial_weights_sha256": "01a4a70e0afec947659418315394adde6c9809a6d9cbd21e51f90adc85226eae",
+  "training_memory_before": {
+    "GPU:0": {
+      "current": 2793472,
+      "peak": 2793472
+    }
+  },
+  "training_memory_peak": {
+    "GPU:0": {
+      "current": 6841088,
+      "peak": 334733056
+    }
+  },
+  "memory_scope": "TensorFlow 分配器统计，包含驻留模型及训练张量；不是进程总显存；逻辑 GPU 统计不可简单相加",
+  "inference": {
+    "1": {
+      "batch_size": 1,
+      "mean_ms": 0.9344390000137537,
+      "median_ms": 0.8600925000337156,
+      "p95_ms": 1.2818660499704038,
+      "images_per_second": 1070.1608130496281
+    },
+    "128": {
+      "batch_size": 128,
+      "mean_ms": 1.3061042000117595,
+      "median_ms": 1.1632000000645348,
+      "p95_ms": 2.009089549972031,
+      "images_per_second": 98001.36926199881
+    }
+  },
+  "inference_scope": "普通导出模型单设备推理，包含输出传回主机，不含预处理或加载",
+  "simulated": false,
+  "replicas": 1,
+  "gpu_name": "NVIDIA GeForce RTX 4070 Ti",
+  "physical_gpu_count_used": 1,
+  "logical_gpu_limit_mb": null,
+  "tensorflow_version": "2.15.1",
+  "python_version": "3.11.16",
+  "precision": "float32",
+  "seed": 42,
+  "batch_configuration": {
+    "micro_batch_size": 64,
+    "effective_batch_size": 256,
+    "accumulation_steps": 4,
+    "parallel_map": true,
+    "prefetch": true
+  }
+}

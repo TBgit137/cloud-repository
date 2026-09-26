@@ -1,0 +1,108 @@
+2026-09-23 15:10:52.169227: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-09-23 15:10:52.202242: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-09-23 15:10:52.203129: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-09-23 15:10:52.204994: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-09-23 15:10:52.215507: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-09-23 15:10:52.628409: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-09-23 15:10:53.026217: I external/local_xla/xla/stream_executor/cuda/cuda_executor.cc:887] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+Your kernel may have been built without NUMA support.
+2026-09-23 15:10:53.057758: I external/local_xla/xla/stream_executor/cuda/cuda_executor.cc:887] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+Your kernel may have been built without NUMA support.
+2026-09-23 15:10:53.058963: I external/local_xla/xla/stream_executor/cuda/cuda_executor.cc:887] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+Your kernel may have been built without NUMA support.
+2026-09-23 15:10:53.059766: I external/local_xla/xla/stream_executor/cuda/cuda_executor.cc:887] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+Your kernel may have been built without NUMA support.
+2026-09-23 15:10:53.061107: I external/local_xla/xla/stream_executor/cuda/cuda_executor.cc:887] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+Your kernel may have been built without NUMA support.
+2026-09-23 15:10:53.061846: I external/local_xla/xla/stream_executor/cuda/cuda_executor.cc:887] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+Your kernel may have been built without NUMA support.
+2026-09-23 15:10:53.062494: I external/local_xla/xla/stream_executor/cuda/cuda_executor.cc:887] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+Your kernel may have been built without NUMA support.
+2026-09-23 15:10:53.216653: I external/local_xla/xla/stream_executor/cuda/cuda_executor.cc:887] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+Your kernel may have been built without NUMA support.
+2026-09-23 15:10:53.217777: I external/local_xla/xla/stream_executor/cuda/cuda_executor.cc:887] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+Your kernel may have been built without NUMA support.
+2026-09-23 15:10:53.218622: I tensorflow/core/common_runtime/gpu/gpu_device.cc:2022] Could not identify NUMA node of platform GPU id 0, defaulting to 0.  Your kernel may not have been built with NUMA support.
+2026-09-23 15:10:53.219401: I external/local_xla/xla/stream_executor/cuda/cuda_executor.cc:887] could not open file to read NUMA node: /sys/bus/pci/devices/0000:01:00.0/numa_node
+Your kernel may have been built without NUMA support.
+2026-09-23 15:10:53.220501: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1929] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 9498 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 4070 Ti, pci bus id: 0000:01:00.0, compute capability: 8.9
+Epoch 1/2
+2026-09-23 15:10:55.873719: I external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:454] Loaded cuDNN version 8904
+2026-09-23 15:10:56.151538: I external/local_tsl/tsl/platform/default/subprocess.cc:304] Start cannot spawn child process: Permission denied
+2026-09-23 15:10:56.485706: I external/local_tsl/tsl/platform/default/subprocess.cc:304] Start cannot spawn child process: Permission denied
+2026-09-23 15:10:57.285422: I external/local_xla/xla/service/service.cc:168] XLA service 0x7bb90d31f5d0 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2026-09-23 15:10:57.286202: I external/local_xla/xla/service/service.cc:176]   StreamExecutor device (0): NVIDIA GeForce RTX 4070 Ti, Compute Capability 8.9
+2026-09-23 15:10:57.290940: I tensorflow/compiler/mlir/tensorflow/utils/dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1790147457.355787     678 device_compiler.h:186] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+8/8 - 5s - loss: 2.5970 - accuracy: 0.1367 - val_loss: 2.3000 - val_accuracy: 0.0859 - lr: 0.0010 - 5s/epoch - 627ms/step
+Epoch 2/2
+8/8 - 0s - loss: 2.1415 - accuracy: 0.2305 - val_loss: 2.3034 - val_accuracy: 0.0781 - lr: 5.0000e-04 - 79ms/epoch - 10ms/step
+{
+  "variant": "fp32",
+  "smoke_test": true,
+  "epochs": 2,
+  "best_epoch": 1,
+  "test_accuracy": 0.09375,
+  "test_loss": 2.2993645668029785,
+  "parameters": 324394,
+  "weight_bytes": 1297576,
+  "model_size_bytes": 1377992,
+  "model_path": "cloud_optimized_models/fp32/best_model.keras",
+  "training_wall_seconds": 5.188581003000081,
+  "epoch_train_seconds": [
+    4.310456679000026,
+    0.064902057999916
+  ],
+  "steady_train_images_per_second": 15777.619871488903,
+  "throughput_scope": "排除第一轮编译预热、验证和检查点保存；包含输入管线及梯度更新",
+  "train_examples": 1024,
+  "validation_examples": 256,
+  "test_examples": 256,
+  "micro_batch_size": 128,
+  "effective_batch_size": 128,
+  "optimizer_updates": 16,
+  "model_file_scope": "未编译的 Keras 网络，不含优化器和自定义训练器状态",
+  "initial_weights_sha256": "01a4a70e0afec947659418315394adde6c9809a6d9cbd21e51f90adc85226eae",
+  "training_memory_before": {
+    "GPU:0": {
+      "current": 1424128,
+      "peak": 1424128
+    }
+  },
+  "training_memory_peak": {
+    "GPU:0": {
+      "current": 4162304,
+      "peak": 430505216
+    }
+  },
+  "memory_scope": "TensorFlow 分配器统计，包含驻留模型及训练张量；不是进程总显存；逻辑 GPU 统计不可简单相加",
+  "inference": {
+    "1": {
+      "batch_size": 1,
+      "mean_ms": 0.8654033000766503,
+      "median_ms": 0.8243230000744006,
+      "p95_ms": 1.1293940500763706,
+      "images_per_second": 1155.5306062634938
+    },
+    "128": {
+      "batch_size": 128,
+      "mean_ms": 1.4497008999342142,
+      "median_ms": 1.276050999877043,
+      "p95_ms": 2.0827503498821898,
+      "images_per_second": 88294.07500940951
+    }
+  },
+  "inference_scope": "普通导出模型单设备推理，包含输出传回主机，不含预处理或加载",
+  "simulated": false,
+  "replicas": 1,
+  "gpu_name": "NVIDIA GeForce RTX 4070 Ti",
+  "physical_gpu_count_used": 1,
+  "logical_gpu_limit_mb": null,
+  "tensorflow_version": "2.15.1",
+  "python_version": "3.11.16",
+  "tf32_execution_enabled": true,
+  "precision": "float32",
+  "seed": 42
+}

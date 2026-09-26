@@ -1,0 +1,280 @@
+{
+  "results": {
+    "fp32": {
+      "epochs": 2,
+      "best_epoch": 2,
+      "test_accuracy": 0.16796875,
+      "test_loss": 2.287339210510254,
+      "parameters": 324394,
+      "model_size_bytes": 1377992,
+      "training_seconds": 6.199988841,
+      "train_images_per_second": 13509.153257946913,
+      "training_memory": {
+        "GPU:0": {
+          "current": 4162048,
+          "peak": 430505216
+        }
+      },
+      "inference_mean_ms": 0.8844361399999912,
+      "micro_batch_size": 128,
+      "effective_batch_size": 128,
+      "optimizer_updates": 18,
+      "simulated": false,
+      "replicas": 1,
+      "gpu_name": "NVIDIA GeForce RTX 4070 Ti",
+      "tensorflow_version": "2.15.1",
+      "seed": 42
+    },
+    "mixed": {
+      "epochs": 2,
+      "best_epoch": 2,
+      "test_accuracy": 0.078125,
+      "test_loss": 2.300084352493286,
+      "parameters": 324394,
+      "model_size_bytes": 1380792,
+      "training_seconds": 4.97958954700001,
+      "train_images_per_second": 9068.63123389272,
+      "training_memory": {
+        "GPU:0": {
+          "current": 4165632,
+          "peak": 397384448
+        }
+      },
+      "inference_mean_ms": 1.1469889200000694,
+      "micro_batch_size": 128,
+      "effective_batch_size": 128,
+      "optimizer_updates": 18,
+      "simulated": false,
+      "replicas": 1,
+      "gpu_name": "NVIDIA GeForce RTX 4070 Ti",
+      "tensorflow_version": "2.15.1",
+      "seed": 42
+    },
+    "distributed_one": {
+      "epochs": 2,
+      "best_epoch": 2,
+      "test_accuracy": 0.16796875,
+      "test_loss": 2.2886390686035156,
+      "parameters": 324394,
+      "model_size_bytes": 1377992,
+      "training_seconds": 5.593815975999988,
+      "train_images_per_second": 12364.995408684283,
+      "training_memory": {
+        "GPU:0": {
+          "current": 7203328,
+          "peak": 414180608
+        },
+        "GPU:1": {
+          "current": 0,
+          "peak": 0
+        }
+      },
+      "inference_mean_ms": 0.9040203200000008,
+      "micro_batch_size": 128,
+      "effective_batch_size": 128,
+      "optimizer_updates": 18,
+      "simulated": true,
+      "replicas": 1,
+      "gpu_name": "NVIDIA GeForce RTX 4070 Ti",
+      "tensorflow_version": "2.15.1",
+      "seed": 42
+    },
+    "distributed_two": {
+      "epochs": 2,
+      "best_epoch": 2,
+      "test_accuracy": 0.14453125,
+      "test_loss": 2.2970831394195557,
+      "parameters": 324394,
+      "model_size_bytes": 1377992,
+      "training_seconds": 10.493924729,
+      "train_images_per_second": 3759.669239631135,
+      "training_memory": {
+        "GPU:0": {
+          "current": 7093248,
+          "peak": 223142400
+        },
+        "GPU:1": {
+          "current": 6561280,
+          "peak": 224794368
+        }
+      },
+      "inference_mean_ms": 0.9567793200000096,
+      "micro_batch_size": 128,
+      "effective_batch_size": 128,
+      "optimizer_updates": 18,
+      "simulated": true,
+      "replicas": 2,
+      "gpu_name": "NVIDIA GeForce RTX 4070 Ti",
+      "tensorflow_version": "2.15.1",
+      "seed": 42
+    },
+    "pipeline_serial": {
+      "epochs": 2,
+      "best_epoch": 1,
+      "train_examples": 1030,
+      "test_examples": 256,
+      "test_accuracy": 0.140625,
+      "test_loss": 2.2929539680480957,
+      "parameters": 324394,
+      "model_size_bytes": 1377992,
+      "training_seconds": 5.504934023000004,
+      "train_images_per_second": 14752.142028925991,
+      "training_memory": {
+        "GPU:0": {
+          "current": 4162304,
+          "peak": 430505216
+        }
+      },
+      "inference_mean_ms": 0.8551200600000186,
+      "micro_batch_size": 128,
+      "effective_batch_size": 128,
+      "optimizer_updates": 18,
+      "simulated": false,
+      "replicas": 1,
+      "gpu_name": "NVIDIA GeForce RTX 4070 Ti",
+      "tensorflow_version": "2.15.1",
+      "seed": 42
+    },
+    "batch256": {
+      "epochs": 2,
+      "best_epoch": 2,
+      "train_examples": 1030,
+      "test_examples": 256,
+      "test_accuracy": 0.12109375,
+      "test_loss": 2.2982168197631836,
+      "parameters": 324394,
+      "model_size_bytes": 1377992,
+      "training_seconds": 5.664002702999994,
+      "train_images_per_second": 17495.585719338695,
+      "training_memory": {
+        "GPU:0": {
+          "current": 4162048,
+          "peak": 781230848
+        }
+      },
+      "inference_mean_ms": 0.8233429300000239,
+      "micro_batch_size": 256,
+      "effective_batch_size": 256,
+      "optimizer_updates": 10,
+      "simulated": false,
+      "replicas": 1,
+      "gpu_name": "NVIDIA GeForce RTX 4070 Ti",
+      "tensorflow_version": "2.15.1",
+      "seed": 42
+    },
+    "accumulation": {
+      "epochs": 2,
+      "best_epoch": 1,
+      "train_examples": 1030,
+      "test_examples": 256,
+      "test_accuracy": 0.15625,
+      "test_loss": 2.2974696159362793,
+      "parameters": 324394,
+      "model_size_bytes": 1377992,
+      "training_seconds": 5.219417118999999,
+      "train_images_per_second": 5459.837622626754,
+      "training_memory": {
+        "GPU:0": {
+          "current": 6732032,
+          "peak": 334733056
+        }
+      },
+      "inference_mean_ms": 0.9070622599999467,
+      "micro_batch_size": 64,
+      "effective_batch_size": 256,
+      "optimizer_updates": 10,
+      "simulated": false,
+      "replicas": 1,
+      "gpu_name": "NVIDIA GeForce RTX 4070 Ti",
+      "tensorflow_version": "2.15.1",
+      "seed": 42
+    },
+    "teacher": {
+      "epochs": 2,
+      "best_epoch": 2,
+      "train_examples": 1030,
+      "test_examples": 256,
+      "test_accuracy": 0.09765625,
+      "test_loss": 2.30910325050354,
+      "parameters": 628378,
+      "model_size_bytes": 2593939,
+      "training_seconds": 6.076322818999984,
+      "train_images_per_second": 11509.910384844323,
+      "training_memory": {
+        "GPU:0": {
+          "current": 9162240,
+          "peak": 610786048
+        }
+      },
+      "inference_mean_ms": 0.9989287499999477,
+      "micro_batch_size": 128,
+      "effective_batch_size": 128,
+      "optimizer_updates": 18,
+      "simulated": false,
+      "replicas": 1,
+      "gpu_name": "NVIDIA GeForce RTX 4070 Ti",
+      "tensorflow_version": "2.15.1",
+      "seed": 42,
+      "teacher_parameter_ratio": 1.9370826834035155
+    },
+    "distilled": {
+      "epochs": 2,
+      "best_epoch": 2,
+      "train_examples": 1030,
+      "test_examples": 256,
+      "test_accuracy": 0.14453125,
+      "test_loss": 2.2952451705932617,
+      "parameters": 324394,
+      "model_size_bytes": 1377992,
+      "training_seconds": 5.962033439999999,
+      "train_images_per_second": 13436.51305631631,
+      "training_memory": {
+        "GPU:0": {
+          "current": 11470592,
+          "peak": 456129792
+        }
+      },
+      "inference_mean_ms": 0.813279209999962,
+      "micro_batch_size": 128,
+      "effective_batch_size": 128,
+      "optimizer_updates": 18,
+      "simulated": false,
+      "replicas": 1,
+      "gpu_name": "NVIDIA GeForce RTX 4070 Ti",
+      "tensorflow_version": "2.15.1",
+      "seed": 42,
+      "teacher_parameter_ratio": 1.9370826834035155,
+      "temperature": 4.0,
+      "alpha": 0.5
+    }
+  },
+  "comparisons": {
+    "mixed_vs_fp32": {
+      "throughput_ratio": 0.6712953107226017,
+      "accuracy_change_percentage_points": -8.984375
+    },
+    "fp32_vs_pipeline_serial": {
+      "throughput_ratio": 0.9157418110168797,
+      "accuracy_change_percentage_points": 2.734375
+    },
+    "accumulation_vs_batch256": {
+      "throughput_ratio": 0.31206943912667856,
+      "accuracy_change_percentage_points": 3.515625
+    },
+    "distilled_vs_fp32": {
+      "throughput_ratio": 0.9946228901069079,
+      "accuracy_change_percentage_points": -2.34375
+    },
+    "distributed_two_vs_distributed_one": {
+      "throughput_ratio": 0.30405747154508556,
+      "accuracy_change_percentage_points": -2.34375,
+      "simulated_efficiency": 0.15202873577254278
+    }
+  },
+  "notes": [
+    "训练吞吐排除第一轮、验证和保存；总训练耗时包含这些开销。",
+    "内存为 TensorFlow 分配器字节数，不是进程总显存；逻辑设备统计不可相加。",
+    "单张 GPU 的双逻辑副本只用于模拟，不代表真实双卡扩展效率。",
+    "模型文件不含优化器；推理耗时包含输出回传，不含加载和预处理。"
+  ]
+}

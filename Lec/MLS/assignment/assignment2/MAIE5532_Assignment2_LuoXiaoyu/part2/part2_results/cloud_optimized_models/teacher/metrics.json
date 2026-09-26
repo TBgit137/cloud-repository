@@ -1,0 +1,28 @@
+{
+  "epochs": 50,
+  "best_epoch": 41,
+  "train_examples": 45000,
+  "test_examples": 10000,
+  "test_accuracy": 0.8855000138282776,
+  "test_loss": 0.3860968351364136,
+  "parameters": 628378,
+  "model_size_bytes": 2593939,
+  "training_seconds": 170.77912722099973,
+  "train_images_per_second": 14474.117273022857,
+  "training_memory": {
+    "GPU:0": {
+      "current": 9162752,
+      "peak": 610786560
+    }
+  },
+  "inference_mean_ms": 0.8492721600032382,
+  "micro_batch_size": 128,
+  "effective_batch_size": 128,
+  "optimizer_updates": 17600,
+  "simulated": false,
+  "replicas": 1,
+  "gpu_name": "NVIDIA GeForce RTX 4070 Ti",
+  "tensorflow_version": "2.15.1",
+  "seed": 42,
+  "teacher_parameter_ratio": 1.9370826834035155
+}

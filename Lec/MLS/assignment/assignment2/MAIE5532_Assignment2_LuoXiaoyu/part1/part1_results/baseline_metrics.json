@@ -1,0 +1,32 @@
+{
+  "test_accuracy": 0.8770999908447266,
+  "test_loss": 0.38627365231513977,
+  "accuracy_requirement_met": true,
+  "parameters": 324394,
+  "weight_memory_bytes": 1297576,
+  "weight_memory_mib": 1.2374649047851562,
+  "memory_scope": "model weights including BatchNorm state; excludes activations, optimizer, and runtime",
+  "training_seconds": 172.3512055400024,
+  "epochs_completed": 50,
+  "best_epoch": 45,
+  "inference": {
+    "batch_size": 1,
+    "warmup_runs": 20,
+    "measured_runs": 200,
+    "mean_ms": 1.0040008099713305,
+    "median_ms": 0.839620999613544,
+    "p95_ms": 2.2481619998870883,
+    "scope": "forward pass plus host output transfer; excludes preprocessing"
+  },
+  "tensorflow_version": "2.15.1",
+  "visible_devices": [
+    "/physical_device:CPU:0",
+    "/physical_device:GPU:0"
+  ],
+  "seed": 42,
+  "batch_size": 128,
+  "validation_fraction": 0.1,
+  "model_size_bytes": 3994292,
+  "model_size_mib": 3.809253692626953,
+  "model_file_scope": "Keras archive including optimizer state"
+}

@@ -1,0 +1,11 @@
+{
+  "experiment": "all",
+  "smoke": true,
+  "epochs": 2,
+  "baseline": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment2/MAIE5532_Assignment2_LuoXiaoyu/part1/baseline_model.keras",
+  "output": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment2/MAIE5532_Assignment2_LuoXiaoyu/part2/runs/verified-all-smoke",
+  "temperature": 4.0,
+  "alpha": 0.5,
+  "logical_memory_mb": 4096,
+  "worker": null
+}

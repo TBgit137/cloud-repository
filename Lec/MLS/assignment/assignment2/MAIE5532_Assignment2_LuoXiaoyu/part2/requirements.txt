@@ -1,0 +1,4 @@
+# 在 WSL 的 Python 3.11 环境使用，与已验证的第一部分环境一致。
+tensorflow[and-cuda]==2.15.1
+numpy==1.26.4
+matplotlib==3.8.4

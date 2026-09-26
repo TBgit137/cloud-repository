@@ -1,0 +1,66 @@
+{
+  "variant": "fp32",
+  "smoke_test": true,
+  "epochs": 2,
+  "best_epoch": 1,
+  "test_accuracy": 0.21875,
+  "test_loss": 2.294588088989258,
+  "parameters": 324394,
+  "weight_bytes": 1297576,
+  "model_size_bytes": 1377992,
+  "model_path": "cloud_optimized_models/fp32/best_model.keras",
+  "training_wall_seconds": 5.638701707999985,
+  "epoch_train_seconds": [
+    4.760474744000021,
+    0.06953599199994187
+  ],
+  "steady_train_images_per_second": 14726.186691934387,
+  "throughput_scope": "排除第一轮编译预热、验证和检查点保存；包含输入管线及梯度更新",
+  "train_examples": 1024,
+  "validation_examples": 256,
+  "test_examples": 256,
+  "micro_batch_size": 128,
+  "effective_batch_size": 128,
+  "optimizer_updates": 16,
+  "model_file_scope": "未编译的 Keras 网络，不含优化器和自定义训练器状态",
+  "initial_weights_sha256": "01a4a70e0afec947659418315394adde6c9809a6d9cbd21e51f90adc85226eae",
+  "training_memory_before": {
+    "GPU:0": {
+      "current": 1424128,
+      "peak": 1424128
+    }
+  },
+  "training_memory_peak": {
+    "GPU:0": {
+      "current": 4162048,
+      "peak": 430505216
+    }
+  },
+  "memory_scope": "TensorFlow 分配器统计，包含驻留模型及训练张量；不是进程总显存；逻辑 GPU 统计不可简单相加",
+  "inference": {
+    "1": {
+      "batch_size": 1,
+      "mean_ms": 1.0067968999919685,
+      "median_ms": 0.8031614999026715,
+      "p95_ms": 1.8190153000318776,
+      "images_per_second": 993.2489859752025
+    },
+    "128": {
+      "batch_size": 128,
+      "mean_ms": 1.1639061999972,
+      "median_ms": 1.0604935000060323,
+      "p95_ms": 1.5167471499808014,
+      "images_per_second": 109974.49794520206
+    }
+  },
+  "inference_scope": "普通导出模型单设备推理，包含输出传回主机，不含预处理或加载",
+  "simulated": false,
+  "replicas": 1,
+  "gpu_name": "NVIDIA GeForce RTX 4070 Ti",
+  "physical_gpu_count_used": 1,
+  "logical_gpu_limit_mb": null,
+  "tensorflow_version": "2.15.1",
+  "python_version": "3.11.16",
+  "precision": "float32",
+  "seed": 42
+}

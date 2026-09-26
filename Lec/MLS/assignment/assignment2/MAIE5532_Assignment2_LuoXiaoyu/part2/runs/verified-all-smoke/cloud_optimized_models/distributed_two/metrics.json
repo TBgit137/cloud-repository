@@ -1,0 +1,75 @@
+{
+  "variant": "distributed_two",
+  "smoke_test": true,
+  "epochs": 2,
+  "best_epoch": 1,
+  "test_accuracy": 0.109375,
+  "test_loss": 2.298736095428467,
+  "parameters": 324394,
+  "weight_bytes": 1297576,
+  "model_size_bytes": 1377992,
+  "model_path": "cloud_optimized_models/distributed_two/best_model.keras",
+  "training_wall_seconds": 7.849832105000132,
+  "epoch_train_seconds": [
+    5.754146390999949,
+    0.23519126799988044
+  ],
+  "steady_train_images_per_second": 4353.903138957186,
+  "throughput_scope": "排除第一轮编译预热、验证和检查点保存；包含输入管线及梯度更新",
+  "train_examples": 1024,
+  "validation_examples": 256,
+  "test_examples": 256,
+  "micro_batch_size": 128,
+  "effective_batch_size": 128,
+  "optimizer_updates": 16,
+  "model_file_scope": "未编译的 Keras 网络，不含优化器和自定义训练器状态",
+  "initial_weights_sha256": "01a4a70e0afec947659418315394adde6c9809a6d9cbd21e51f90adc85226eae",
+  "training_memory_before": {
+    "GPU:0": {
+      "current": 1424640,
+      "peak": 1424640
+    },
+    "GPU:1": {
+      "current": 1302784,
+      "peak": 1302784
+    }
+  },
+  "training_memory_peak": {
+    "GPU:0": {
+      "current": 5667328,
+      "peak": 175388672
+    },
+    "GPU:1": {
+      "current": 5224960,
+      "peak": 225883904
+    }
+  },
+  "memory_scope": "TensorFlow 分配器统计，包含驻留模型及训练张量；不是进程总显存；逻辑 GPU 统计不可简单相加",
+  "inference": {
+    "1": {
+      "batch_size": 1,
+      "mean_ms": 0.9392001999913191,
+      "median_ms": 0.7844464998925105,
+      "p95_ms": 1.6355631000237723,
+      "images_per_second": 1064.7357187628822
+    },
+    "128": {
+      "batch_size": 128,
+      "mean_ms": 1.4975605000017822,
+      "median_ms": 1.273276500000975,
+      "p95_ms": 2.329635900071025,
+      "images_per_second": 85472.33984860557
+    }
+  },
+  "inference_scope": "普通导出模型单设备推理，包含输出传回主机，不含预处理或加载",
+  "simulated": true,
+  "replicas": 2,
+  "gpu_name": "NVIDIA GeForce RTX 4070 Ti",
+  "physical_gpu_count_used": 1,
+  "logical_gpu_limit_mb": 4096,
+  "tensorflow_version": "2.15.1",
+  "python_version": "3.11.16",
+  "tf32_execution_enabled": true,
+  "precision": "float32",
+  "seed": 42
+}
