@@ -1,0 +1,9 @@
+# Python 3.11 on Linux / WSL2; NVIDIA GPU dependencies are included.
+tensorflow[and-cuda]==2.15.1
+tensorflow-model-optimization==0.8.0
+tf_keras==2.15.1
+numpy==1.26.4
+matplotlib==3.8.4
+# Interactive notebook demo.
+notebook
+ipykernel

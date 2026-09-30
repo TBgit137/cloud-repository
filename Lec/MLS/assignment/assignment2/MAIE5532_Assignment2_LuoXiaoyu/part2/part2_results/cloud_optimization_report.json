@@ -280,9 +280,9 @@
     }
   },
   "notes": [
-    "训练吞吐排除第一轮、验证和保存；总训练耗时包含这些开销。",
-    "内存为 TensorFlow 分配器字节数，不是进程总显存；逻辑设备统计不可相加。",
-    "单张 GPU 的双逻辑副本只用于模拟，不代表真实双卡扩展效率。",
-    "模型文件不含优化器；推理耗时包含输出回传，不含加载和预处理。"
+    "Training throughput excludes the first epoch, validation, and saving; total training time includes those costs.",
+    "Memory values are TensorFlow allocator statistics, not total process GPU memory; logical device values should not be added together.",
+    "Two logical replicas on one physical GPU are used only for simulation and do not represent real multi-GPU scaling.",
+    "Saved model files exclude optimizer state; inference latency includes output transfer but excludes loading and preprocessing."
   ]
 }

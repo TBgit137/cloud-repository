@@ -1,0 +1,405 @@
+{
+  "settings": {
+    "seed": 42,
+    "prune_epochs": 5,
+    "nas_search_epochs": 4,
+    "architecture_final_epochs": 20,
+    "tflite_accuracy_samples": 10000,
+    "latency_runs": 100,
+    "note": "No physical edge board was available; viability is estimated from model size and local TFLite CPU latency."
+  },
+  "baseline": {
+    "keras": {
+      "test_accuracy": 0.8769999742507935,
+      "test_loss": 0.3862727880477905,
+      "test_samples": 10000,
+      "parameters": 324394,
+      "weight_memory_bytes": 1297576,
+      "keras_file_bytes": 3994292,
+      "keras_gzip_bytes": 3572324,
+      "zero_weights": 0,
+      "total_weights": 324394,
+      "actual_sparsity": 0.0
+    },
+    "tflite": {
+      "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment2/MAIE5532_Assignment2_LuoXiaoyu/part3/part3_results/tflite_models/baseline_float32.tflite",
+      "size_bytes": 1297732,
+      "size_mib": 1.2376136779785156,
+      "accuracy": 0.8771,
+      "accuracy_samples": 10000,
+      "latency_mean_ms": 0.38168563999079197,
+      "latency_median_ms": 0.373653499991633,
+      "latency_p95_ms": 0.4044752498884918,
+      "latency_runs": 100
+    }
+  },
+  "pruning": {
+    "pruned_50": {
+      "test_accuracy": 0.8763999938964844,
+      "test_loss": 0.3820131719112396,
+      "test_samples": 10000,
+      "parameters": 324394,
+      "weight_memory_bytes": 1297576,
+      "keras_file_bytes": 1387243,
+      "keras_gzip_bytes": 732258,
+      "zero_weights": 160938,
+      "total_weights": 324394,
+      "actual_sparsity": 0.49611891711930556
+    },
+    "pruned_75": {
+      "test_accuracy": 0.8460000157356262,
+      "test_loss": 0.4602143168449402,
+      "test_samples": 10000,
+      "parameters": 324394,
+      "weight_memory_bytes": 1297576,
+      "keras_file_bytes": 1387243,
+      "keras_gzip_bytes": 436089,
+      "zero_weights": 241407,
+      "total_weights": 324394,
+      "actual_sparsity": 0.7441783756789583
+    }
+  },
+  "quantization": {
+    "dynamic_range": {
+      "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment2/MAIE5532_Assignment2_LuoXiaoyu/part3/part3_results/tflite_models/baseline_dynamic_range.tflite",
+      "size_bytes": 339896,
+      "size_mib": 0.32415008544921875,
+      "accuracy": 0.8767,
+      "accuracy_samples": 10000,
+      "latency_mean_ms": 0.31907733998650656,
+      "latency_median_ms": 0.3147234999687498,
+      "latency_p95_ms": 0.34069259993430023,
+      "latency_runs": 100
+    },
+    "int8": {
+      "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment2/MAIE5532_Assignment2_LuoXiaoyu/part3/part3_results/tflite_models/baseline_int8.tflite",
+      "size_bytes": 343688,
+      "size_mib": 0.32776641845703125,
+      "accuracy": 0.8739,
+      "accuracy_samples": 10000,
+      "latency_mean_ms": 0.3326474300138216,
+      "latency_median_ms": 0.3341050000926771,
+      "latency_p95_ms": 0.3726227500692403,
+      "latency_runs": 100
+    },
+    "float16": {
+      "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment2/MAIE5532_Assignment2_LuoXiaoyu/part3/part3_results/tflite_models/baseline_float16.tflite",
+      "size_bytes": 655840,
+      "size_mib": 0.625457763671875,
+      "accuracy": 0.8772,
+      "accuracy_samples": 10000,
+      "latency_mean_ms": 0.36682062002455496,
+      "latency_median_ms": 0.3674015001706721,
+      "latency_p95_ms": 0.3926604001890155,
+      "latency_runs": 100
+    }
+  },
+  "architecture": {
+    "architecture_optimized": {
+      "test_accuracy": 0.7053999900817871,
+      "test_loss": 0.8850089907646179,
+      "test_samples": 10000,
+      "parameters": 15157,
+      "weight_memory_bytes": 60628,
+      "keras_file_bytes": 284338,
+      "keras_gzip_bytes": 168722,
+      "zero_weights": 0,
+      "total_weights": 15157,
+      "actual_sparsity": 0.0
+    },
+    "nas_best": {
+      "test_accuracy": 0.6796000003814697,
+      "test_loss": 1.0122872591018677,
+      "test_samples": 10000,
+      "parameters": 35629,
+      "weight_memory_bytes": 142516,
+      "keras_file_bytes": 528238,
+      "keras_gzip_bytes": 387771,
+      "zero_weights": 2,
+      "total_weights": 35629,
+      "actual_sparsity": 5.613404810687923e-05
+    }
+  },
+  "nas_search": [
+    {
+      "name": "nas_d2_w05_k3",
+      "depth": 2,
+      "width_multiplier": 0.5,
+      "kernel_size": 3,
+      "validation_accuracy": 0.504800021648407,
+      "parameters": 5589,
+      "score": 0.49921102164840697
+    },
+    {
+      "name": "nas_d2_w05_k5",
+      "depth": 2,
+      "width_multiplier": 0.5,
+      "kernel_size": 5,
+      "validation_accuracy": 0.45579999685287476,
+      "parameters": 6661,
+      "score": 0.44913899685287473
+    },
+    {
+      "name": "nas_d2_w075_k3",
+      "depth": 2,
+      "width_multiplier": 0.75,
+      "kernel_size": 3,
+      "validation_accuracy": 0.5339999794960022,
+      "parameters": 11245,
+      "score": 0.5227549794960022
+    },
+    {
+      "name": "nas_d2_w075_k5",
+      "depth": 2,
+      "width_multiplier": 0.75,
+      "kernel_size": 5,
+      "validation_accuracy": 0.579800009727478,
+      "parameters": 12829,
+      "score": 0.566971009727478
+    },
+    {
+      "name": "nas_d3_w05_k3",
+      "depth": 3,
+      "width_multiplier": 0.5,
+      "kernel_size": 3,
+      "validation_accuracy": 0.5734000205993652,
+      "parameters": 15157,
+      "score": 0.5582430205993653
+    },
+    {
+      "name": "nas_d3_w05_k5",
+      "depth": 3,
+      "width_multiplier": 0.5,
+      "kernel_size": 5,
+      "validation_accuracy": 0.5522000193595886,
+      "parameters": 17765,
+      "score": 0.5344350193595886
+    },
+    {
+      "name": "nas_d3_w075_k3",
+      "depth": 3,
+      "width_multiplier": 0.75,
+      "kernel_size": 3,
+      "validation_accuracy": 0.6119999885559082,
+      "parameters": 31741,
+      "score": 0.5802589885559082
+    },
+    {
+      "name": "nas_d3_w075_k5",
+      "depth": 3,
+      "width_multiplier": 0.75,
+      "kernel_size": 5,
+      "validation_accuracy": 0.6209999918937683,
+      "parameters": 35629,
+      "score": 0.5853709918937683
+    }
+  ],
+  "tflite_conversions": {
+    "pruned_50": {
+      "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment2/MAIE5532_Assignment2_LuoXiaoyu/part3/part3_results/tflite_models/pruned_50.tflite",
+      "size_bytes": 1297732,
+      "size_mib": 1.2376136779785156,
+      "accuracy": 0.8765,
+      "accuracy_samples": 10000,
+      "latency_mean_ms": 0.37751260999812075,
+      "latency_median_ms": 0.37703000020883337,
+      "latency_p95_ms": 0.40758254995125753,
+      "latency_runs": 100
+    },
+    "pruned_75": {
+      "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment2/MAIE5532_Assignment2_LuoXiaoyu/part3/part3_results/tflite_models/pruned_75.tflite",
+      "size_bytes": 1297732,
+      "size_mib": 1.2376136779785156,
+      "accuracy": 0.8457,
+      "accuracy_samples": 10000,
+      "latency_mean_ms": 0.4073547500047425,
+      "latency_median_ms": 0.4192235001028166,
+      "latency_p95_ms": 0.45621235010457895,
+      "latency_runs": 100
+    },
+    "architecture_optimized": {
+      "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment2/MAIE5532_Assignment2_LuoXiaoyu/part3/part3_results/tflite_models/architecture_optimized.tflite",
+      "size_bytes": 67880,
+      "size_mib": 0.06473541259765625,
+      "accuracy": 0.7054,
+      "accuracy_samples": 10000,
+      "latency_mean_ms": 0.03886063994741562,
+      "latency_median_ms": 0.037439999914568034,
+      "latency_p95_ms": 0.05407704982189898,
+      "latency_runs": 100
+    },
+    "nas_best": {
+      "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment2/MAIE5532_Assignment2_LuoXiaoyu/part3/part3_results/tflite_models/nas_best.tflite",
+      "size_bytes": 148324,
+      "size_mib": 0.14145278930664062,
+      "accuracy": 0.6796,
+      "accuracy_samples": 10000,
+      "latency_mean_ms": 0.09742236001784477,
+      "latency_median_ms": 0.09432600018044468,
+      "latency_p95_ms": 0.11329399981150345,
+      "latency_runs": 100
+    }
+  },
+  "edge_viability": {
+    "baseline_float32": {
+      "microcontroller_1mb_flash": {
+        "fits_flash": false,
+        "estimated_ram_ok": false,
+        "estimated_energy_mj_per_inference": 0.0190842819995396,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      },
+      "small_linux_edge_64mb": {
+        "fits_flash": true,
+        "estimated_ram_ok": true,
+        "estimated_energy_mj_per_inference": 0.38168563999079197,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      },
+      "raspberry_pi_class": {
+        "fits_flash": true,
+        "estimated_ram_ok": true,
+        "estimated_energy_mj_per_inference": 1.145056919972376,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      }
+    },
+    "dynamic_range": {
+      "microcontroller_1mb_flash": {
+        "fits_flash": true,
+        "estimated_ram_ok": false,
+        "estimated_energy_mj_per_inference": 0.015953866999325328,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      },
+      "small_linux_edge_64mb": {
+        "fits_flash": true,
+        "estimated_ram_ok": true,
+        "estimated_energy_mj_per_inference": 0.31907733998650656,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      },
+      "raspberry_pi_class": {
+        "fits_flash": true,
+        "estimated_ram_ok": true,
+        "estimated_energy_mj_per_inference": 0.9572320199595197,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      }
+    },
+    "int8": {
+      "microcontroller_1mb_flash": {
+        "fits_flash": true,
+        "estimated_ram_ok": false,
+        "estimated_energy_mj_per_inference": 0.01663237150069108,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      },
+      "small_linux_edge_64mb": {
+        "fits_flash": true,
+        "estimated_ram_ok": true,
+        "estimated_energy_mj_per_inference": 0.3326474300138216,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      },
+      "raspberry_pi_class": {
+        "fits_flash": true,
+        "estimated_ram_ok": true,
+        "estimated_energy_mj_per_inference": 0.9979422900414647,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      }
+    },
+    "float16": {
+      "microcontroller_1mb_flash": {
+        "fits_flash": true,
+        "estimated_ram_ok": false,
+        "estimated_energy_mj_per_inference": 0.018341031001227748,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      },
+      "small_linux_edge_64mb": {
+        "fits_flash": true,
+        "estimated_ram_ok": true,
+        "estimated_energy_mj_per_inference": 0.36682062002455496,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      },
+      "raspberry_pi_class": {
+        "fits_flash": true,
+        "estimated_ram_ok": true,
+        "estimated_energy_mj_per_inference": 1.1004618600736649,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      }
+    },
+    "pruned_50": {
+      "microcontroller_1mb_flash": {
+        "fits_flash": false,
+        "estimated_ram_ok": false,
+        "estimated_energy_mj_per_inference": 0.018875630499906038,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      },
+      "small_linux_edge_64mb": {
+        "fits_flash": true,
+        "estimated_ram_ok": true,
+        "estimated_energy_mj_per_inference": 0.37751260999812075,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      },
+      "raspberry_pi_class": {
+        "fits_flash": true,
+        "estimated_ram_ok": true,
+        "estimated_energy_mj_per_inference": 1.1325378299943623,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      }
+    },
+    "pruned_75": {
+      "microcontroller_1mb_flash": {
+        "fits_flash": false,
+        "estimated_ram_ok": false,
+        "estimated_energy_mj_per_inference": 0.020367737500237126,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      },
+      "small_linux_edge_64mb": {
+        "fits_flash": true,
+        "estimated_ram_ok": true,
+        "estimated_energy_mj_per_inference": 0.4073547500047425,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      },
+      "raspberry_pi_class": {
+        "fits_flash": true,
+        "estimated_ram_ok": true,
+        "estimated_energy_mj_per_inference": 1.2220642500142276,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      }
+    },
+    "architecture_optimized": {
+      "microcontroller_1mb_flash": {
+        "fits_flash": true,
+        "estimated_ram_ok": true,
+        "estimated_energy_mj_per_inference": 0.001943031997370781,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      },
+      "small_linux_edge_64mb": {
+        "fits_flash": true,
+        "estimated_ram_ok": true,
+        "estimated_energy_mj_per_inference": 0.03886063994741562,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      },
+      "raspberry_pi_class": {
+        "fits_flash": true,
+        "estimated_ram_ok": true,
+        "estimated_energy_mj_per_inference": 0.11658191984224686,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      }
+    },
+    "nas_best": {
+      "microcontroller_1mb_flash": {
+        "fits_flash": true,
+        "estimated_ram_ok": false,
+        "estimated_energy_mj_per_inference": 0.004871118000892238,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      },
+      "small_linux_edge_64mb": {
+        "fits_flash": true,
+        "estimated_ram_ok": true,
+        "estimated_energy_mj_per_inference": 0.09742236001784477,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      },
+      "raspberry_pi_class": {
+        "fits_flash": true,
+        "estimated_ram_ok": true,
+        "estimated_energy_mj_per_inference": 0.2922670800535343,
+        "note": "Estimated from local TFLite latency, not measured on this hardware."
+      }
+    }
+  }
+}

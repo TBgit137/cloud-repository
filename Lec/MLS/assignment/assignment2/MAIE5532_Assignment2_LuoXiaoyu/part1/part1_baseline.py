@@ -1,10 +1,3 @@
-"""第一部分：按照作业给定的函数框架实现 CIFAR-10 基线模型。
-
-在作业根目录运行：python part1/part1_baseline.py
-依赖：tensorflow、numpy、matplotlib。
-模型和实验结果保存在本脚本所在的 part1 目录中。
-"""
-
 import json
 import os
 from pathlib import Path
@@ -23,10 +16,10 @@ RESULTS_DIR = OUTPUT_DIR / "part1_results"
 
 
 def create_baseline_model():
-    """创建并编译卷积神经网络。"""
+    """Create and compile the baseline convolutional neural network."""
     model = keras.Sequential([
         keras.Input(shape=(32, 32, 3)),
-        # 卷积块 1：特征图尺寸由 32×32 缩小为 16×16。
+        # Convolution block 1: reduce feature maps from 32x32 to 16x16.
         keras.layers.Conv2D(32, (3, 3), padding="same"),
         keras.layers.BatchNormalization(),
         keras.layers.ReLU(),
@@ -34,7 +27,7 @@ def create_baseline_model():
         keras.layers.BatchNormalization(),
         keras.layers.ReLU(),
         keras.layers.MaxPooling2D((2, 2)),
-        # 卷积块 2：特征图尺寸由 16×16 缩小为 8×8。
+        # Convolution block 2: reduce feature maps from 16x16 to 8x8.
         keras.layers.Conv2D(64, (3, 3), padding="same"),
         keras.layers.BatchNormalization(),
         keras.layers.ReLU(),
@@ -42,7 +35,7 @@ def create_baseline_model():
         keras.layers.BatchNormalization(),
         keras.layers.ReLU(),
         keras.layers.MaxPooling2D((2, 2)),
-        # 卷积块 3：特征图尺寸由 8×8 缩小为 4×4。
+        # Convolution block 3: reduce feature maps from 8x8 to 4x4.
         keras.layers.Conv2D(128, (3, 3), padding="same"),
         keras.layers.BatchNormalization(),
         keras.layers.ReLU(),
@@ -50,7 +43,7 @@ def create_baseline_model():
         keras.layers.BatchNormalization(),
         keras.layers.ReLU(),
         keras.layers.MaxPooling2D((2, 2)),
-        # 分类器：输出类别概率，与稀疏分类交叉熵损失相匹配。
+        # Classifier: output class probabilities for sparse cross-entropy.
         keras.layers.GlobalAveragePooling2D(),
         keras.layers.Dropout(0.5),
         keras.layers.Dense(256, activation="relu"),
@@ -67,11 +60,7 @@ def create_baseline_model():
 
 
 def load_and_preprocess_data():
-    """加载并返回归一化后的 CIFAR-10 数组；数据增强在训练阶段应用。
-
-    此处不进行数据增强，便于划分未经增强的验证集，
-    同时保留题目规定的四个数组返回值。
-    """
+    """Load CIFAR-10 arrays and normalize images; augmentation is applied during training."""
     (x_train, y_train), (x_test, y_test) = keras.datasets.cifar10.load_data()
     x_train = x_train.astype(np.float32) / 255.0
     x_test = x_test.astype(np.float32) / 255.0
@@ -79,7 +68,7 @@ def load_and_preprocess_data():
 
 
 def _make_training_datasets(x_train, y_train):
-    """在数据增强前，从训练集的每个类别中划出 10% 作为验证集。"""
+    """Reserve 10% of each class for validation before data augmentation."""
     rng = np.random.default_rng(SEED)
     train_indices, val_indices = [], []
     for label in np.unique(y_train):
@@ -101,7 +90,7 @@ def _make_training_datasets(x_train, y_train):
         (x_train[train_indices], y_train[train_indices])
     )
     train_ds = train_ds.shuffle(len(train_indices), seed=SEED).batch(BATCH_SIZE)
-    # 每轮训练重新生成随机增强；验证集和测试集不进行数据增强。
+    # Regenerate random augmentations each epoch; validation and test data stay unchanged.
     train_ds = train_ds.map(
         lambda images, labels: (augmentation(images, training=True), labels),
         num_parallel_calls=tf.data.AUTOTUNE,
@@ -113,10 +102,11 @@ def _make_training_datasets(x_train, y_train):
 
 
 def _measure_inference(model, x_test, repetitions=200):
-    """预热后测量批大小为 1 的前向推理耗时，包含结果传回主机的时间。
+    """Measure batch-size-1 forward-pass latency after warmup.
 
-    不包含数据预处理和模型加载时间。通过 numpy() 取出结果，
-    确保设备计算完成后再停止计时。
+    The timing includes copying the result back to the host. It excludes data
+    preprocessing and model loading. Calling numpy() ensures device execution
+    finishes before the timer stops.
     """
     @tf.function(input_signature=[tf.TensorSpec((1, 32, 32, 3), tf.float32)])
     def infer(images):
@@ -143,7 +133,7 @@ def _measure_inference(model, x_test, repetitions=200):
 
 
 def train_baseline_model(model, x_train, y_train, x_test, y_test):
-    """最多训练 50 轮，返回最佳模型、训练历史和评估指标。"""
+    """Train for up to 50 epochs and return the best model, history, and metrics."""
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     train_ds, val_ds = _make_training_datasets(x_train, y_train)
     checkpoint_path = RESULTS_DIR / "best_baseline.keras"
@@ -165,7 +155,7 @@ def train_baseline_model(model, x_train, y_train, x_test, y_test):
         train_ds, validation_data=val_ds, epochs=MAX_EPOCHS, callbacks=callbacks,
     )
     training_seconds = time.perf_counter() - start
-    # 显式加载最佳检查点，确保达到最大训练轮数时也使用最佳模型。
+    # Load the best checkpoint explicitly, including runs that reach the epoch limit.
     model = keras.models.load_model(checkpoint_path)
     test_metrics = model.evaluate(
         x_test, y_test, batch_size=BATCH_SIZE, verbose=0, return_dict=True,
@@ -196,7 +186,7 @@ def train_baseline_model(model, x_train, y_train, x_test, y_test):
 
 
 def _save_history(history):
-    """保存训练历史，并绘制训练集与验证集的准确率和损失曲线。"""
+    """Save training history and plot training/validation accuracy and loss curves."""
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt

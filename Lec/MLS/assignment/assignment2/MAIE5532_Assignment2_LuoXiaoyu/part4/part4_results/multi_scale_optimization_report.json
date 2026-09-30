@@ -1,0 +1,208 @@
+{
+  "deployment_targets": {
+    "cloud_server": {
+      "name": "cloud_server",
+      "max_model_size_mb": 1000.0,
+      "max_latency_ms": 100.0,
+      "max_memory_mb": 8000.0,
+      "power_budget_mw": 50000.0,
+      "compute_capability": "cloud"
+    },
+    "edge_device": {
+      "name": "edge_device",
+      "max_model_size_mb": 50.0,
+      "max_latency_ms": 200.0,
+      "max_memory_mb": 512.0,
+      "power_budget_mw": 2000.0,
+      "compute_capability": "edge"
+    },
+    "microcontroller": {
+      "name": "microcontroller",
+      "max_model_size_mb": 1.0,
+      "max_latency_ms": 1000.0,
+      "max_memory_mb": 64.0,
+      "power_budget_mw": 10.0,
+      "compute_capability": "tiny"
+    }
+  },
+  "optimization_results": {
+    "cloud_server": {
+      "model_path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment2/MAIE5532_Assignment2_LuoXiaoyu/part4/part4_results/optimized_models/cloud_server.keras",
+      "accuracy": 0.8641999959945679,
+      "model_size_mb": 1.3141555786132812,
+      "estimated_latency_ms": 0.8600425800068479,
+      "memory_usage_mb": null,
+      "optimization_strategy": "Reused cloud configuration: batch256",
+      "details": {
+        "selected_candidate": "batch256",
+        "selection_basis": "Highest training throughput within measured limits; not highest inference throughput",
+        "train_images_per_second": 25285.437928797637,
+        "training_memory": {
+          "GPU:0": {
+            "current": 4162048,
+            "peak": 781230848
+          }
+        },
+        "latency_scope": "Previously measured local GPU single-image inference, including host output transfer",
+        "candidate_throughput": {
+          "fp32": 17690.12263559991,
+          "mixed": 9892.677072423508,
+          "pipeline_serial": 17778.046288358553,
+          "batch256": 25285.437928797637,
+          "accumulation": 7688.312502945541,
+          "teacher": 14474.117273022857,
+          "distilled": 15450.957941989644
+        }
+      }
+    },
+    "edge_device": {
+      "model_path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment2/MAIE5532_Assignment2_LuoXiaoyu/part4/part4_results/optimized_models/edge_device.tflite",
+      "accuracy": 0.8767,
+      "model_size_mb": 0.32415008544921875,
+      "estimated_latency_ms": 0.30998735019238666,
+      "memory_usage_mb": null,
+      "optimization_strategy": "dynamic_range",
+      "details": {
+        "validation_candidates": [
+          {
+            "name": "dynamic_range",
+            "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment2/MAIE5532_Assignment2_LuoXiaoyu/part4/part4_results/optimized_models/edge_device_dynamic_range.tflite",
+            "size_mb": 0.32415008544921875,
+            "accuracy": 0.8824,
+            "samples": 5000,
+            "latency_mean_ms": 0.31439467009477085,
+            "latency_runs": 100
+          },
+          {
+            "name": "int8",
+            "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment2/MAIE5532_Assignment2_LuoXiaoyu/part4/part4_results/optimized_models/edge_device_int8.tflite",
+            "size_mb": 0.32776641845703125,
+            "accuracy": 0.8794,
+            "samples": 5000,
+            "latency_mean_ms": 0.32627725009660935,
+            "latency_runs": 100
+          },
+          {
+            "name": "float16",
+            "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment2/MAIE5532_Assignment2_LuoXiaoyu/part4/part4_results/optimized_models/edge_device_float16.tflite",
+            "size_mb": 0.625457763671875,
+            "accuracy": 0.8822,
+            "samples": 5000,
+            "latency_mean_ms": 0.36255066992453067,
+            "latency_runs": 100
+          }
+        ],
+        "test_samples": 10000,
+        "latency_runs": 100,
+        "selection_basis": "Highest validation accuracy first",
+        "latency_scope": "Local single-thread CPU TFLite, including I/O handling; not target-board latency"
+      }
+    },
+    "microcontroller": {
+      "model_path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment2/MAIE5532_Assignment2_LuoXiaoyu/part4/part4_results/optimized_models/microcontroller.tflite",
+      "accuracy": 0.7053,
+      "model_size_mb": 0.03456878662109375,
+      "estimated_latency_ms": 0.04893103014182998,
+      "memory_usage_mb": null,
+      "optimization_strategy": "architecture_optimized_int8",
+      "details": {
+        "validation_candidates": [
+          {
+            "name": "architecture_optimized_int8",
+            "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment2/MAIE5532_Assignment2_LuoXiaoyu/part4/part4_results/optimized_models/microcontroller_architecture_optimized_int8.tflite",
+            "size_mb": 0.03456878662109375,
+            "accuracy": 0.6978,
+            "samples": 5000,
+            "latency_mean_ms": 0.051115979949827306,
+            "latency_runs": 100
+          },
+          {
+            "name": "nas_best_int8",
+            "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment2/MAIE5532_Assignment2_LuoXiaoyu/part4/part4_results/optimized_models/microcontroller_nas_best_int8.tflite",
+            "size_mb": 0.0585174560546875,
+            "accuracy": 0.683,
+            "samples": 5000,
+            "latency_mean_ms": 0.09924077996402048,
+            "latency_runs": 100
+          }
+        ],
+        "test_samples": 10000,
+        "latency_runs": 100,
+        "selection_basis": "Smallest file first",
+        "latency_scope": "Local single-thread CPU TFLite, including I/O handling; not target-board latency"
+      }
+    }
+  },
+  "scaling_analysis": {
+    "accuracy_size_pareto_frontier": [
+      "edge_device",
+      "microcontroller"
+    ],
+    "constraint_checks": {
+      "cloud_server": {
+        "model_storage_met": true,
+        "local_reference_latency_met": true,
+        "target_latency_met": null,
+        "runtime_memory_met": null,
+        "power_budget_met": null,
+        "overall_status": "Partially verified; target-device feasibility remains unconfirmed"
+      },
+      "edge_device": {
+        "model_storage_met": true,
+        "local_reference_latency_met": true,
+        "target_latency_met": null,
+        "runtime_memory_met": null,
+        "power_budget_met": null,
+        "overall_status": "Partially verified; target-device feasibility remains unconfirmed"
+      },
+      "microcontroller": {
+        "model_storage_met": true,
+        "local_reference_latency_met": true,
+        "target_latency_met": null,
+        "runtime_memory_met": null,
+        "power_budget_met": null,
+        "overall_status": "Partially verified; target-device feasibility remains unconfirmed"
+      }
+    },
+    "baseline_comparisons": {
+      "cloud_server": {
+        "accuracy_change_percentage_points": -1.290000400543212,
+        "file_size_ratio_to_baseline_tflite": 1.0618463596489875,
+        "local_reference_latency_ms": 0.8600425800068479
+      },
+      "edge_device": {
+        "accuracy_change_percentage_points": -0.039999999999995595,
+        "file_size_ratio_to_baseline_tflite": 0.26191540318031764,
+        "local_reference_latency_ms": 0.30998735019238666
+      },
+      "microcontroller": {
+        "accuracy_change_percentage_points": -17.179999999999996,
+        "file_size_ratio_to_baseline_tflite": 0.027931807183609558,
+        "local_reference_latency_ms": 0.04893103014182998
+      }
+    },
+    "cloud_training_throughput_ratio_to_fp32": 1.4293534561435308,
+    "simulated_multi_gpu_scaling": {
+      "throughput_ratio": 0.2665668251874179,
+      "two_replica_efficiency": 0.13328341259370896,
+      "scope": "Two logical replicas on one physical GPU; not physical multi-GPU scaling efficiency"
+    },
+    "bottlenecks": {
+      "cloud_server": "GPU memory for large batches and synchronization overhead on physical multi-GPU systems",
+      "edge_device": "Quantization accuracy and operator implementations on the target CPU",
+      "microcontroller": "Activation memory, integer operator support, power consumption, and accuracy loss from a smaller architecture"
+    },
+    "comparison_scope": "Pareto analysis compares accuracy and deployment file size only. Cloud Keras and edge TFLite formats differ; GPU and CPU latency cannot establish cross-device speedup."
+  },
+  "deployment_recommendations": [
+    "cloud_server: meets file-size and local reference latency limits; target-device latency, runtime memory, and power still require measurement.",
+    "edge_device: meets file-size and local reference latency limits; target-device latency, runtime memory, and power still require measurement.",
+    "microcontroller: meets file-size and local reference latency limits; target-device latency, runtime memory, and power still require measurement.",
+    "Use the selected high-throughput training configuration in the cloud; the distributed results only verify synchronization.",
+    "Use the selected quantized model for offline edge inference, or a lightweight INT8 model under tighter resource limits.",
+    "Cascade: process simple inputs on the microcontroller and forward low-confidence inputs to an edge device or the cloud; select thresholds on validation data.",
+    "Hybrid deployment: retain a local model for offline use, and use the cloud for difficult inputs and model updates when connected.",
+    "Development priorities: verify target-board operator support and activation memory, measure latency and power, then adjust accuracy-resource trade-offs."
+  ],
+  "measurement_scope": "Sizes use MiB. Cloud results reuse previous experiments; edge and TinyML models are quantized and evaluated in this run. null means unmeasured, not zero."
+}

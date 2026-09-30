@@ -1,10 +1,3 @@
-"""第二部分：混合精度、分布式模拟、批处理优化和知识蒸馏。
-
-在提交目录运行：python part2/part2_cloud_optimization.py
-可追加 mixed、distributed、batch 或 distillation，仅运行对应实验组。
-使用 WSL / Python 3.11 / TensorFlow 2.15.1。
-"""
-
 import json
 from pathlib import Path
 import subprocess
@@ -16,7 +9,6 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import mixed_precision
 
-# 本部分没有使用剪枝或量化 API，因此不引入题目示例中未使用的 tfmot。
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 SEED = 42
@@ -27,22 +19,22 @@ LOGICAL_MEMORY_MB = 4096
 OUTPUT = HERE / "part2_results"
 BASELINE = ROOT / "part1" / "baseline_model.keras"
 
-# 复用第一部分的模型定义和数据加载，不修改第一部分文件。
+# Reuse the Part 1 model and data loader so the comparison stays consistent.
 sys.path.insert(0, str(ROOT / "part1"))
 from part1_baseline import create_baseline_model, load_and_preprocess_data
 
 
 def write_json(path, value):
-    """使用标准 JSON 保存结果；拒绝把 NaN 当成有效实验指标。"""
+    """Write strict JSON results and reject invalid numeric values."""
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False),
                     encoding="utf-8")
 
 
 def configure_devices(simulated=False):
-    """必须在创建模型或张量前配置设备；模拟使用一张物理 GPU。"""
+    """Configure the GPU before TensorFlow creates models or tensors."""
     physical = tf.config.list_physical_devices("GPU")
     if not physical:
-        raise RuntimeError("未识别 GPU，请在已配置好的 WSL TensorFlow 环境运行。")
+        raise RuntimeError("No GPU was detected. Run this script in the configured WSL TensorFlow environment.")
     tf.config.set_visible_devices(physical[0], "GPU")
     if simulated:
         tf.config.set_logical_device_configuration(physical[0], [
@@ -51,26 +43,25 @@ def configure_devices(simulated=False):
         ])
     else:
         tf.config.experimental.set_memory_growth(physical[0], True)
-    # 限制线程池，避免多副本数据管线创建过多宿主线程。
+    # Limit host threads because replicated input pipelines can otherwise oversubscribe the CPU.
     tf.config.threading.set_inter_op_parallelism_threads(2)
     tf.config.threading.set_intra_op_parallelism_threads(4)
     return tf.config.experimental.get_device_details(physical[0]).get("device_name", "GPU")
 
 
 class CloudOptimizer:
-    """保留作业的类与四个优化接口，基线权重只用于读取和参照。"""
 
     def __init__(self, baseline_model_path):
         with tf.device("/CPU:0"):
             self.baseline_model = keras.models.load_model(baseline_model_path, compile=False)
-        # 所有学生对照都从同一份随机初始化开始，而非从已训练模型微调。
+        # All student models start from the same random initialization.
         keras.utils.set_random_seed(SEED)
         with tf.device("/CPU:0"):
             initial = create_baseline_model()
             self.initial_weights = initial.get_weights()
 
     def _student(self, policy="float32"):
-        """按基线配置重建网络；逐层指定策略，输出概率始终为 Float32。"""
+        """Build a student model with the requested numeric policy."""
         def clone_layer(layer):
             config = layer.get_config()
             config["dtype"] = "float32" if layer is self.baseline_model.layers[-1] else policy
@@ -86,22 +77,18 @@ class CloudOptimizer:
         return model
 
     def implement_mixed_precision(self):
-        """启用混合精度；权重保持 Float32，训练由 Keras 自动处理损失缩放。"""
+        """Enable mixed precision training with automatic loss scaling."""
         mixed_precision.set_global_policy("mixed_float16")
         return self._student("mixed_float16")
 
     def implement_model_parallelism(self, strategy="mirrored"):
-        """保留题目方法名，实际实现单机同步数据并行，而非切分模型。
-
-        多工作节点和参数服务器需要额外集群，本次采用确认过的 mirrored。
-        逻辑 GPU 模拟只能验证同步流程，不能证明真实多 GPU 的扩展能力。
-        """
+        """Create a mirrored training strategy over the available logical GPUs."""
         if strategy != "mirrored":
-            raise ValueError("本次实现采用 mirrored；其他策略需要独立集群配置。")
+            raise ValueError("This implementation uses the mirrored strategy; other strategies need separate cluster setup.")
         devices = [device.name for device in tf.config.list_logical_devices("GPU")]
         training_strategy = tf.distribute.MirroredStrategy(
             devices=devices,
-            # 使用归并到单设备的归约方式，兼容同一物理卡上的逻辑副本。
+            # ReductionToOneDevice works reliably for logical devices on one physical GPU.
             cross_device_ops=tf.distribute.ReductionToOneDevice(),
         )
         with training_strategy.scope():
@@ -109,10 +96,10 @@ class CloudOptimizer:
         return model, training_strategy
 
     def optimize_batch_processing(self, target_batch_size=256):
-        """返回有效批次配置，包含梯度累积、并行映射和预取设置。"""
+        """Return the batch processing configuration for gradient accumulation."""
         micro_batch_size = min(64, target_batch_size)
         if target_batch_size <= 0 or target_batch_size % micro_batch_size:
-            raise ValueError("有效批大小必须为正，且为微批大小的整数倍。")
+            raise ValueError("The effective batch size must be positive and divisible by the micro batch size.")
         return {
             "micro_batch_size": micro_batch_size,
             "effective_batch_size": target_batch_size,
@@ -122,9 +109,8 @@ class CloudOptimizer:
         }
 
     def implement_knowledge_distillation(self):
-        """教师使用约两倍基线参数；学生架构沿用基线，返回蒸馏训练入口。"""
+        """Build the teacher, student, and distillation trainer."""
         layers = [keras.Input(shape=(32, 32, 3))]
-        # 不是把通道直接翻倍：卷积参数随输入和输出通道的乘积增长。
         for width in (48, 96, 176):
             for _ in range(2):
                 layers.extend([
@@ -143,7 +129,7 @@ class CloudOptimizer:
         student = self._student()
 
         def distillation_training_function(trained_teacher, **kwargs):
-            """接收训练好的教师，返回可调用 fit 的蒸馏训练器。"""
+            """Return a Keras trainer that fits the student with a frozen teacher."""
             trainer = Distiller(student, trained_teacher, **kwargs)
             trainer.compile(optimizer=keras.optimizers.Adam(0.001))
             return trainer
@@ -152,7 +138,7 @@ class CloudOptimizer:
 
 
 class AccumulatingModel(keras.Model):
-    """按样本数累加梯度，最后不足一个有效批次的数据也会更新参数。"""
+    """Wrap a model so gradients are accumulated across micro batches."""
 
     def __init__(self, network, accumulation_steps):
         super().__init__()
@@ -174,7 +160,7 @@ class AccumulatingModel(keras.Model):
 
     @tf.function
     def flush(self):
-        """按累计样本数归一化，不把最后一个不足批次当成完整批次。"""
+        """Apply accumulated gradients normalized by the number of samples."""
         def apply():
             self.optimizer.apply_gradients(
                 [(buffer / self.sample_count, weight)
@@ -213,12 +199,12 @@ class AccumulatingModel(keras.Model):
 
 
 class Distiller(keras.Model):
-    """监督交叉熵与温度软化后的 KL 散度联合训练，教师始终保持推理模式。"""
+    """Train a student with hard labels and softened teacher predictions."""
 
     def __init__(self, student, teacher, temperature=4.0, alpha=0.5):
         super().__init__()
         if temperature <= 0 or not 0 <= alpha <= 1:
-            raise ValueError("温度必须大于零，监督损失权重必须在 [0, 1] 内。")
+            raise ValueError("Temperature must be positive and alpha must be in [0, 1].")
         self.student = student
         self.teacher = teacher
         self.teacher.trainable = False
@@ -226,7 +212,7 @@ class Distiller(keras.Model):
         self.alpha = alpha
         self.loss_tracker = keras.metrics.Mean(name="loss")
         self.accuracy_tracker = keras.metrics.SparseCategoricalAccuracy(name="accuracy")
-        # 直接提取最后一层的 logits，避免对已饱和的 softmax 概率取对数。
+        # Use logits from the final classifier instead of taking logs of saturated softmax outputs.
         self.student_features = keras.Model(student.input, student.layers[-1].input)
         self.teacher_features = keras.Model(teacher.input, teacher.layers[-1].input)
 
@@ -265,7 +251,7 @@ class Distiller(keras.Model):
         return {metric.name: metric.result() for metric in self.metrics}
 
     def test_step(self, data):
-        # 验证损失只用学生的普通交叉熵，便于和非蒸馏学生比较。
+        # Validation uses the student's normal cross entropy for comparison with non-distilled models.
         images, labels = data
         predictions = self.student(images, training=False)
         self.loss_tracker.update_state(
@@ -275,7 +261,7 @@ class Distiller(keras.Model):
 
 
 def load_data():
-    """使用与 Part 1 完全相同的分层验证划分。"""
+    """Use the same stratified validation split as Part 1."""
     x, y, xt, yt = load_and_preprocess_data()
     rng = np.random.default_rng(SEED)
     train, validation = [], []
@@ -290,7 +276,7 @@ def load_data():
 
 
 def datasets(data, batch_size, optimized=True):
-    """两种管线都保留相同增强，仅改变并行映射与预取。"""
+    """Build datasets with the same augmentation and optional input pipeline optimization."""
     train, validation, test = data
     augmentation = keras.Sequential([
         keras.layers.RandomFlip("horizontal", seed=SEED),
@@ -299,7 +285,7 @@ def datasets(data, batch_size, optimized=True):
     options = tf.data.Options()
     options.threading.private_threadpool_size = 4
     options.experimental_deterministic = True
-    # 增强在 CPU 上执行，减少设备内存占用；三种数据集都不丢弃尾批。
+    # Run augmentation on CPU and keep tail batches for all datasets.
     with tf.device("/CPU:0"):
         ds = tf.data.Dataset.from_tensor_slices(train).shuffle(len(train[0]), seed=SEED)
         ds = ds.batch(batch_size).map(
@@ -314,7 +300,7 @@ def datasets(data, batch_size, optimized=True):
 
 
 def memory_info(reset=False):
-    """记录 TensorFlow 分配器统计；不可用时明确记录原因，不填写零值。"""
+    """Collect TensorFlow allocator memory statistics for each logical GPU."""
     result = {}
     for device in tf.config.list_logical_devices("GPU"):
         name = device.name.split("/device:")[-1]
@@ -328,7 +314,7 @@ def memory_info(reset=False):
 
 
 class ExperimentCallback(keras.callbacks.Callback):
-    """分别记录训练批次耗时和总耗时，保存验证损失最低的可部署模型。"""
+    """Track training time and save the model with the best validation loss."""
 
     def __init__(self, export_model, output_dir):
         super().__init__()
@@ -342,18 +328,18 @@ class ExperimentCallback(keras.callbacks.Callback):
         self.start = time.perf_counter()
 
     def on_test_begin(self, logs=None):
-        # fit 验证前处理最后一个累积组，计入训练耗时。
+        # Flush the final partial accumulation group before validation.
         if isinstance(self.model, AccumulatingModel):
             self.model.flush()
         self.epoch_train_seconds.append(time.perf_counter() - self.start)
 
     def on_epoch_end(self, epoch, logs=None):
         if not all(np.isfinite(float(v)) for v in logs.values()):
-            raise FloatingPointError("出现非有限训练指标，停止实验以避免保存无效结果。")
+            raise FloatingPointError("Non-finite training metrics were detected; stopping this experiment.")
         if logs["val_loss"] < self.best_loss:
             self.best_loss = float(logs["val_loss"])
             self.best_epoch = epoch + 1
-            # 导出未编译的普通网络，统一排除优化器和训练器状态。
+            # Save an uncompiled network so optimizer and trainer state are excluded.
             with tf.device("/CPU:0"):
                 snapshot = keras.models.clone_model(self.export_model)
                 snapshot.set_weights(self.export_model.get_weights())
@@ -361,7 +347,7 @@ class ExperimentCallback(keras.callbacks.Callback):
 
 
 def inference_benchmark(model, images):
-    """预热后测量单张推理耗时；取回输出以等待 GPU 计算完成。"""
+    """Measure single-image inference latency after warmup."""
     sample = tf.convert_to_tensor(images[:1])
 
     @tf.function
@@ -376,7 +362,7 @@ def inference_benchmark(model, images):
     return (time.perf_counter() - start) * 1000 / 100
 
 
-# 普通 Float32 模型同时作为混合精度、批处理和蒸馏的对照。
+# The Float32 model is reused as the control for multiple comparisons.
 GROUPS = {
     "mixed": ["fp32", "mixed"],
     "distributed": ["distributed_one", "distributed_two"],
@@ -387,7 +373,7 @@ VARIANTS = list(dict.fromkeys(name for group in GROUPS.values() for name in grou
 
 
 def run_experiment(name):
-    """运行一项配置，记录作业要求的训练、内存、准确率和吞吐指标。"""
+    """Run one configuration and record accuracy, latency, memory, and throughput."""
     simulated = name.startswith("distributed_")
     gpu_name = configure_devices(simulated)
     mixed_precision.set_global_policy("float32")
@@ -400,7 +386,7 @@ def run_experiment(name):
         model, strategy = optimizer.implement_model_parallelism()
         trainer, replicas = model, strategy.num_replicas_in_sync
     elif name == "distributed_one":
-        # 单副本对照也使用相同逻辑设备划分，保持显存配额一致。
+        # The one-replica control uses the same logical-device memory limit.
         with tf.distribute.OneDeviceStrategy("/GPU:0").scope():
             model = trainer = optimizer._student()
     elif name in ("teacher", "distilled"):
@@ -430,7 +416,7 @@ def run_experiment(name):
     folder = OUTPUT / "cloud_optimized_models" / name
     folder.mkdir(parents=True, exist_ok=True)
     callback = ExperimentCallback(model, folder)
-    # 各配置使用同样的固定轮数和学习率时间表，防止早停影响速度比较。
+    # Use the same epoch count and learning-rate schedule for speed comparisons.
     def learning_rate(epoch):
         return 0.001 if epoch < EPOCHS * 0.5 else (0.0005 if epoch < EPOCHS * 0.8 else 0.00025)
 
@@ -444,7 +430,7 @@ def run_experiment(name):
     model = keras.models.load_model(folder / "best_model.keras", compile=False)
     model.compile(optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"])
     test = model.evaluate(test_ds, verbose=0, return_dict=True)
-    # 第一轮含编译开销；只训练一轮时不报告稳态吞吐量。
+    # The first epoch includes compilation overhead, so steady-state throughput excludes it.
     durations = callback.epoch_train_seconds[1:]
     metrics = {
         "epochs": EPOCHS, "best_epoch": callback.best_epoch,
@@ -469,7 +455,7 @@ def run_experiment(name):
 
 
 def save_report(results):
-    """保存一份汇总 JSON 和对比图；书面分析依据正式实验结果编写。"""
+    """Save the summary JSON report and the comparison figure."""
     comparisons = {}
     for reference, candidate in [("fp32", "mixed"), ("pipeline_serial", "fp32"),
                                   ("batch256", "accumulation"), ("fp32", "distilled"),
@@ -485,10 +471,12 @@ def save_report(results):
                 comparisons[f"{candidate}_vs_{reference}"]["simulated_efficiency"] = speed / 2 if speed else None
     write_json(OUTPUT / "cloud_optimization_report.json", {
         "results": results, "comparisons": comparisons,
-        "notes": ["训练吞吐排除第一轮、验证和保存；总训练耗时包含这些开销。",
-                  "内存为 TensorFlow 分配器字节数，不是进程总显存；逻辑设备统计不可相加。",
-                  "单张 GPU 的双逻辑副本只用于模拟，不代表真实双卡扩展效率。",
-                  "模型文件不含优化器；推理耗时包含输出回传，不含加载和预处理。"],
+        "notes": [
+            "Training throughput excludes the first epoch, validation, and saving; total training time includes those costs.",
+            "Memory values are TensorFlow allocator statistics, not total process GPU memory; logical device values should not be added together.",
+            "Two logical replicas on one physical GPU are used only for simulation and do not represent real multi-GPU scaling.",
+            "Saved model files exclude optimizer state; inference latency includes output transfer but excludes loading and preprocessing.",
+        ],
     })
     import matplotlib
     matplotlib.use("Agg")
@@ -507,14 +495,13 @@ def save_report(results):
 
 
 def benchmark_cloud_optimizations(experiment="all"):
-    """独立进程隔离 GPU 配置及显存统计，按题目接口返回实验结果。"""
     if not BASELINE.is_file():
-        raise FileNotFoundError(f"找不到 Part 1 模型：{BASELINE}")
+        raise FileNotFoundError(f"Part 1 model was not found: {BASELINE}")
     OUTPUT.mkdir(parents=True, exist_ok=True)
     names = VARIANTS if experiment == "all" else GROUPS[experiment]
     results = {}
     for name in names:
-        print(f"正在运行：{name}", flush=True)
+        print(f"Running: {name}", flush=True)
         subprocess.run([sys.executable, str(Path(__file__).resolve()), "--worker", name], check=True)
         path = OUTPUT / "cloud_optimized_models" / name / "metrics.json"
         results[name] = json.loads(path.read_text(encoding="utf-8"))
@@ -528,8 +515,8 @@ if __name__ == "__main__":
     else:
         group = sys.argv[1] if len(sys.argv) == 2 else "all"
         if len(sys.argv) > 2 or group not in ["all", *GROUPS]:
-            raise SystemExit("用法：python part2_cloud_optimization.py [all|mixed|distributed|batch|distillation]")
+            raise SystemExit("Usage: python part2_cloud_optimization.py [all|mixed|distributed|batch|distillation]")
         results = benchmark_cloud_optimizations(group)
         for name, metrics in results.items():
-            print(f"{name}: 准确率={metrics['test_accuracy']:.2%}，训练耗时={metrics['training_seconds']:.2f}s")
-        print(f"结果目录：{OUTPUT}")
+            print(f"{name}: accuracy={metrics['test_accuracy']:.2%}, training time={metrics['training_seconds']:.2f}s")
+        print(f"Results directory: {OUTPUT}")
