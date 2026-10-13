@@ -1,0 +1,6 @@
+JAX：vmap 和 batching 有关，grad 和自动微分有关，jit 和即时编译有关，pmap 则以 SPMD 方式将函数映射到多个设备上
+
+TensorFlow 1.x：先定义符号计算图，再通过 Session 执行（define-then-run）先完整构建计算结构，课件提到这种方式有利于全局优化和内存规划。
+PyTorch：动态计算图，代码运行时构建计算过程（define-by-run）控制流程灵活，开发和调试方便。
+TensorFlow 2.x：默认 eager execution，即时执行；也可用 tf.function平时可以即时执行，需要时再把函数转成图执行。
+JAX：对纯函数使用 jit、grad、vmap 等变换采用函数式风格和不可变数组；课件提到用 XLA 做即时编译和硬件优化。
