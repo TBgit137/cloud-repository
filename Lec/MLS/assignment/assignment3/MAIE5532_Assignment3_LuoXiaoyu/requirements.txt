@@ -1,0 +1,7 @@
+# Python 3.11，推荐在 WSL2/Linux 中运行；CUDA 由 tensorflow[and-cuda] 安装。
+tensorflow[and-cuda]==2.15.1
+tensorflow-model-optimization==0.8.0
+tf_keras==2.15.1
+numpy==1.26.4
+matplotlib==3.8.4
+psutil==7.2.2

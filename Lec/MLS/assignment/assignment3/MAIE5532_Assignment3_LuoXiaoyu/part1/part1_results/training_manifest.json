@@ -1,0 +1,19 @@
+{
+  "run_mode": "finalized_from_best_checkpoint",
+  "batch_size": 64,
+  "validation_fraction": 0.1,
+  "stage1_configured_epochs": 8,
+  "stage2_configured_epochs": 25,
+  "stage1_completed_epochs": 4,
+  "stage2_completed_epochs": 14,
+  "stage1_learning_rate": 0.001,
+  "stage2_learning_rate": 0.0001,
+  "training_seconds": null,
+  "seed": 42,
+  "image_size": [
+    224,
+    224
+  ],
+  "accuracy_target": 0.85,
+  "completion_note": "Training was stopped after the target had already been exceeded. The stage-2 best-validation checkpoint is used as the final model."
+}
