@@ -1,87 +1,12 @@
 {
-  "single_inference_time": 2.2894032300291656,
-  "batch_inference_time": 11.114010275059627,
+  "single_inference_time_ms": 2.2894032300291656,
+  "batch_inference_time_ms": 11.114010275059627,
   "memory_usage_mb": 8.662391662597656,
+  "memory_usage_scope": "TensorFlow model weights, including BatchNorm state; excludes activations and runtime allocators.",
   "model_size_mb": 9.161712646484375,
   "accuracy": 0.9370999932289124,
   "flops": 599594364,
   "parameters": 2270794,
-  "test_loss": 0.19983534514904022,
-  "accuracy_target": 0.85,
-  "accuracy_requirement_met": true,
-  "single_inference_time_unit": "ms",
-  "batch_inference_time_unit": "ms",
-  "single_inference_runs": 100,
-  "batch_inference_runs": 40,
-  "warmup_runs": 20,
-  "single_latency": {
-    "mean_ms": 2.2894032300291656,
-    "median_ms": 2.006062499958716,
-    "p95_ms": 3.2166456500135605,
-    "min_ms": 1.7952199996216223,
-    "max_ms": 7.620293999934802
-  },
-  "batch_latency": {
-    "mean_ms": 11.114010275059627,
-    "median_ms": 11.10493950000091,
-    "p95_ms": 11.506179750040246,
-    "min_ms": 10.706645000027493,
-    "max_ms": 12.546318000204337
-  },
-  "batch_size": 32,
-  "batch_throughput_samples_per_second": 2879.2487327287736,
-  "model_weight_memory_mb": 8.662391662597656,
-  "process_rss_delta_mb": 0.02734375,
-  "gpu_memory_before": {
-    "gpu_memory_current_mb": 213.509765625,
-    "gpu_memory_peak_mb": 616.511962890625
-  },
-  "gpu_memory_after": {
-    "gpu_memory_current_mb": 213.509765625,
-    "gpu_memory_peak_mb": 616.511962890625
-  },
-  "memory_usage_scope": "TF variable memory including BatchNorm state; excludes activations, optimizer state, shared libraries, and runtime allocators",
-  "model_size_scope": ".keras archive size as written by Keras; it may include serialized optimizer state in addition to model weights",
-  "latency_scope": "TensorFlow forward pass plus host output transfer; excludes image resize, preprocessing, model loading, and disk access",
   "energy_j_per_inference": null,
-  "energy_status": "Not measured: no reliable per-inference energy counter was available for the WSL GPU process.",
-  "tensorflow_version": "2.15.1",
-  "keras_version": "2.15.0",
-  "python_version": "3.11.16",
-  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
-  "visible_devices": [
-    "/physical_device:CPU:0",
-    "/physical_device:GPU:0"
-  ],
-  "seed": 42,
-  "run_mode": "finalized_from_best_checkpoint",
-  "run_elapsed_seconds": 26.162645580000117,
-  "training_seconds": null,
-  "benchmark_invocation": {
-    "batch_size": 64,
-    "validation_fraction": 0.1,
-    "stage1_epochs": 8,
-    "stage2_epochs": 25,
-    "stage1_learning_rate": 0.001,
-    "stage2_learning_rate": 0.0001
-  },
-  "training_run": {
-    "run_mode": "finalized_from_best_checkpoint",
-    "batch_size": 64,
-    "validation_fraction": 0.1,
-    "stage1_configured_epochs": 8,
-    "stage2_configured_epochs": 25,
-    "stage1_completed_epochs": 4,
-    "stage2_completed_epochs": 14,
-    "stage1_learning_rate": 0.001,
-    "stage2_learning_rate": 0.0001,
-    "training_seconds": null,
-    "seed": 42,
-    "image_size": [
-      224,
-      224
-    ],
-    "accuracy_target": 0.85,
-    "completion_note": "Training was stopped after the target had already been exceeded. The stage-2 best-validation checkpoint is used as the final model."
-  }
+  "energy_status": "Not measured: no reliable per-inference energy counter was available for the WSL GPU process."
 }
