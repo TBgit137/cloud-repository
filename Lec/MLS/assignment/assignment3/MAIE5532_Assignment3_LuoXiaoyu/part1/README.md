@@ -1,91 +1,104 @@
-# 第 1 部分：MobileNetV2 基线
+# Part 1: MobileNetV2 Baseline
 
-本目录实现 CIFAR-10 的 MobileNetV2 迁移学习基线，并记录单样本、批量推理、模型大小、内存、参数量和 FLOPs。
+This directory implements the CIFAR-10 baseline for the hardware-aware design
+assignment. The model uses ImageNet-pretrained MobileNetV2 at a 224 x 224 input
+resolution, a custom classification head, and two-stage transfer learning.
 
-## 环境
+## Environment
 
-推荐使用 assignment 2 已有的 WSL 环境：
+The recorded run used:
+
+- Python 3.11.16
+- TensorFlow 2.15.1
+- Keras 2.15.0
+- WSL2 Ubuntu
+- NVIDIA GeForce RTX 4070 Ti
+
+From the submission directory, create a Python 3.11 environment and install
+the dependencies:
 
 ```bash
-cd /mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment3/MAIE5532_Assignment3_LuoXiaoyu
+cd MAIE5532_Assignment3_LuoXiaoyu
+python3.11 -m venv ~/.venvs/maie5532
 source ~/.venvs/maie5532/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-首次训练需要联网下载 MobileNetV2 的 ImageNet 权重。CIFAR-10 已存在缓存时不会重新下载。
+The first training run requires network access to download the CIFAR-10
+dataset and MobileNetV2 ImageNet weights.
 
-## 完整运行
+## Training
+
+Run from the submission directory:
 
 ```bash
 python part1/part1_baseline_model.py
 ```
 
-默认设置：
+The default configuration uses:
 
-- 训练批大小：64
-- 验证集比例：10%
-- 第一阶段：最多 8 个 epoch，基础模型冻结
-- 第二阶段：最多 25 个 epoch，以 `1e-4` 学习率微调
-- 基准测试：单样本 100 次，批大小 32 的推理 40 次
+- Batch size: 64
+- Stratified validation split: 10% of the original CIFAR-10 training set
+- Stage 1: frozen MobileNetV2, Adam with a learning rate of `1e-3`
+- Stage 2: unfrozen MobileNetV2 except BatchNorm layers, Adam with a learning
+  rate of `1e-4`
+- Stage 1 and Stage 2 epoch limits: 8 and 25
+- Benchmark batch size: 32
+- Single-image and batch inference runs: 100 and 40
+- Warm-up runs: 20
 
-快速测试参数解析和模型构建时可以缩短训练，但短训练结果不应作为最终提交结果：
+Training and evaluation use `tf.data.Dataset`. Images retain their original
+0-255 range in the data pipeline, and a `Rescaling` layer inside the model maps
+them to the `[-1, 1]` range expected by MobileNetV2. Data augmentation is
+applied only to the training split. The CIFAR-10 test split is used only for
+the final evaluation.
 
-```bash
-python part1/part1_baseline_model.py \
-  --stage1-epochs 1 \
-  --stage2-epochs 1 \
-  --inference-runs 10 \
-  --batch-inference-runs 5
-```
+## Benchmark and Output Files
 
-只训练而不执行性能基准测试：
+The default command trains the model, evaluates it on all 10,000 test images,
+and saves:
 
-```bash
-python part1/part1_baseline_model.py --no-benchmark
-```
+| Path | Content |
+|---|---|
+| `baseline_mobilenetv2.keras` | Final trained model |
+| `part1_results/training_stage1_log.csv` | Stage 1 epoch log |
+| `part1_results/training_stage2_log.csv` | Stage 2 epoch log |
+| `part1_results/training_history.json` | Training history for both stages |
+| `part1_results/training_manifest.json` | Completed epochs and run configuration |
+| `part1_results/training_curves.png` | Training and validation curves |
+| `part1_results/model_summary.txt` | Model summary and parameter count |
+| `part1_results/baseline_metrics.json` | Accuracy, latency, memory, size, and FLOPs |
+| `part1_results/stage1_best.keras` | Best Stage 1 validation checkpoint |
+| `part1_results/stage2_best.keras` | Best Stage 2 validation checkpoint |
 
-对已保存的模型重新执行性能和准确率测试，不重新训练：
+The saved model can be evaluated again without retraining:
 
 ```bash
 python part1/part1_baseline_model.py --benchmark-only
 ```
 
-若训练已经超过 85% 目标并手动停止，可以使用第二阶段验证集最佳 checkpoint 补齐最终模型、训练图表和性能指标：
+This command rewrites `baseline_metrics.json` with a new timing run.
 
-```bash
-python part1/part1_baseline_model.py --finalize-from-checkpoint
-```
+## Recorded Results
 
-## 输出
-
-| 路径 | 内容 |
-|---|---|
-| `baseline_mobilenetv2.keras` | 最终训练模型 |
-| `part1_results/training_stage1_log.csv` | 冻结基础模型阶段的逐 epoch 日志 |
-| `part1_results/training_stage2_log.csv` | 微调阶段的逐 epoch 日志 |
-| `part1_results/training_history.json` | 两阶段完整训练历史 |
-| `part1_results/training_manifest.json` | 实际训练参数、完成 epoch 数和训练耗时 |
-| `part1_results/training_curves.png` | 训练和验证曲线，标出微调起点 |
-| `part1_results/model_summary.txt` | 模型结构及参数量 |
-| `part1_results/baseline_metrics.json` | 准确率、延迟、内存、模型大小、FLOPs 和运行环境 |
-| `part1_results/stage1_best.keras` | 第一阶段验证集最佳 checkpoint |
-| `part1_results/stage2_best.keras` | 第二阶段验证集最佳 checkpoint |
-
-若测试准确率没有严格超过 85%，程序会在写出全部诊断结果后以非零状态退出，便于识别未达到验收目标。
-
-## 本次参考运行
-
-本机使用 WSL2 和 NVIDIA GeForce RTX 4070 Ti 运行。训练在目标已明显超过后手动结束，并从第二阶段验证集最佳 checkpoint 生成最终模型：
-
-| 指标 | 结果 |
+| Metric | Result |
 |---|---:|
-| CIFAR-10 测试准确率 | 93.71% |
-| 参数量 | 2,270,794 |
-| FLOPs（单张图像） | 599,594,364 |
-| 模型文件大小 | 9.16 MiB |
-| 单样本延迟 | 2.289 ms（均值） |
-| batch size 32 延迟 | 11.114 ms（均值） |
-| batch size 32 吞吐量 | 2,879 images/s |
-| GPU 分配器峰值 | 616.5 MiB |
+| CIFAR-10 test accuracy | 93.71% |
+| Parameters | 2,270,794 |
+| FLOPs per image | 599,594,364 |
+| Model file size | 9.1617 MiB |
+| Single-image mean latency | 2.2894 ms |
+| Batch size 32 mean latency | 11.1140 ms |
+| Batch size 32 throughput | 2,879.25 images/s |
+| TensorFlow GPU allocator peak | 616.5 MiB |
 
-单样本延迟的 P95 为 3.22 ms，中位数为 2.01 ms。不同次运行会受 WSL 调度影响，实际提交以 `part1_results/baseline_metrics.json` 中当前那次测量的完整记录为准。能耗未作为实测指标记录，因为 WSL 中没有可靠的逐推理能耗计数器。
+Stage 1 completed 4 epochs and selected a best validation accuracy of 80.84%.
+Stage 2 completed 14 epochs and selected a best validation accuracy of 94.30%.
+The final model is the best Stage 2 validation checkpoint; the configured
+epoch limits were 8 and 25.
+
+Latency was measured in WSL2 on the local GPU and includes the TensorFlow
+forward pass and transfer of the output to the host. It excludes image resize,
+preprocessing, model loading, and disk access. Timing can vary between runs.
+Energy per inference is recorded as `null` because no reliable per-inference
+energy counter was available for the WSL GPU process.
