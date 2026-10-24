@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>WebGPU ONNX benchmark</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 2rem;
+      max-width: 900px;
+    }
+    pre {
+      background: #f3f3f3;
+      padding: 1rem;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>ONNX Runtime Web GPU proxy</h1>
+  <p id="status">Loading model...</p>
+  <pre id="result"></pre>
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.23.2/dist/ort.webgpu.min.js"></script>
+  <script src="benchmark.js"></script>
+</body>
+</html>

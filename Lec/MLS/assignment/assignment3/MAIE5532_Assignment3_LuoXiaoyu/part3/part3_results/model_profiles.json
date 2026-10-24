@@ -1,0 +1,122 @@
+{
+  "baseline": {
+    "backend": "Keras GPU",
+    "input_shape": [
+      224,
+      224,
+      3
+    ],
+    "accuracy": 0.9370999932289124,
+    "parameters": 2270794,
+    "weight_bytes": 9083176,
+    "activation_bytes": 602112,
+    "flops": 599594364,
+    "file_size_mb": 26.008453369140625,
+    "measured_latency_ms": 2.4971620600081224
+  },
+  "latency_optimized": {
+    "backend": "Keras GPU",
+    "input_shape": [
+      160,
+      160,
+      3
+    ],
+    "accuracy": 0.8934,
+    "parameters": 719034,
+    "weight_bytes": 2876136,
+    "activation_bytes": 1259712,
+    "flops": 98080860,
+    "file_size_mb": 8.483949661254883,
+    "measured_latency_ms": 2.4561327903938945
+  },
+  "memory_optimized": {
+    "backend": "Keras GPU",
+    "input_shape": [
+      160,
+      160,
+      3
+    ],
+    "accuracy": 0.8443,
+    "parameters": 719034,
+    "weight_bytes": 2876136,
+    "activation_bytes": 1259712,
+    "flops": 98080860,
+    "file_size_mb": 3.238633155822754,
+    "measured_latency_ms": 2.450955699532642
+  },
+  "energy_optimized": {
+    "backend": "Keras GPU",
+    "input_shape": [
+      160,
+      160,
+      3
+    ],
+    "accuracy": 0.8746,
+    "parameters": 719364,
+    "weight_bytes": 2877456,
+    "activation_bytes": 1259712,
+    "flops": 98084760,
+    "file_size_mb": 8.501924514770508,
+    "measured_latency_ms": 2.284400490098051
+  },
+  "ptq_int8": {
+    "backend": "TFLite CPU",
+    "input_shape": [
+      160,
+      160,
+      3
+    ],
+    "accuracy": 0.8784,
+    "parameters": 719034,
+    "weight_bytes": 982152,
+    "activation_bytes": 314928,
+    "flops": 98080860,
+    "file_size_mb": 0.9366531372070312,
+    "measured_latency_ms": 0.6629447799787158
+  },
+  "qat_int8": {
+    "backend": "TFLite CPU",
+    "input_shape": [
+      160,
+      160,
+      3
+    ],
+    "accuracy": 0.8449,
+    "parameters": 719034,
+    "weight_bytes": 982152,
+    "activation_bytes": 314928,
+    "flops": 98080860,
+    "file_size_mb": 0.9366531372070312,
+    "measured_latency_ms": 0.6619670001236955
+  },
+  "mixed_precision": {
+    "backend": "TFLite CPU",
+    "input_shape": [
+      160,
+      160,
+      3
+    ],
+    "accuracy": 0.8926,
+    "parameters": 719034,
+    "weight_bytes": 1435340,
+    "activation_bytes": 1259712,
+    "flops": 98080860,
+    "file_size_mb": 1.3688468933105469,
+    "measured_latency_ms": 0.5353844596538693
+  },
+  "dynamic_range": {
+    "backend": "TFLite CPU",
+    "input_shape": [
+      160,
+      160,
+      3
+    ],
+    "accuracy": 0.8861,
+    "parameters": 719034,
+    "weight_bytes": 879216,
+    "activation_bytes": 1259712,
+    "flops": 98080860,
+    "file_size_mb": 0.8384857177734375,
+    "measured_latency_ms": 0.9725343394529773
+  }
+}

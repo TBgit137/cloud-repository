@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
-"""Train and benchmark the MobileNetV2 baseline for CIFAR-10."""
+"""第 1 部分：MobileNetV2 图像分类基线模型。"""
 
 from __future__ import annotations
 
 import json
+import os
 import time
 from pathlib import Path
 
 import numpy as np
+import psutil
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
@@ -20,10 +22,10 @@ SEED = 42
 IMAGE_SIZE = (224, 224)
 INPUT_SHAPE = (*IMAGE_SIZE, 3)
 NUM_CLASSES = 10
-TRAIN_BATCH_SIZE = 64
+BATCH_SIZE = 64
 VALIDATION_FRACTION = 0.1
-STAGE1_EPOCHS = 4
-STAGE2_EPOCHS = 14
+STAGE1_EPOCHS = 8
+STAGE2_EPOCHS = 25
 STAGE1_LEARNING_RATE = 1e-3
 STAGE2_LEARNING_RATE = 1e-4
 ACCURACY_TARGET = 0.85
@@ -34,7 +36,7 @@ MODEL_PATH = OUTPUT_DIR / "baseline_mobilenetv2.keras"
 
 
 def configure_runtime() -> None:
-    """Set the random seed and permit incremental GPU memory allocation."""
+    """设置随机种子，并允许 GPU 按需分配显存。"""
     keras.utils.set_random_seed(SEED)
     for device in tf.config.list_physical_devices("GPU"):
         try:
@@ -47,22 +49,35 @@ def create_baseline_model(
     input_shape: tuple[int, int, int] = INPUT_SHAPE,
     num_classes: int = NUM_CLASSES,
 ) -> keras.Model:
-    """Create the ImageNet-pretrained MobileNetV2 classification model."""
+    """
+    创建一个用于图像分类的 MobileNetV2 基础模型。
+
+    参数：
+        input_shape：输入图像尺寸
+        num_classes：分类类别数
+
+    返回：
+        tf.keras.Model：已编译、可直接训练的模型
+    """
+    # 基础模型：MobileNetV2（在 ImageNet 上预训练，初始阶段冻结）
     base_model = keras.applications.MobileNetV2(
         input_shape=input_shape,
         include_top=False,
         weights="imagenet",
-        name="mobilenetv2_base",
     )
     base_model.trainable = False
 
     inputs = keras.Input(shape=input_shape, name="image_input")
+    # MobileNetV2 的 ImageNet 权重期望输入范围为 [-1, 1]。
     x = layers.Rescaling(
         scale=1.0 / 127.5,
         offset=-1.0,
         name="mobilenetv2_preprocessing",
     )(inputs)
     x = base_model(x, training=False)
+
+    # 为你的数据集添加自定义分类头
+    # 使用全局平均池化和 dropout 进行正则化
     x = layers.GlobalAveragePooling2D(name="global_average_pooling")(x)
     x = layers.Dropout(0.2, name="classifier_dropout")(x)
     outputs = layers.Dense(
@@ -71,7 +86,11 @@ def create_baseline_model(
         name="classifier",
     )(x)
 
-    model = keras.Model(inputs, outputs, name="cifar10_mobilenetv2_baseline")
+    model = keras.Model(
+        inputs=inputs,
+        outputs=outputs,
+        name="cifar10_mobilenetv2_baseline",
+    )
     model.compile(
         optimizer=keras.optimizers.Adam(learning_rate=STAGE1_LEARNING_RATE),
         loss=keras.losses.SparseCategoricalCrossentropy(),
@@ -81,8 +100,19 @@ def create_baseline_model(
 
 
 def load_and_preprocess_data():
-    """Load CIFAR-10 and retain pixels in the 0-255 range."""
+    """
+    加载 CIFAR-10 数据集，并为 MobileNetV2 进行预处理。
+
+    返回：
+        tuple：(x_train, y_train, x_test, y_test)
+    """
+    # 加载 CIFAR-10 数据集
     (x_train, y_train), (x_test, y_test) = keras.datasets.cifar10.load_data()
+
+    # 将图像缩放到 224x224，以适配 MobileNetV2
+    # 归一化像素值，并应用数据增强
+    # 使用 tf.data.Dataset 高效加载数据
+    # 保留 0-255 的像素范围，由模型内的 Rescaling 层统一归一化。
     return (
         x_train.astype(np.float32),
         y_train.reshape(-1).astype(np.int64),
@@ -94,104 +124,135 @@ def load_and_preprocess_data():
 def _stratified_split(
     labels: np.ndarray,
 ) -> tuple[np.ndarray, np.ndarray]:
-    """Split the training data into stratified training and validation sets."""
+    """按类别划分训练集和验证集，测试集不参与训练。"""
     rng = np.random.default_rng(SEED)
-    train_parts: list[np.ndarray] = []
-    validation_parts: list[np.ndarray] = []
+    train_indices: list[np.ndarray] = []
+    validation_indices: list[np.ndarray] = []
 
     for label in np.unique(labels):
         class_indices = rng.permutation(np.flatnonzero(labels == label))
-        validation_size = max(
+        validation_count = max(
             1,
             int(round(len(class_indices) * VALIDATION_FRACTION)),
         )
-        validation_parts.append(class_indices[:validation_size])
-        train_parts.append(class_indices[validation_size:])
+        validation_indices.append(class_indices[:validation_count])
+        train_indices.append(class_indices[validation_count:])
 
     return (
-        rng.permutation(np.concatenate(train_parts)),
-        rng.permutation(np.concatenate(validation_parts)),
+        rng.permutation(np.concatenate(train_indices)),
+        rng.permutation(np.concatenate(validation_indices)),
     )
 
 
-def _evaluation_dataset(
+def _resize_images(images: tf.Tensor) -> tf.Tensor:
+    """将图像缩放到 MobileNetV2 所需尺寸。"""
+    return tf.image.resize(
+        tf.cast(images, tf.float32),
+        IMAGE_SIZE,
+        method="bilinear",
+    )
+
+
+def _make_train_dataset(
     images: np.ndarray,
     labels: np.ndarray,
-    batch_size: int,
 ) -> tf.data.Dataset:
-    """Create a resize-only evaluation dataset."""
+    """创建训练集流水线，并应用数据增强。"""
+    augmentation = keras.Sequential(
+        [
+            layers.RandomFlip("horizontal", seed=SEED),
+            layers.RandomRotation(
+                factor=0.03,
+                fill_mode="nearest",
+                seed=SEED + 1,
+            ),
+            layers.RandomZoom(
+                height_factor=0.08,
+                width_factor=0.08,
+                fill_mode="nearest",
+                seed=SEED + 2,
+            ),
+            layers.RandomTranslation(
+                height_factor=0.05,
+                width_factor=0.05,
+                fill_mode="nearest",
+                seed=SEED + 3,
+            ),
+        ]
+    )
 
     def prepare(image: tf.Tensor, label: tf.Tensor):
-        image = tf.image.resize(image, IMAGE_SIZE, method="bilinear")
-        return image, label
+        image = augmentation(image, training=True)
+        return _resize_images(image), label
+
+    return (
+        tf.data.Dataset.from_tensor_slices((images, labels))
+        .shuffle(len(images), seed=SEED, reshuffle_each_iteration=True)
+        .map(prepare, num_parallel_calls=tf.data.AUTOTUNE)
+        .batch(BATCH_SIZE)
+        .prefetch(tf.data.AUTOTUNE)
+    )
+
+
+def _make_eval_dataset(
+    images: np.ndarray,
+    labels: np.ndarray,
+) -> tf.data.Dataset:
+    """创建不打乱、不增强的验证集或测试集流水线。"""
+
+    def prepare(image: tf.Tensor, label: tf.Tensor):
+        return _resize_images(image), label
 
     return (
         tf.data.Dataset.from_tensor_slices((images, labels))
         .map(prepare, num_parallel_calls=tf.data.AUTOTUNE)
-        .batch(batch_size)
+        .batch(BATCH_SIZE)
         .prefetch(tf.data.AUTOTUNE)
     )
 
 
-def _make_datasets(
+def make_datasets(
     x_train: np.ndarray,
     y_train: np.ndarray,
-    x_test: np.ndarray,
-    y_test: np.ndarray,
-) -> tuple[tf.data.Dataset, tf.data.Dataset, tf.data.Dataset]:
-    """Create the augmented training pipeline and evaluation pipelines."""
+) -> tuple[tf.data.Dataset, tf.data.Dataset]:
+    """划分训练集，并创建训练和验证流水线。"""
     train_indices, validation_indices = _stratified_split(y_train)
-    augmentation = keras.Sequential(
-        [
-            layers.RandomFlip("horizontal", seed=SEED),
-            layers.RandomRotation(0.03, seed=SEED + 1),
-            layers.RandomZoom(0.08, 0.08, seed=SEED + 2),
-            layers.RandomTranslation(0.05, 0.05, seed=SEED + 3),
-        ]
+    return (
+        _make_train_dataset(
+            x_train[train_indices],
+            y_train[train_indices],
+        ),
+        _make_eval_dataset(
+            x_train[validation_indices],
+            y_train[validation_indices],
+        ),
     )
 
-    def prepare_train(image: tf.Tensor, label: tf.Tensor):
-        image = tf.cast(image, tf.float32)
-        image = augmentation(image, training=True)
-        image = tf.image.resize(image, IMAGE_SIZE, method="bilinear")
-        return image, label
 
-    train_dataset = (
-        tf.data.Dataset.from_tensor_slices(
-            (x_train[train_indices], y_train[train_indices])
-        )
-        .shuffle(len(train_indices), seed=SEED, reshuffle_each_iteration=True)
-        .map(prepare_train, num_parallel_calls=tf.data.AUTOTUNE)
-        .batch(TRAIN_BATCH_SIZE)
-        .prefetch(tf.data.AUTOTUNE)
-    )
-    validation_dataset = _evaluation_dataset(
-        x_train[validation_indices],
-        y_train[validation_indices],
-        TRAIN_BATCH_SIZE,
-    )
-    test_dataset = _evaluation_dataset(
-        x_test,
-        y_test,
-        TRAIN_BATCH_SIZE,
-    )
-    return train_dataset, validation_dataset, test_dataset
+def _get_mobilenet_backbone(model: keras.Model) -> keras.Model:
+    """从外层模型中定位 MobileNetV2 基础模型。"""
+    for layer in model.layers:
+        if layer.name.startswith("mobilenetv2") and hasattr(layer, "layers"):
+            return layer
+    raise ValueError("无法在模型中定位 MobileNetV2 基础模型。")
 
 
-def _write_history(
-    path: Path,
-    history: keras.callbacks.History,
-) -> None:
-    """Write one stage's epoch-level training history as CSV."""
-    keys = list(history.history)
-    rows = [
-        ",".join(["epoch", *keys]),
-        *[
-            ",".join([str(epoch), *[str(history.history[key][epoch]) for key in keys]])
-            for epoch in range(len(history.history["loss"]))
-        ],
+def _stage_callbacks(
+    stage_name: str,
+    epochs: int,
+) -> list[keras.callbacks.Callback]:
+    """保存每阶段的训练日志，并恢复验证准确率最佳权重。"""
+    return [
+        keras.callbacks.CSVLogger(
+            str(RESULTS_DIR / f"training_{stage_name}_log.csv"),
+        ),
+        keras.callbacks.EarlyStopping(
+            monitor="val_accuracy",
+            mode="max",
+            patience=epochs,
+            restore_best_weights=True,
+        ),
     ]
-    path.write_text("\n".join(rows) + "\n", encoding="utf-8")
 
 
 def train_baseline_model(
@@ -199,30 +260,25 @@ def train_baseline_model(
     train_dataset: tf.data.Dataset,
     validation_dataset: tf.data.Dataset,
 ) -> keras.Model:
-    """Train the classification head, then fine-tune MobileNetV2."""
-    base_model = model.get_layer("mobilenetv2_base")
+    """先训练分类头，再以较低学习率微调 MobileNetV2。"""
+    # 使用微调策略进行训练
+    # 1. 仅训练分类头（冻结基础模型）
+    base_model = _get_mobilenet_backbone(model)
     base_model.trainable = False
     model.compile(
         optimizer=keras.optimizers.Adam(learning_rate=STAGE1_LEARNING_RATE),
         loss=keras.losses.SparseCategoricalCrossentropy(),
         metrics=["accuracy"],
     )
-    history_stage1 = model.fit(
+    model.fit(
         train_dataset,
         validation_data=validation_dataset,
         epochs=STAGE1_EPOCHS,
-        callbacks=[
-            keras.callbacks.EarlyStopping(
-                monitor="val_accuracy",
-                mode="max",
-                patience=STAGE1_EPOCHS,
-                restore_best_weights=True,
-            )
-        ],
+        callbacks=_stage_callbacks("stage1", STAGE1_EPOCHS),
         verbose=2,
     )
-    _write_history(RESULTS_DIR / "training_stage1_log.csv", history_stage1)
 
+    # 2. 解冻基础模型，并使用较低学习率进行微调
     base_model.trainable = True
     for layer in base_model.layers:
         if isinstance(layer, layers.BatchNormalization):
@@ -233,25 +289,18 @@ def train_baseline_model(
         loss=keras.losses.SparseCategoricalCrossentropy(),
         metrics=["accuracy"],
     )
-    history_stage2 = model.fit(
+    model.fit(
         train_dataset,
         validation_data=validation_dataset,
         epochs=STAGE2_EPOCHS,
-        callbacks=[
-            keras.callbacks.EarlyStopping(
-                monitor="val_accuracy",
-                mode="max",
-                patience=STAGE2_EPOCHS,
-                restore_best_weights=True,
-            )
-        ],
+        callbacks=_stage_callbacks("stage2", STAGE2_EPOCHS),
         verbose=2,
     )
-    _write_history(RESULTS_DIR / "training_stage2_log.csv", history_stage2)
     return model
 
 
 def _model_weight_memory_bytes(model: keras.Model) -> int:
+    """计算模型权重和 BatchNorm 状态的存储字节数。"""
     return sum(
         int(np.prod(weight.shape)) * tf.as_dtype(weight.dtype).size
         for weight in model.weights
@@ -259,7 +308,7 @@ def _model_weight_memory_bytes(model: keras.Model) -> int:
 
 
 def _estimate_flops(model: keras.Model) -> int:
-    """Estimate float operations for one image."""
+    """估算单张图像前向计算所需的浮点运算次数。"""
     concrete_function = tf.function(
         lambda images: model(images, training=False)
     ).get_concrete_function(tf.TensorSpec((1, *INPUT_SHAPE), tf.float32))
@@ -275,102 +324,122 @@ def _estimate_flops(model: keras.Model) -> int:
     return int(profile.total_float_ops)
 
 
-def benchmark_baseline_model(
+def _timed_inference(
     model: keras.Model,
-    test_dataset: tf.data.Dataset,
-    *,
-    batch_size: int = 32,
-    inference_runs: int = 100,
-    batch_inference_runs: int = 40,
-    warmup_runs: int = 20,
-) -> dict[str, object]:
-    """Evaluate accuracy and measure single-image and batch inference."""
-    evaluation = model.evaluate(test_dataset, verbose=0, return_dict=True)
-    images = tf.concat([batch for batch, _ in test_dataset.take(2)], axis=0)
-    single_images = tf.image.resize(
-        images[:inference_runs],
-        IMAGE_SIZE,
-        method="bilinear",
-    )
-    batch_images = tf.image.resize(
-        images[:batch_size],
-        IMAGE_SIZE,
-        method="bilinear",
-    )
-
-    @tf.function(input_signature=[tf.TensorSpec((1, *INPUT_SHAPE), tf.float32)])
-    def predict_one(inputs):
-        return model(inputs, training=False)
+    inputs: tf.Tensor,
+    runs: int,
+) -> float:
+    """测量固定输入形状下前向推理的平均延迟，单位为毫秒。"""
+    batch_size = int(inputs.shape[0])
 
     @tf.function(
-        input_signature=[tf.TensorSpec((batch_size, *INPUT_SHAPE), tf.float32)]
+        input_signature=[
+            tf.TensorSpec((batch_size, *INPUT_SHAPE), tf.float32)
+        ]
     )
-    def predict_batch(inputs):
-        return model(inputs, training=False)
+    def infer(images):
+        return model(images, training=False)
 
-    for _ in range(warmup_runs):
-        predict_one(single_images[:1]).numpy()
-        predict_batch(batch_images).numpy()
+    for _ in range(20):
+        infer(inputs).numpy()
 
-    single_times: list[float] = []
-    for index in range(inference_runs):
-        sample = single_images[index:index + 1]
+    timings_ms: list[float] = []
+    for _ in range(runs):
         start = time.perf_counter()
-        predict_one(sample).numpy()
-        single_times.append((time.perf_counter() - start) * 1000.0)
+        infer(inputs).numpy()
+        timings_ms.append((time.perf_counter() - start) * 1000.0)
+    return float(np.mean(timings_ms))
 
-    batch_times: list[float] = []
-    for _ in range(batch_inference_runs):
-        start = time.perf_counter()
-        predict_batch(batch_images).numpy()
-        batch_times.append((time.perf_counter() - start) * 1000.0)
 
-    return {
-        "single_inference_time_ms": float(np.mean(single_times)),
-        "batch_inference_time_ms": float(np.mean(batch_times)),
-        "memory_usage_mb": _model_weight_memory_bytes(model) / (1024 ** 2),
-        "memory_usage_scope": (
-            "TensorFlow model weights, including BatchNorm state; "
-            "excludes activations and runtime allocators."
-        ),
-        "model_size_mb": MODEL_PATH.stat().st_size / (1024 ** 2),
-        "accuracy": float(evaluation["accuracy"]),
-        "flops": _estimate_flops(model),
-        "parameters": int(model.count_params()),
-        "energy_j_per_inference": None,
-        "energy_status": (
-            "Not measured: no reliable per-inference energy counter was "
-            "available for the WSL GPU process."
-        ),
+def benchmark_baseline_model(
+    model: keras.Model,
+    test_data: tuple[np.ndarray, np.ndarray],
+    batch_size: int = 32,
+) -> dict[str, float | int]:
+    """
+    对基线模型的延迟和内存使用情况进行基准测试。
+
+    参数：
+        model：已训练的 Keras 模型
+        test_data：测试数据集
+        batch_size：推理时使用的批大小
+
+    返回：
+        dict：性能指标
+    """
+    x_test, y_test = test_data
+    test_dataset = _make_eval_dataset(x_test, y_test)
+    evaluation = model.evaluate(
+        test_dataset,
+        verbose=0,
+        return_dict=True,
+    )
+
+    # 测量单样本和批量推理延迟
+    single_image = _resize_images(x_test[:1])
+    batch_images = _resize_images(x_test[:batch_size])
+    process = psutil.Process(os.getpid())
+    rss_before = process.memory_info().rss
+    single_inference_time = _timed_inference(
+        model,
+        single_image,
+        runs=100,
+    )
+    batch_inference_time = _timed_inference(
+        model,
+        batch_images,
+        runs=40,
+    )
+    rss_after = process.memory_info().rss
+    runtime_memory_mb = max(
+        0.0,
+        (rss_after - rss_before) / (1024 ** 2),
+    )
+    weight_memory_mb = _model_weight_memory_bytes(model) / (1024 ** 2)
+    metrics = {
+        'single_inference_time': single_inference_time,
+        'batch_inference_time': batch_inference_time,
+        'memory_usage_mb': max(runtime_memory_mb, weight_memory_mb),
+        'model_size_mb': MODEL_PATH.stat().st_size / (1024 ** 2),
+        'accuracy': float(evaluation["accuracy"]),
+        'flops': _estimate_flops(model),
+        'parameters': int(model.count_params()),
     }
+    return metrics
 
 
 def main() -> None:
-    """Run the complete Part 1 training and benchmark workflow."""
+    """执行 Part 1 的数据加载、训练、保存和基准测试。"""
     configure_runtime()
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
+    # 加载数据
     x_train, y_train, x_test, y_test = load_and_preprocess_data()
-    train_dataset, validation_dataset, test_dataset = _make_datasets(
+    train_dataset, validation_dataset = make_datasets(
         x_train,
         y_train,
-        x_test,
-        y_test,
     )
+
+    # 创建并训练模型
     model = create_baseline_model()
     model = train_baseline_model(
         model,
         train_dataset,
         validation_dataset,
     )
+
+    # 保存训练好的模型
     model.save(MODEL_PATH)
 
-    metrics = benchmark_baseline_model(model, test_dataset)
+    # 进行基准测试
+    metrics = benchmark_baseline_model(model, (x_test, y_test))
     (RESULTS_DIR / "baseline_metrics.json").write_text(
         json.dumps(metrics, indent=2),
         encoding="utf-8",
     )
-    print(json.dumps(metrics, indent=2))
+    print("Baseline Model Performance:")
+    for key, value in metrics.items():
+        print(f"{key}: {value}")
 
     if metrics["accuracy"] <= ACCURACY_TARGET:
         raise SystemExit(

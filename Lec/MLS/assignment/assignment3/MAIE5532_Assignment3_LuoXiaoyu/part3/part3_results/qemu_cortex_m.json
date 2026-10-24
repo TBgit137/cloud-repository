@@ -1,0 +1,12 @@
+{
+  "execution_context": "[QEMU-CM]",
+  "status": "measured",
+  "cpu": "cortex-m3",
+  "average_simulated_cpu_ms": 946.0,
+  "model_bytes": 982152,
+  "tensor_arena_bytes": 1048576,
+  "tensor_arena_used_bytes": 707028,
+  "clock_ticks_per_second": 100,
+  "clock_resolution_ms": 10.0,
+  "raw_output": "CIFAR model bytes: 982152\nInput bytes: 76800\nOutput bytes: 10\nTensor arena bytes: 1048576\nTensor arena used bytes: 707028\nMeasured runs: 5\nClock ticks per second: 100\nAverage clock milliseconds: 946.000\n~~~QEMU CIFAR BENCHMARK PASSED~~~"
+}

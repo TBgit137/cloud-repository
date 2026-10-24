@@ -1,0 +1,9 @@
+model,family,backend,accuracy,accuracy_drop_pp,parameters,model_size_mib,single_latency_ms,input_resolution
+baseline,baseline,Keras GPU,0.9371,0.00,2270794,26.008,2.497,224x224
+latency_optimized,architecture,Keras GPU,0.8934,4.37,719034,8.484,2.456,160x160
+memory_optimized,architecture,Keras GPU,0.8443,9.28,719034,3.239,2.451,160x160
+energy_optimized,architecture,Keras GPU,0.8746,6.25,719364,8.502,2.284,160x160
+ptq_int8,quantized,TFLite CPU,0.8784,5.87,,0.937,0.663,160x160
+qat_int8,quantized,TFLite CPU,0.8449,9.22,,0.937,0.662,160x160
+mixed_precision,quantized,TFLite CPU,0.8926,4.45,,1.369,0.535,160x160
+dynamic_range,quantized,TFLite CPU,0.8861,5.10,,0.838,0.973,160x160

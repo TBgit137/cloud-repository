@@ -1,12 +1,9 @@
 {
-  "single_inference_time_ms": 2.2894032300291656,
-  "batch_inference_time_ms": 11.114010275059627,
+  "single_inference_time": 2.4971620600081224,
+  "batch_inference_time": 11.87894522500983,
   "memory_usage_mb": 8.662391662597656,
-  "memory_usage_scope": "TensorFlow model weights, including BatchNorm state; excludes activations and runtime allocators.",
-  "model_size_mb": 9.161712646484375,
+  "model_size_mb": 26.008453369140625,
   "accuracy": 0.9370999932289124,
   "flops": 599594364,
-  "parameters": 2270794,
-  "energy_j_per_inference": null,
-  "energy_status": "Not measured: no reliable per-inference energy counter was available for the WSL GPU process."
+  "parameters": 2270794
 }

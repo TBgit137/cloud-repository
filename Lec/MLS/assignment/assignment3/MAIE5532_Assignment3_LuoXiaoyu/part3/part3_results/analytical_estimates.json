@@ -1,0 +1,234 @@
+{
+  "x86_desktop": {
+    "baseline": {
+      "latency_ms": 8.565359494736843,
+      "memory_bytes": 10287400,
+      "energy_j": 0.13240423024105263,
+      "fits_memory": true,
+      "accuracy": 0.9370999932289124
+    },
+    "latency_optimized": {
+      "latency_ms": 1.5265734736842105,
+      "memory_bytes": 5395560,
+      "energy_j": 0.02387460680526316,
+      "fits_memory": true,
+      "accuracy": 0.8934
+    },
+    "memory_optimized": {
+      "latency_ms": 1.5265734736842105,
+      "memory_bytes": 5395560,
+      "energy_j": 0.02387460680526316,
+      "fits_memory": true,
+      "accuracy": 0.8443
+    },
+    "energy_optimized": {
+      "latency_ms": 1.5266282105263158,
+      "memory_bytes": 5396880,
+      "energy_j": 0.023875566157894736,
+      "fits_memory": true,
+      "accuracy": 0.8746
+    },
+    "ptq_int8": {
+      "latency_ms": 1.5265734736842105,
+      "memory_bytes": 1612008,
+      "energy_j": 0.02353408712526316,
+      "fits_memory": true,
+      "accuracy": 0.8784
+    },
+    "qat_int8": {
+      "latency_ms": 1.5265734736842105,
+      "memory_bytes": 1612008,
+      "energy_j": 0.02353408712526316,
+      "fits_memory": true,
+      "accuracy": 0.8449
+    },
+    "mixed_precision": {
+      "latency_ms": 1.5265734736842105,
+      "memory_bytes": 3954764,
+      "energy_j": 0.02374493516526316,
+      "fits_memory": true,
+      "accuracy": 0.8926
+    },
+    "dynamic_range": {
+      "latency_ms": 1.5265734736842105,
+      "memory_bytes": 3398640,
+      "energy_j": 0.02369488400526316,
+      "fits_memory": true,
+      "accuracy": 0.8861
+    }
+  },
+  "arm_cortex_a78": {
+    "baseline": {
+      "latency_ms": 75.94929549999999,
+      "memory_bytes": 10287400,
+      "energy_j": 0.10198480205999999,
+      "fits_memory": true,
+      "accuracy": 0.9370999932289124
+    },
+    "latency_optimized": {
+      "latency_ms": 13.2601075,
+      "memory_bytes": 5395560,
+      "energy_j": 0.0183545427,
+      "fits_memory": true,
+      "accuracy": 0.8934
+    },
+    "memory_optimized": {
+      "latency_ms": 13.2601075,
+      "memory_bytes": 5395560,
+      "energy_j": 0.0183545427,
+      "fits_memory": true,
+      "accuracy": 0.8443
+    },
+    "energy_optimized": {
+      "latency_ms": 13.260595,
+      "memory_bytes": 5396880,
+      "energy_j": 0.0183554238,
+      "fits_memory": true,
+      "accuracy": 0.8746
+    },
+    "ptq_int8": {
+      "latency_ms": 13.2601075,
+      "memory_bytes": 1612008,
+      "energy_j": 0.01767350334,
+      "fits_memory": true,
+      "accuracy": 0.8784
+    },
+    "qat_int8": {
+      "latency_ms": 13.2601075,
+      "memory_bytes": 1612008,
+      "energy_j": 0.01767350334,
+      "fits_memory": true,
+      "accuracy": 0.8449
+    },
+    "mixed_precision": {
+      "latency_ms": 13.2601075,
+      "memory_bytes": 3954764,
+      "energy_j": 0.01809519942,
+      "fits_memory": true,
+      "accuracy": 0.8926
+    },
+    "dynamic_range": {
+      "latency_ms": 13.2601075,
+      "memory_bytes": 3398640,
+      "energy_j": 0.0179950971,
+      "fits_memory": true,
+      "accuracy": 0.8861
+    }
+  },
+  "arm_cortex_m7": {
+    "baseline": {
+      "latency_ms": 2069.8952615384615,
+      "memory_bytes": 10287400,
+      "energy_j": 0.14872908491692308,
+      "fits_memory": false,
+      "accuracy": 0.9370999932289124
+    },
+    "latency_optimized": {
+      "latency_ms": 355.31917948717944,
+      "memory_bytes": 5395560,
+      "energy_j": 0.02850681457435897,
+      "fits_memory": false,
+      "accuracy": 0.8934
+    },
+    "memory_optimized": {
+      "latency_ms": 355.31917948717944,
+      "memory_bytes": 5395560,
+      "energy_j": 0.02850681457435897,
+      "fits_memory": false,
+      "accuracy": 0.8443
+    },
+    "energy_optimized": {
+      "latency_ms": 355.3325128205128,
+      "memory_bytes": 5396880,
+      "energy_j": 0.02850890324102564,
+      "fits_memory": false,
+      "accuracy": 0.8746
+    },
+    "ptq_int8": {
+      "latency_ms": 355.31917948717944,
+      "memory_bytes": 1612008,
+      "energy_j": 0.025101617774358972,
+      "fits_memory": false,
+      "accuracy": 0.8784
+    },
+    "qat_int8": {
+      "latency_ms": 355.31917948717944,
+      "memory_bytes": 1612008,
+      "energy_j": 0.025101617774358972,
+      "fits_memory": false,
+      "accuracy": 0.8449
+    },
+    "mixed_precision": {
+      "latency_ms": 355.31917948717944,
+      "memory_bytes": 3954764,
+      "energy_j": 0.02721009817435897,
+      "fits_memory": false,
+      "accuracy": 0.8926
+    },
+    "dynamic_range": {
+      "latency_ms": 355.31917948717944,
+      "memory_bytes": 3398640,
+      "energy_j": 0.02670958657435897,
+      "fits_memory": false,
+      "accuracy": 0.8861
+    }
+  },
+  "webgpu_proxy": {
+    "baseline": {
+      "latency_ms": 4.249492955,
+      "memory_bytes": 10287400,
+      "energy_j": 0.035658065368,
+      "fits_memory": true,
+      "accuracy": 0.9370999932289124
+    },
+    "latency_optimized": {
+      "latency_ms": 3.622601075,
+      "memory_bytes": 5395560,
+      "energy_j": 0.02941977052,
+      "fits_memory": true,
+      "accuracy": 0.8934
+    },
+    "memory_optimized": {
+      "latency_ms": 3.622601075,
+      "memory_bytes": 5395560,
+      "energy_j": 0.02941977052,
+      "fits_memory": true,
+      "accuracy": 0.8443
+    },
+    "energy_optimized": {
+      "latency_ms": 3.62260595,
+      "memory_bytes": 5396880,
+      "energy_j": 0.02941987672,
+      "fits_memory": true,
+      "accuracy": 0.8746
+    },
+    "ptq_int8": {
+      "latency_ms": 3.622601075,
+      "memory_bytes": 1612008,
+      "energy_j": 0.029249510679999997,
+      "fits_memory": true,
+      "accuracy": 0.8784
+    },
+    "qat_int8": {
+      "latency_ms": 3.622601075,
+      "memory_bytes": 1612008,
+      "energy_j": 0.029249510679999997,
+      "fits_memory": true,
+      "accuracy": 0.8449
+    },
+    "mixed_precision": {
+      "latency_ms": 3.622601075,
+      "memory_bytes": 3954764,
+      "energy_j": 0.029354934699999998,
+      "fits_memory": true,
+      "accuracy": 0.8926
+    },
+    "dynamic_range": {
+      "latency_ms": 3.622601075,
+      "memory_bytes": 3398640,
+      "energy_j": 0.029329909119999997,
+      "fits_memory": true,
+      "accuracy": 0.8861
+    }
+  }
+}

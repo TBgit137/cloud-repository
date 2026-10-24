@@ -1,0 +1,206 @@
+{
+  "x86_desktop": {
+    "latency_optimized": {
+      "speedup": 5.610839990600208,
+      "memory_reduction": 0.475517623500593,
+      "energy_reduction": 0.8196839575155755,
+      "accuracy_loss": 0.04369999322891238,
+      "fits_target_memory": true
+    },
+    "memory_optimized": {
+      "speedup": 5.610839990600208,
+      "memory_reduction": 0.475517623500593,
+      "energy_reduction": 0.8196839575155755,
+      "accuracy_loss": 0.0927999932289123,
+      "fits_target_memory": true
+    },
+    "energy_optimized": {
+      "speedup": 5.610638815447983,
+      "memory_reduction": 0.47538931119622063,
+      "energy_reduction": 0.8196767118812796,
+      "accuracy_loss": 0.06249999322891231,
+      "fits_target_memory": true
+    },
+    "ptq_int8": {
+      "speedup": 5.610839990600208,
+      "memory_reduction": 0.843302680949511,
+      "energy_reduction": 0.8222557762511254,
+      "accuracy_loss": 0.058699993228912395,
+      "fits_target_memory": true
+    },
+    "qat_int8": {
+      "speedup": 5.610839990600208,
+      "memory_reduction": 0.843302680949511,
+      "energy_reduction": 0.8222557762511254,
+      "accuracy_loss": 0.09219999322891237,
+      "fits_target_memory": true
+    },
+    "mixed_precision": {
+      "speedup": 5.610839990600208,
+      "memory_reduction": 0.61557205902366,
+      "energy_reduction": 0.8206633192758752,
+      "accuracy_loss": 0.044499993228912404,
+      "fits_target_memory": true
+    },
+    "dynamic_range": {
+      "speedup": 5.610839990600208,
+      "memory_reduction": 0.669630810506056,
+      "energy_reduction": 0.8210413371073968,
+      "accuracy_loss": 0.050999993228912355,
+      "fits_target_memory": true
+    }
+  },
+  "arm_cortex_a78": {
+    "latency_optimized": {
+      "speedup": 5.727653075210739,
+      "memory_reduction": 0.475517623500593,
+      "energy_reduction": 0.8200266870234096,
+      "accuracy_loss": 0.04369999322891238,
+      "fits_target_memory": true
+    },
+    "memory_optimized": {
+      "speedup": 5.727653075210739,
+      "memory_reduction": 0.475517623500593,
+      "energy_reduction": 0.8200266870234096,
+      "accuracy_loss": 0.0927999932289123,
+      "fits_target_memory": true
+    },
+    "energy_optimized": {
+      "speedup": 5.727442509178509,
+      "memory_reduction": 0.47538931119622063,
+      "energy_reduction": 0.8200180475008317,
+      "accuracy_loss": 0.06249999322891231,
+      "fits_target_memory": true
+    },
+    "ptq_int8": {
+      "speedup": 5.727653075210739,
+      "memory_reduction": 0.843302680949511,
+      "energy_reduction": 0.8267045384899382,
+      "accuracy_loss": 0.058699993228912395,
+      "fits_target_memory": true
+    },
+    "qat_int8": {
+      "speedup": 5.727653075210739,
+      "memory_reduction": 0.843302680949511,
+      "energy_reduction": 0.8267045384899382,
+      "accuracy_loss": 0.09219999322891237,
+      "fits_target_memory": true
+    },
+    "mixed_precision": {
+      "speedup": 5.727653075210739,
+      "memory_reduction": 0.61557205902366,
+      "energy_reduction": 0.8225696470994357,
+      "accuracy_loss": 0.044499993228912404,
+      "fits_target_memory": true
+    },
+    "dynamic_range": {
+      "speedup": 5.727653075210739,
+      "memory_reduction": 0.669630810506056,
+      "energy_reduction": 0.8235511886426659,
+      "accuracy_loss": 0.050999993228912355,
+      "fits_target_memory": true
+    }
+  },
+  "arm_cortex_m7": {
+    "latency_optimized": {
+      "speedup": 5.825453229194871,
+      "memory_reduction": 0.475517623500593,
+      "energy_reduction": 0.808330599288752,
+      "accuracy_loss": 0.04369999322891238,
+      "fits_target_memory": false
+    },
+    "memory_optimized": {
+      "speedup": 5.825453229194871,
+      "memory_reduction": 0.475517623500593,
+      "energy_reduction": 0.808330599288752,
+      "accuracy_loss": 0.0927999932289123,
+      "fits_target_memory": false
+    },
+    "energy_optimized": {
+      "speedup": 5.825234637574571,
+      "memory_reduction": 0.47538931119622063,
+      "energy_reduction": 0.8083165558575842,
+      "accuracy_loss": 0.06249999322891231,
+      "fits_target_memory": false
+    },
+    "ptq_int8": {
+      "speedup": 5.825453229194871,
+      "memory_reduction": 0.843302680949511,
+      "energy_reduction": 0.8312258978236825,
+      "accuracy_loss": 0.058699993228912395,
+      "fits_target_memory": false
+    },
+    "qat_int8": {
+      "speedup": 5.825453229194871,
+      "memory_reduction": 0.843302680949511,
+      "energy_reduction": 0.8312258978236825,
+      "accuracy_loss": 0.09219999322891237,
+      "fits_target_memory": false
+    },
+    "mixed_precision": {
+      "speedup": 5.825453229194871,
+      "memory_reduction": 0.61557205902366,
+      "energy_reduction": 0.8170492463558291,
+      "accuracy_loss": 0.044499993228912404,
+      "fits_target_memory": false
+    },
+    "dynamic_range": {
+      "speedup": 5.825453229194871,
+      "memory_reduction": 0.669630810506056,
+      "energy_reduction": 0.8204145033953623,
+      "accuracy_loss": 0.050999993228912355,
+      "fits_target_memory": false
+    }
+  },
+  "webgpu_proxy": {
+    "latency_optimized": {
+      "speedup": 1.173050210890251,
+      "memory_reduction": 0.475517623500593,
+      "energy_reduction": 0.17494765303779847,
+      "accuracy_loss": 0.04369999322891238,
+      "fits_target_memory": true
+    },
+    "memory_optimized": {
+      "speedup": 1.173050210890251,
+      "memory_reduction": 0.475517623500593,
+      "energy_reduction": 0.17494765303779847,
+      "accuracy_loss": 0.0927999932289123,
+      "fits_target_memory": true
+    },
+    "energy_optimized": {
+      "speedup": 1.1730486322974212,
+      "memory_reduction": 0.47538931119622063,
+      "energy_reduction": 0.17494467474946718,
+      "accuracy_loss": 0.06249999322891231,
+      "fits_target_memory": true
+    },
+    "ptq_int8": {
+      "speedup": 1.173050210890251,
+      "memory_reduction": 0.843302680949511,
+      "energy_reduction": 0.17972244489043765,
+      "accuracy_loss": 0.058699993228912395,
+      "fits_target_memory": true
+    },
+    "qat_int8": {
+      "speedup": 1.173050210890251,
+      "memory_reduction": 0.843302680949511,
+      "energy_reduction": 0.17972244489043765,
+      "accuracy_loss": 0.09219999322891237,
+      "fits_target_memory": true
+    },
+    "mixed_precision": {
+      "speedup": 1.173050210890251,
+      "memory_reduction": 0.61557205902366,
+      "energy_reduction": 0.176765918255804,
+      "accuracy_loss": 0.044499993228912404,
+      "fits_target_memory": true
+    },
+    "dynamic_range": {
+      "speedup": 1.173050210890251,
+      "memory_reduction": 0.669630810506056,
+      "energy_reduction": 0.1774677392811942,
+      "accuracy_loss": 0.050999993228912355,
+      "fits_target_memory": true
+    }
+  }
+}

@@ -28,6 +28,10 @@ unfreezes the non-BatchNorm layers and fine-tunes with a lower learning rate.
 It evaluates the final model on all 10,000 CIFAR-10 test images and benchmarks
 single-image and batch inference.
 
+Stage 1 runs for up to 8 epochs with a learning rate of `1e-3`. Stage 2 runs
+for up to 25 epochs with a learning rate of `1e-4`. Both stages write epoch
+logs and restore their best validation-accuracy weights at the end.
+
 ## Outputs
 
 | Path | Content |
@@ -37,21 +41,34 @@ single-image and batch inference.
 | `part1_results/training_stage2_log.csv` | Fine-tuning log |
 | `part1_results/baseline_metrics.json` | Accuracy and performance metrics |
 
+The simplified workflow intentionally produces only these files. Separate
+checkpoints, training-history JSON, and training-curve images are not required
+by Part 1 and are not generated.
+
 ## Recorded Results
 
 | Metric | Result |
 |---|---:|
 | CIFAR-10 test accuracy | 93.71% |
+| CIFAR-10 test loss | 0.2242 |
 | Parameters | 2,270,794 |
 | FLOPs per image | 599,594,364 |
-| Model size | 9.1617 MiB |
-| Single-image mean latency | 2.2894 ms |
-| Batch size 32 mean latency | 11.1140 ms |
+| `.keras` model file size | 26.0085 MiB |
 | Model weight memory | 8.6624 MiB |
+| Single-image mean latency | 2.4972 ms |
+| Batch size 32 mean latency | 11.8789 ms |
 
-Stage 1 completed four epochs and Stage 2 completed fourteen epochs. The final
-model uses the best validation weights from the fine-tuning stage.
+Stage 1 completed 8 epochs and reached a best validation accuracy of 81.08%.
+Stage 2 completed 25 epochs and reached a best validation accuracy of 94.02%
+and a validation loss of 0.2051 at the final epoch. The final model uses the
+best validation-accuracy weights from Stage 2.
+
+The 26.0085 MiB `.keras` file contains the model and serialized training state.
+The 8.6624 MiB memory figure covers TensorFlow model weights and BatchNorm
+state only. These two values measure different things.
 
 Latency includes the TensorFlow forward pass and output transfer to the host.
-It excludes resizing, preprocessing, model loading, and disk access. Energy is
-recorded as `null` because no reliable per-inference counter was available.
+It excludes resizing, preprocessing, model loading, and disk access. The
+single-image result is averaged over 100 runs and the batch-32 result over 40
+runs, both after warm-up. Energy is not reported because no reliable
+per-inference counter was available.

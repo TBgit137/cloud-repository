@@ -1,0 +1,131 @@
+{
+  "baseline": {
+    "single_inference_time": 2.4971620600081224,
+    "batch_inference_time": 11.87894522500983,
+    "memory_usage_mb": 8.662391662597656,
+    "model_size_mb": 26.008453369140625,
+    "accuracy": 0.9370999932289124,
+    "flops": 599594364,
+    "parameters": 2270794
+  },
+  "architecture_models": {
+    "latency_optimized": {
+      "accuracy": 0.8934,
+      "single_inference_time_ms": 2.4561327903938945,
+      "parameters": 719034,
+      "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment3/MAIE5532_Assignment3_LuoXiaoyu/part2/part2_results/optimized_models/latency_optimized.keras",
+      "model_size_mb": 8.483949661254883,
+      "accuracy_drop_vs_baseline": 0.04369999322891238
+    },
+    "memory_optimized": {
+      "accuracy": 0.8443,
+      "single_inference_time_ms": 2.450955699532642,
+      "parameters": 719034,
+      "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment3/MAIE5532_Assignment3_LuoXiaoyu/part2/part2_results/optimized_models/memory_optimized.keras",
+      "model_size_mb": 3.238633155822754,
+      "kernel_sparsity": 0.3000061589357359,
+      "accuracy_drop_vs_baseline": 0.0927999932289123
+    },
+    "energy_optimized": {
+      "accuracy": 0.8746,
+      "single_inference_time_ms": 2.284400490098051,
+      "parameters": 719364,
+      "full_model_accuracy": 0.8774,
+      "samples": 10000,
+      "early_exit_samples": 81,
+      "early_exit_fraction": 0.0081,
+      "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment3/MAIE5532_Assignment3_LuoXiaoyu/part2/part2_results/optimized_models/energy_optimized.keras",
+      "model_size_mb": 8.501924514770508,
+      "accuracy_drop_vs_baseline": 0.06249999322891231
+    }
+  },
+  "quantized_models": {
+    "ptq_int8": {
+      "accuracy": 0.8784,
+      "single_inference_time_ms": 0.6629447799787158,
+      "model_size_mb": 0.9366531372070312,
+      "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment3/MAIE5532_Assignment3_LuoXiaoyu/part2/part2_results/quantized_models/ptq_int8.tflite",
+      "input_range": "0-255",
+      "source_model": "latency_optimized",
+      "accuracy_drop_vs_baseline": 0.058699993228912395
+    },
+    "qat_int8": {
+      "accuracy": 0.8449,
+      "single_inference_time_ms": 0.6619670001236955,
+      "model_size_mb": 0.9366531372070312,
+      "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment3/MAIE5532_Assignment3_LuoXiaoyu/part2/part2_results/quantized_models/qat_int8.tflite",
+      "input_range": "0-255",
+      "source_model": "latency_optimized",
+      "accuracy_drop_vs_baseline": 0.09219999322891237
+    },
+    "mixed_precision": {
+      "accuracy": 0.8926,
+      "single_inference_time_ms": 0.5353844596538693,
+      "model_size_mb": 1.3688468933105469,
+      "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment3/MAIE5532_Assignment3_LuoXiaoyu/part2/part2_results/quantized_models/mixed_precision.tflite",
+      "input_range": "0-255",
+      "source_model": "latency_optimized",
+      "accuracy_drop_vs_baseline": 0.044499993228912404
+    },
+    "dynamic_range": {
+      "accuracy": 0.8861,
+      "single_inference_time_ms": 0.9725343394529773,
+      "model_size_mb": 0.8384857177734375,
+      "path": "/mnt/d/work/cloud-repository/Lec/MLS/assignment/assignment3/MAIE5532_Assignment3_LuoXiaoyu/part2/part2_results/quantized_models/dynamic_range.tflite",
+      "input_range": "0-255",
+      "source_model": "latency_optimized",
+      "accuracy_drop_vs_baseline": 0.050999993228912355
+    }
+  },
+  "memory_management": {
+    "gradient_checkpointing": {
+      "implemented": true,
+      "single_inference_time_ms": 2.166379149639397,
+      "scope": "training activation-memory proxy"
+    },
+    "model_sharding": {
+      "implemented": true,
+      "single_inference_time_ms": 3.0343951992108487,
+      "scope": "GPU feature extraction + CPU classification head"
+    },
+    "activation_compression": {
+      "implemented": true,
+      "single_inference_time_ms": 2.2088701000029687,
+      "scope": "mixed_float16 classification-head activations"
+    },
+    "optimal_batch_size": {
+      "candidates": [
+        {
+          "batch_size": 1,
+          "latency_ms": 1.9064669977524318,
+          "throughput_samples_per_second": 524.5304540697101
+        },
+        {
+          "batch_size": 8,
+          "latency_ms": 1.9574720063246787,
+          "throughput_samples_per_second": 4086.9039118575624
+        },
+        {
+          "batch_size": 16,
+          "latency_ms": 2.840672997990623,
+          "throughput_samples_per_second": 5632.468084611552
+        },
+        {
+          "batch_size": 32,
+          "latency_ms": 3.362524999829475,
+          "throughput_samples_per_second": 9516.657869197354
+        },
+        {
+          "batch_size": 64,
+          "latency_ms": 6.401702994480729,
+          "throughput_samples_per_second": 9997.339778989752
+        }
+      ],
+      "best": {
+        "batch_size": 64,
+        "latency_ms": 6.401702994480729,
+        "throughput_samples_per_second": 9997.339778989752
+      }
+    }
+  }
+}

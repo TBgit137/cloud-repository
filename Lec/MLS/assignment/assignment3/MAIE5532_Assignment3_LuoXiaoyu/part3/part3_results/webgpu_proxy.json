@@ -1,0 +1,19 @@
+{
+  "platform_type": "mobile_gpu_proxy",
+  "execution_context": "[WebGPU-proxy]",
+  "backend": "WebGPU proxy",
+  "runtime": "ONNX Runtime Web 1.23.2",
+  "source_model": "latency_optimized",
+  "input_name": "images",
+  "output_name": "latency_optimized_classifier",
+  "output_shape": [
+    1,
+    10
+  ],
+  "warmup_runs": 10,
+  "measured_runs": 100,
+  "mean_ms": 4.907,
+  "median_ms": 5.0,
+  "p95_ms": 6.1,
+  "note": "Desktop GPU proxy result, not a physical smartphone measurement."
+}
