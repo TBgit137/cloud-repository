@@ -1,16 +1,16 @@
-# Part 2 Hardware-Aware Optimization Report
+# MobileNetV2 CIFAR-10 Hardware-Aware Optimization
 
 ## 1. Overview
 
-This part builds on the 93.71% CIFAR-10 MobileNetV2 baseline from Part 1.
-Four primary optimization variants are evaluated:
+This work builds on the CIFAR-10 MobileNetV2 baseline from Part 1, which
+achieves 93.71% test accuracy. Four optimization strategies are evaluated:
 
 1. Latency-optimized model.
 2. Memory-optimized model.
 3. Energy-efficient model with an early-exit branch.
 4. Quantized models.
 
-The first three are Keras models. Quantized variants are TFLite models.
+The first three are Keras models. Quantization produces four TFLite variants.
 All accuracy measurements use the complete 10,000-image CIFAR-10 test set.
 The test set was not used for training or calibration.
 
@@ -28,6 +28,7 @@ The test set was not used for training or calibration.
 - MobileNetV2 width multiplier: `alpha=0.5`.
 - Input resolution: `160 x 160`.
 - Knowledge distillation from the Part 1 baseline teacher.
+- Three distillation epochs train the compact student model.
 - Masked magnitude pruning of convolution and Dense kernels.
 - Target and measured kernel sparsity: approximately 30%.
 - Two masked recovery epochs preserve zero weights during fine-tuning.
@@ -46,11 +47,11 @@ The test set was not used for training or calibration.
 ### 2.4 Quantization
 
 - PTQ INT8 uses 200 training images for calibration.
-- QAT applies an 8-bit weight-grid constraint during short training.
+- QAT performs one epoch of 8-bit weight-grid updates on 200 training images.
 - Mixed precision exports an FP16 TFLite model.
 - Dynamic-range quantization reduces weight precision without calibration.
 
-## 3. Model Comparison
+## 3. Performance Comparison
 
 The baseline timing uses the Keras GPU model. Architecture-model timings also
 use Keras. Quantized-model timings use a single-threaded TFLite CPU
@@ -84,10 +85,6 @@ hardware speedup over the Keras GPU baseline.
 - PTQ provides a better accuracy-size balance than the simplified QAT
   implementation: 87.84% versus 84.49%, with effectively the same file size.
 
-The assignment specifies an 85% target for the Part 1 baseline, not a minimum
-accuracy for each optimized variant. The memory and QAT results are therefore
-reported as measured trade-offs rather than treated as missing numeric targets.
-
 ## 5. Memory Management Analysis
 
 - Gradient checkpointing is implemented as a training-only activation
@@ -102,25 +99,3 @@ reported as measured trade-offs rather than treated as missing numeric targets.
 
 These measurements are proxies on the development machine, not MCU or
 smartphone measurements.
-
-## 6. Recommended Configurations
-
-- Best accuracy-size balance for a general edge target: mixed FP16.
-- Smallest model when storage is the primary constraint: dynamic range.
-- Best calibrated INT8 balance: PTQ INT8.
-- Lowest-storage Keras architecture: memory-optimized model, accepting the
-  measured accuracy loss.
-- Early exit is useful only for applications that tolerate its confidence
-  policy; its coverage on this CIFAR-10 test set is limited to 0.81%.
-
-## 7. Output Files
-
-- `optimized_models/latency_optimized.keras`
-- `optimized_models/memory_optimized.keras`
-- `optimized_models/energy_optimized.keras`
-- `quantized_models/ptq_int8.tflite`
-- `quantized_models/qat_int8.tflite`
-- `quantized_models/mixed_precision.tflite`
-- `quantized_models/dynamic_range.tflite`
-- `performance_comparison.json`
-- `performance_comparison.csv`

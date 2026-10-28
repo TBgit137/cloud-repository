@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""第 4 部分：硬件约束定义、优化优先级和设计空间探索。"""
+"""Hardware constraints, optimization priorities, and design-space exploration."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ from performance_profiler import (
 
 
 class HardwareAwareDesignMethodology:
-    """硬件感知机器学习系统的设计与优化框架。"""
+    """Framework for hardware-aware machine-learning system design."""
 
     def __init__(self):
         self.design_principles = [
@@ -27,7 +27,7 @@ class HardwareAwareDesignMethodology:
         self,
         application_requirements,
     ):
-        """在训练前把应用需求转换为可检查的硬件约束。"""
+        """Convert application needs into checkable constraints before training."""
         requirements = dict(application_requirements)
         platform = requirements.get("platform", "x86_desktop")
 
@@ -105,7 +105,7 @@ class HardwareAwareDesignMethodology:
         return normalized
 
     def optimization_priority_framework(self, constraints):
-        """根据最紧约束输出有序的优化决策路径。"""
+        """Return an ordered optimization path based on the tightest constraints."""
         normalized = (
             constraints
             if "is_complete" in constraints
@@ -182,7 +182,7 @@ class HardwareAwareDesignMethodology:
         }
 
     def design_space_exploration(self, base_model, constraints):
-        """在已有变体上执行约束筛选，不重新训练模型。"""
+        """Filter existing variants against constraints without retraining."""
         normalized = (
             constraints
             if "is_complete" in constraints
@@ -299,7 +299,7 @@ class HardwareAwareDesignMethodology:
 
 
 def build_reference_design_cases() -> list[dict]:
-    """提供报告使用的移动端与 MCU 约束示例。"""
+    """Build mobile and constrained-MCU design examples."""
     methodology = HardwareAwareDesignMethodology()
     cases = [
         {

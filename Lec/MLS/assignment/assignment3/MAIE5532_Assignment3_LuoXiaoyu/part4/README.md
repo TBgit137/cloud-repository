@@ -1,19 +1,19 @@
-# Part 4: Comprehensive Analysis
+# MobileNetV2 CIFAR-10 Comprehensive Analysis
 
-Part 4 reads the existing Part 2 and Part 3 results. It does not retrain the
-model and does not rerun QEMU or WebGPU.
+This analysis reads the existing optimization and cross-platform results.
+It does not retrain the model and does not rerun QEMU or WebGPU.
 
-## Install the Part 4 dependency
+## Dependencies
 
-From the submission directory:
+From the project root:
 
 ```bash
 source /home/mywslubuntu/.venvs/maie5532/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-`openpyxl` generates the required Excel workbook. Matplotlib generates the
-report figures.
+Matplotlib generates the report figures. `openpyxl` is only needed when
+explicitly regenerating the Excel workbook.
 
 ## Generate the results
 
@@ -25,17 +25,18 @@ python part4/part4_analysis.py
 The command writes:
 
 - `hardware_aware_analysis.md`
-- `hardware_aware_analysis_zh-CN.md`
 - `optimization_guidelines.md`
-- `optimization_guidelines_zh-CN.md`
-- `performance_benchmarks.xlsx`
 - JSON and CSV tables under `part4/part4_results/`
 - PNG figures under `part4/part4_results/figures/`
 
-To generate everything except the Excel workbook:
+The English report and optimization guide are written to the project root
+because those locations match the final submission names. The existing
+`performance_benchmarks.xlsx` is not overwritten by the default command.
+
+To overwrite the workbook from this script:
 
 ```bash
-python part4/part4_analysis.py --skip-excel
+python part4/part4_analysis.py --write-excel
 ```
 
 ## Convert the report to PDF

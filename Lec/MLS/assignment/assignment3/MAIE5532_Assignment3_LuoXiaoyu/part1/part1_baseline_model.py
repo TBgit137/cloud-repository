@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""第 1 部分：MobileNetV2 图像分类基线模型。"""
+"""MobileNetV2 image classification baseline."""
 
 from __future__ import annotations
 
@@ -36,7 +36,7 @@ MODEL_PATH = OUTPUT_DIR / "baseline_mobilenetv2.keras"
 
 
 def configure_runtime() -> None:
-    """设置随机种子，并允许 GPU 按需分配显存。"""
+    """Set the random seed and allow on-demand GPU memory allocation."""
     keras.utils.set_random_seed(SEED)
     for device in tf.config.list_physical_devices("GPU"):
         try:
@@ -50,16 +50,16 @@ def create_baseline_model(
     num_classes: int = NUM_CLASSES,
 ) -> keras.Model:
     """
-    创建一个用于图像分类的 MobileNetV2 基础模型。
+    Create a MobileNetV2-based model for image classification.
 
-    参数：
-        input_shape：输入图像尺寸
-        num_classes：分类类别数
+    Args:
+        input_shape: Input image dimensions
+        num_classes: Number of classification classes
 
-    返回：
-        tf.keras.Model：已编译、可直接训练的模型
+    Returns:
+        tf.keras.Model: Compiled model ready for training
     """
-    # 基础模型：MobileNetV2（在 ImageNet 上预训练，初始阶段冻结）
+    # Base model: MobileNetV2 (pretrained on ImageNet, frozen initially)
     base_model = keras.applications.MobileNetV2(
         input_shape=input_shape,
         include_top=False,
@@ -68,7 +68,7 @@ def create_baseline_model(
     base_model.trainable = False
 
     inputs = keras.Input(shape=input_shape, name="image_input")
-    # MobileNetV2 的 ImageNet 权重期望输入范围为 [-1, 1]。
+    # MobileNetV2 ImageNet weights expect inputs in the range [-1, 1].
     x = layers.Rescaling(
         scale=1.0 / 127.5,
         offset=-1.0,
@@ -76,8 +76,8 @@ def create_baseline_model(
     )(inputs)
     x = base_model(x, training=False)
 
-    # 为你的数据集添加自定义分类头
-    # 使用全局平均池化和 dropout 进行正则化
+    # Add a custom classification head for the dataset
+    # Include global average pooling and dropout for regularization
     x = layers.GlobalAveragePooling2D(name="global_average_pooling")(x)
     x = layers.Dropout(0.2, name="classifier_dropout")(x)
     outputs = layers.Dense(
@@ -101,18 +101,18 @@ def create_baseline_model(
 
 def load_and_preprocess_data():
     """
-    加载 CIFAR-10 数据集，并为 MobileNetV2 进行预处理。
+    Load CIFAR-10 dataset and preprocess for MobileNetV2.
 
-    返回：
-        tuple：(x_train, y_train, x_test, y_test)
+    Returns:
+        tuple: (x_train, y_train, x_test, y_test)
     """
-    # 加载 CIFAR-10 数据集
+    # Load CIFAR-10 dataset
     (x_train, y_train), (x_test, y_test) = keras.datasets.cifar10.load_data()
 
-    # 将图像缩放到 224x224，以适配 MobileNetV2
-    # 归一化像素值，并应用数据增强
-    # 使用 tf.data.Dataset 高效加载数据
-    # 保留 0-255 的像素范围，由模型内的 Rescaling 层统一归一化。
+    # Resize images to 224x224 for MobileNetV2
+    # Normalize pixel values and apply data augmentation
+    # Use tf.data.Dataset for efficient data loading
+    # Keep pixels in [0, 255]; the model applies ImageNet normalization.
     return (
         x_train.astype(np.float32),
         y_train.reshape(-1).astype(np.int64),
@@ -124,7 +124,7 @@ def load_and_preprocess_data():
 def _stratified_split(
     labels: np.ndarray,
 ) -> tuple[np.ndarray, np.ndarray]:
-    """按类别划分训练集和验证集，测试集不参与训练。"""
+    """Create a class-stratified training and validation split."""
     rng = np.random.default_rng(SEED)
     train_indices: list[np.ndarray] = []
     validation_indices: list[np.ndarray] = []
@@ -145,7 +145,7 @@ def _stratified_split(
 
 
 def _resize_images(images: tf.Tensor) -> tf.Tensor:
-    """将图像缩放到 MobileNetV2 所需尺寸。"""
+    """Resize images to the dimensions expected by MobileNetV2."""
     return tf.image.resize(
         tf.cast(images, tf.float32),
         IMAGE_SIZE,
@@ -157,7 +157,7 @@ def _make_train_dataset(
     images: np.ndarray,
     labels: np.ndarray,
 ) -> tf.data.Dataset:
-    """创建训练集流水线，并应用数据增强。"""
+    """Create the augmented training dataset."""
     augmentation = keras.Sequential(
         [
             layers.RandomFlip("horizontal", seed=SEED),
@@ -198,7 +198,7 @@ def _make_eval_dataset(
     images: np.ndarray,
     labels: np.ndarray,
 ) -> tf.data.Dataset:
-    """创建不打乱、不增强的验证集或测试集流水线。"""
+    """Create a deterministic dataset without augmentation."""
 
     def prepare(image: tf.Tensor, label: tf.Tensor):
         return _resize_images(image), label
@@ -215,7 +215,7 @@ def make_datasets(
     x_train: np.ndarray,
     y_train: np.ndarray,
 ) -> tuple[tf.data.Dataset, tf.data.Dataset]:
-    """划分训练集，并创建训练和验证流水线。"""
+    """Split the training data and build the train/validation pipelines."""
     train_indices, validation_indices = _stratified_split(y_train)
     return (
         _make_train_dataset(
@@ -230,18 +230,18 @@ def make_datasets(
 
 
 def _get_mobilenet_backbone(model: keras.Model) -> keras.Model:
-    """从外层模型中定位 MobileNetV2 基础模型。"""
+    """Locate the MobileNetV2 backbone in the outer model."""
     for layer in model.layers:
         if layer.name.startswith("mobilenetv2") and hasattr(layer, "layers"):
             return layer
-    raise ValueError("无法在模型中定位 MobileNetV2 基础模型。")
+    raise ValueError("Could not locate the MobileNetV2 backbone in the model.")
 
 
 def _stage_callbacks(
     stage_name: str,
     epochs: int,
 ) -> list[keras.callbacks.Callback]:
-    """保存每阶段的训练日志，并恢复验证准确率最佳权重。"""
+    """Log each training stage and restore its best validation weights."""
     return [
         keras.callbacks.CSVLogger(
             str(RESULTS_DIR / f"training_{stage_name}_log.csv"),
@@ -260,9 +260,9 @@ def train_baseline_model(
     train_dataset: tf.data.Dataset,
     validation_dataset: tf.data.Dataset,
 ) -> keras.Model:
-    """先训练分类头，再以较低学习率微调 MobileNetV2。"""
-    # 使用微调策略进行训练
-    # 1. 仅训练分类头（冻结基础模型）
+    """Train the classification head, then fine-tune MobileNetV2."""
+    # Use a two-stage fine-tuning strategy
+    # 1. Train the classification head only (base model frozen)
     base_model = _get_mobilenet_backbone(model)
     base_model.trainable = False
     model.compile(
@@ -278,7 +278,7 @@ def train_baseline_model(
         verbose=2,
     )
 
-    # 2. 解冻基础模型，并使用较低学习率进行微调
+    # 2. Unfreeze the base model and fine-tune with a lower learning rate
     base_model.trainable = True
     for layer in base_model.layers:
         if isinstance(layer, layers.BatchNormalization):
@@ -300,7 +300,7 @@ def train_baseline_model(
 
 
 def _model_weight_memory_bytes(model: keras.Model) -> int:
-    """计算模型权重和 BatchNorm 状态的存储字节数。"""
+    """Calculate storage used by model weights and BatchNorm state."""
     return sum(
         int(np.prod(weight.shape)) * tf.as_dtype(weight.dtype).size
         for weight in model.weights
@@ -308,7 +308,7 @@ def _model_weight_memory_bytes(model: keras.Model) -> int:
 
 
 def _estimate_flops(model: keras.Model) -> int:
-    """估算单张图像前向计算所需的浮点运算次数。"""
+    """Estimate floating-point operations for one forward pass."""
     concrete_function = tf.function(
         lambda images: model(images, training=False)
     ).get_concrete_function(tf.TensorSpec((1, *INPUT_SHAPE), tf.float32))
@@ -329,7 +329,7 @@ def _timed_inference(
     inputs: tf.Tensor,
     runs: int,
 ) -> float:
-    """测量固定输入形状下前向推理的平均延迟，单位为毫秒。"""
+    """Measure mean forward-pass latency in milliseconds for fixed input."""
     batch_size = int(inputs.shape[0])
 
     @tf.function(
@@ -357,15 +357,15 @@ def benchmark_baseline_model(
     batch_size: int = 32,
 ) -> dict[str, float | int]:
     """
-    对基线模型的延迟和内存使用情况进行基准测试。
+    Benchmark the baseline model for latency and memory usage.
 
-    参数：
-        model：已训练的 Keras 模型
-        test_data：测试数据集
-        batch_size：推理时使用的批大小
+    Args:
+        model: Trained Keras model
+        test_data: Test dataset
+        batch_size: Batch size for inference
 
-    返回：
-        dict：性能指标
+    Returns:
+        dict: Performance metrics
     """
     x_test, y_test = test_data
     test_dataset = _make_eval_dataset(x_test, y_test)
@@ -375,7 +375,10 @@ def benchmark_baseline_model(
         return_dict=True,
     )
 
-    # 测量单样本和批量推理延迟
+    # Measure inference latency for a single sample and a batch
+    # Monitor memory usage during inference
+    # Calculate FLOPs and model parameters
+    # Energy is not measured because no reliable per-inference counter is available.
     single_image = _resize_images(x_test[:1])
     batch_images = _resize_images(x_test[:batch_size])
     process = psutil.Process(os.getpid())
@@ -409,18 +412,18 @@ def benchmark_baseline_model(
 
 
 def main() -> None:
-    """执行 Part 1 的数据加载、训练、保存和基准测试。"""
+    """Load data, train, save, and benchmark the baseline model."""
     configure_runtime()
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
-    # 加载数据
+    # Load data
     x_train, y_train, x_test, y_test = load_and_preprocess_data()
     train_dataset, validation_dataset = make_datasets(
         x_train,
         y_train,
     )
 
-    # 创建并训练模型
+    # Create and train the model
     model = create_baseline_model()
     model = train_baseline_model(
         model,
@@ -428,10 +431,10 @@ def main() -> None:
         validation_dataset,
     )
 
-    # 保存训练好的模型
+    # Save the trained model
     model.save(MODEL_PATH)
 
-    # 进行基准测试
+    # Benchmark the trained model
     metrics = benchmark_baseline_model(model, (x_test, y_test))
     (RESULTS_DIR / "baseline_metrics.json").write_text(
         json.dumps(metrics, indent=2),
@@ -444,7 +447,7 @@ def main() -> None:
     if metrics["accuracy"] <= ACCURACY_TARGET:
         raise SystemExit(
             f"Test accuracy {metrics['accuracy']:.4f} did not exceed "
-            f"the required {ACCURACY_TARGET:.2f}."
+            f"the configured target of {ACCURACY_TARGET:.2f}."
         )
 
 

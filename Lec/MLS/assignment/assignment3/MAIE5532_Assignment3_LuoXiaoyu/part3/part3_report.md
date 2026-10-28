@@ -1,4 +1,4 @@
-# Part 3: Multi-Platform Analysis
+# MobileNetV2 CIFAR-10 Multi-Platform Analysis
 
 ## Objective and scope
 
@@ -138,7 +138,7 @@ INT8 reduces the modeled working set by about 84.3%; memory attributes are most 
 
 ## Theoretical validation and interpretation
 
-The Roofline model predicts that reducing arithmetic work should matter until the workload becomes memory- or overhead-bound. MobileNetV2 uses inverted residual blocks and depthwise separable convolution to reduce multiply-accumulates; INT8 quantization replaces float storage and integerizable compute, which is visible in the measured 0.937 MiB model size. These observations agree with the assignment's Week 6 treatment of latency, memory, energy, and quantized variants, and with the Week 7 discussion of data movement and cross-platform optimization.
+The Roofline model predicts that reducing arithmetic work should matter until the workload becomes memory- or overhead-bound. MobileNetV2 uses inverted residual blocks and depthwise separable convolution to reduce multiply-accumulates; INT8 quantization replaces float storage and integerizable compute, which is visible in the measured 0.937 MiB model size. These changes reduce both arithmetic work and storage demand.
 
 The measured disagreements also identify the missing effects: cache reuse, SIMD/kernel selection, framework dispatch, and accelerator scheduling. A production model would calibrate effective throughput per operation type and use empirical microbenchmarks. That calibration is intentionally omitted because the raw model is the object being validated.
 
@@ -149,18 +149,6 @@ The measured disagreements also identify the missing effects: cache reuse, SIMD/
 - Energy values are analytical estimates derived from operation and byte counts; no physical power meter was used.
 - Floating-point equal-FLOP assumptions do not capture Tensor Core or NPU execution.
 - Only one INT8 model was executed on Cortex-M. The other model rows are analytical predictions.
-
-## Deliverable coverage
-
-| Track B deliverable | Evidence in this directory |
-|---|---|
-| 3+ platform types | x86, Cortex-M, Cortex-A78, and GPU proxy |
-| Multiple validation tools | TFLite, TFLite Micro/QEMU, TensorFlow profiler, ONNX Runtime Web/WebGPU |
-| Cross-platform effectiveness | `cross_platform_analysis.json` and the table above |
-| Theoretical analysis with literature validation | Roofline, energy, memory models, measurements, and references below |
-| Reproducible commands | `README.md` and `cortex_m/Makefile` |
-
-The assignment permits QEMU Cortex-M when Renode is unavailable; Renode is therefore not required for Track B when QEMU-CM results are clearly labelled and their limits are disclosed.
 
 Qualified execution labels:
 
@@ -176,6 +164,4 @@ QEMU and WebGPU results are relative simulation evidence, not physical MCU or sm
 1. S. Williams, A. Waterman, and D. Patterson, "Roofline: An Insightful Visual Performance Model for Multicore Architectures," *Communications of the ACM*, 2009.
 2. M. Sandler et al., "MobileNetV2: Inverted Residuals and Linear Bottlenecks," *CVPR*, 2018.
 3. B. Jacob et al., "Quantization and Training of Neural Networks for Efficient Integer-Arithmetic-Only Inference," *CVPR*, 2018.
-4. R. David et al., "TensorFlow Lite Micro: Embedded Machine Learning for TinyML Systems," *Proceedings of MLSys*, 2021.
-5. Course Week 6, *Hardware Backend Specialization and Optimizations*, especially the latency/memory/energy/quantized variants.
-6. Course Week 7, *Machine Learning for Systems*, sections on data movement and cross-platform optimization.
+4. R. David et al., "TensorFlow Lite Micro: Embedded Machine Learning on TinyML Systems," *Proceedings of MLSys*, 2021.

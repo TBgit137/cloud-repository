@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""第 2 部分：MobileNetV2 的硬件感知优化。"""
+"""MobileNetV2 hardware-aware optimization."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ import sys
 import time
 from pathlib import Path
 
-# 当前 WSL 环境中的 XLA 会错误解析 NVIDIA libdevice 路径，普通训练不需要 XLA。
+# XLA can misresolve the NVIDIA libdevice path in this environment.
 os.environ.setdefault("TF_XLA_FLAGS", "--tf_xla_auto_jit=0")
 
 import numpy as np
@@ -48,7 +48,7 @@ from part1_baseline_model import load_and_preprocess_data  # noqa: E402
 
 
 def configure_runtime() -> None:
-    """设置随机种子，并允许 GPU 按需分配显存。"""
+    """Set the random seed and allow on-demand GPU memory allocation."""
     keras.utils.set_random_seed(SEED)
     for device in tf.config.list_physical_devices("GPU"):
         try:
@@ -62,7 +62,7 @@ def _build_classifier(
     alpha: float,
     name: str,
 ) -> keras.Model:
-    """创建使用 ImageNet 预训练 MobileNetV2 的分类模型。"""
+    """Create a classifier with ImageNet-pretrained MobileNetV2."""
     input_shape = (input_size, input_size, 3)
     inputs = keras.Input(shape=input_shape, name=f"{name}_input")
     x = layers.Rescaling(
@@ -94,7 +94,7 @@ def compile_model(
     model: keras.Model,
     learning_rate: float = 1e-3,
 ) -> keras.Model:
-    """使用统一的损失函数和准确率指标编译模型。"""
+    """Compile the model with a common loss and accuracy metric."""
     model.compile(
         optimizer=keras.optimizers.Adam(learning_rate=learning_rate),
         loss=keras.losses.SparseCategoricalCrossentropy(),
@@ -105,7 +105,7 @@ def compile_model(
 
 
 def _head_layers(model: keras.Model) -> list[layers.Layer]:
-    """返回自定义分类头各层，用于区分预训练主干。"""
+    """Return custom head layers so they can be separated from the backbone."""
     selected = []
     for layer in model.layers:
         name = layer.name.lower()
@@ -116,20 +116,20 @@ def _head_layers(model: keras.Model) -> list[layers.Layer]:
         ):
             selected.append(layer)
     if not selected:
-        raise ValueError("无法在模型中定位分类头。")
+        raise ValueError("Could not locate the classification head in the model.")
     return selected
 
 
 def _get_mobilenet_backbone(model: keras.Model) -> keras.Model:
-    """从外层模型中定位 MobileNetV2 基础模型。"""
+    """Locate the MobileNetV2 backbone in the outer model."""
     for layer in model.layers:
         if "mobilenetv2" in layer.name.lower() and hasattr(layer, "layers"):
             return layer
-    raise ValueError("无法在模型中定位 MobileNetV2 基础模型。")
+    raise ValueError("Could not locate the MobileNetV2 backbone in the model.")
 
 
 def _walk_layers(model: keras.Model):
-    """递归遍历嵌套模型中的全部层。"""
+    """Yield all layers in a potentially nested model."""
     for layer in model.layers:
         yield layer
         if isinstance(layer, keras.Model):
@@ -137,14 +137,14 @@ def _walk_layers(model: keras.Model):
 
 
 def _set_head_only_training(model: keras.Model) -> None:
-    """冻结 MobileNetV2 主干，仅训练自定义分类头。"""
+    """Freeze the MobileNetV2 backbone and train only the custom head."""
     head_ids = {id(layer) for layer in _head_layers(model)}
     for layer in _walk_layers(model):
         layer.trainable = id(layer) in head_ids
 
 
 def _unfreeze_mobilenet(model: keras.Model) -> None:
-    """解冻主干卷积层，同时保持 BatchNorm 和预处理层冻结。"""
+    """Unfreeze backbone convolutions while keeping BatchNorm and preprocessing frozen."""
     model.trainable = True
     for layer in _walk_layers(model):
         layer.trainable = True
@@ -156,9 +156,9 @@ def _unfreeze_mobilenet(model: keras.Model) -> None:
 
 
 def create_latency_optimized_model() -> keras.Model:
-    """创建针对推理延迟优化的模型。"""
-    # 使用 alpha=0.5 的 MobileNetV2（深度乘子），并将输入降低到 160x160。
-    # MobileNetV2 的逐深度可分离卷积本身就是移动端高效的分组卷积形式。
+    """Create a model optimized for inference latency."""
+    # Use MobileNetV2 with alpha=0.5 and reduce the input to 160x160.
+    # Depthwise-separable convolution is efficient for mobile inference.
     return _build_classifier(
         input_size=160,
         alpha=0.5,
@@ -167,9 +167,9 @@ def create_latency_optimized_model() -> keras.Model:
 
 
 def create_memory_optimized_model() -> keras.Model:
-    """创建针对内存占用优化的模型。"""
-    # 相比基线降低宽度和输入分辨率，实现结构化模型压缩。
-    # 后续还会进行知识蒸馏和非结构化幅值剪枝。
+    """Create a model optimized for memory footprint."""
+    # Reduce width and input resolution to compress the structured model.
+    # Knowledge distillation and magnitude pruning are applied during training.
     return _build_classifier(
         input_size=160,
         alpha=0.5,
@@ -178,7 +178,7 @@ def create_memory_optimized_model() -> keras.Model:
 
 
 def create_energy_optimized_model() -> keras.Model:
-    """创建带早退出分支的低计算强度模型。"""
+    """Create an energy-oriented model with an early-exit branch."""
     input_shape = (160, 160, 3)
     inputs = keras.Input(shape=input_shape, name="energy_optimized_input")
     x = layers.Rescaling(
@@ -196,7 +196,7 @@ def create_energy_optimized_model() -> keras.Model:
     base_model.trainable = False
     features = base_model.output
 
-    # 在中间特征图上设置早退出分类器，高置信样本可以跳过完整主干。
+    # Attach an early classifier so confident samples can skip the full backbone.
     early_features = base_model.get_layer("block_6_project").output
     early_exit = layers.GlobalAveragePooling2D(
         name="early_exit_pooling"
@@ -207,7 +207,7 @@ def create_energy_optimized_model() -> keras.Model:
         name="early_exit_classifier",
     )(early_exit)
 
-    # MobileNetV2 使用 ReLU6，分类头保持简单的线性映射，减少额外计算。
+    # ReLU6 and a simple linear classifier avoid unnecessary computation.
     final_features = layers.GlobalAveragePooling2D(
         name="energy_optimized_pooling"
     )(features)
@@ -246,26 +246,26 @@ def create_energy_optimized_model() -> keras.Model:
 
 def create_optimized_models() -> dict[str, keras.Model]:
     """
-    创建基线模型针对不同硬件条件优化的变体。
+    Create hardware-optimized variants of the baseline model.
 
-    返回：
-        dict：面向不同约束优化后的模型
+    Returns:
+        dict: Models optimized for different hardware constraints
     """
     models = {}
 
-    # 实现延迟优化模型
+    # Build the latency-optimized model
     models["latency_optimized"] = create_latency_optimized_model()
 
-    # 实现内存优化模型
+    # Build the memory-optimized model
     models["memory_optimized"] = create_memory_optimized_model()
 
-    # 实现能耗优化模型
+    # Build the energy-oriented model
     models["energy_optimized"] = create_energy_optimized_model()
     return models
 
 
 def _stratified_split(labels: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
-    """按类别划分训练集和验证集。"""
+    """Create a class-stratified training and validation split."""
     rng = np.random.default_rng(SEED)
     train_parts: list[np.ndarray] = []
     val_parts: list[np.ndarray] = []
@@ -281,7 +281,7 @@ def _stratified_split(labels: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
 
 
 def _augmentation() -> keras.Sequential:
-    """创建训练集数据增强。"""
+    """Create the training-time augmentation pipeline."""
     return keras.Sequential(
         [
             layers.RandomFlip("horizontal", seed=SEED),
@@ -298,7 +298,7 @@ def _augmentation() -> keras.Sequential:
 
 
 def _resize(images: tf.Tensor, input_size: int) -> tf.Tensor:
-    """将图像缩放到目标模型输入尺寸。"""
+    """Resize images to the target model input size."""
     return tf.image.resize(
         tf.cast(images, tf.float32),
         (input_size, input_size),
@@ -313,7 +313,7 @@ def _classification_dataset(
     *,
     training: bool,
 ) -> tf.data.Dataset:
-    """创建指定输入尺寸的分类数据集。"""
+    """Create a classification dataset for the requested input size."""
     augmentation = _augmentation()
 
     def prepare(image: tf.Tensor, label: tf.Tensor):
@@ -341,7 +341,7 @@ def _energy_dataset(
     *,
     training: bool,
 ) -> tf.data.Dataset:
-    """为全模型和早退出分支提供相同的标签。"""
+    """Provide the same labels to the full model and early-exit branch."""
     dataset = _classification_dataset(
         images,
         labels,
@@ -359,7 +359,7 @@ def _energy_dataset(
 
 
 def _compile_energy_model(model: keras.Model, learning_rate: float) -> None:
-    """使用双输出损失编译能耗模型。"""
+    """Compile the energy model with separate losses for both outputs."""
     model.compile(
         optimizer=keras.optimizers.Adam(learning_rate=learning_rate),
         loss={
@@ -380,7 +380,7 @@ def _train_classifier(
     train_dataset: tf.data.Dataset,
     validation_dataset: tf.data.Dataset,
 ) -> keras.Model:
-    """冻结主干训练分类头，然后小学习率微调。"""
+    """Train the head with a frozen backbone, then fine-tune at a lower rate."""
     _set_head_only_training(model)
     compile_model(model, learning_rate=1e-3)
     model.fit(
@@ -406,7 +406,7 @@ def _train_energy_model(
     train_dataset: tf.data.Dataset,
     validation_dataset: tf.data.Dataset,
 ) -> keras.Model:
-    """训练能耗模型的早退出分支和完整分类分支。"""
+    """Train the early-exit and full classification branches."""
     _set_head_only_training(model)
     _compile_energy_model(model, learning_rate=1e-3)
     model.fit(
@@ -433,7 +433,7 @@ def _dual_input_dataset(
     student_size: int,
     teacher_size: int,
 ) -> tf.data.Dataset:
-    """创建同时提供学生和教师输入的蒸馏数据集。"""
+    """Create a dataset that supplies student and teacher inputs."""
     augmentation = _augmentation()
 
     def prepare(image: tf.Tensor, label: tf.Tensor):
@@ -458,7 +458,7 @@ def _train_with_distillation(
     train_dataset: tf.data.Dataset,
     validation_dataset: tf.data.Dataset,
 ) -> keras.Model:
-    """使用冻结基线教师训练较小的内存优化学生模型。"""
+    """Train the compact student model using the frozen baseline teacher."""
     optimizer = keras.optimizers.Adam(learning_rate=1e-4)
 
     @tf.function
@@ -507,7 +507,7 @@ def _apply_unstructured_pruning(
     train_dataset: tf.data.Dataset,
     validation_dataset: tf.data.Dataset,
 ) -> keras.Model:
-    """按权重幅值执行非结构化剪枝，并用固定掩码短训恢复。"""
+    """Prune weights by magnitude and recover with a fixed mask."""
     masks = []
     for variable in model.weights:
         array = variable.numpy()
@@ -549,7 +549,7 @@ def _apply_unstructured_pruning(
 
 
 def representative_dataset_generator(x_train_sample):
-    """生成用于量化校准的训练样本。"""
+    """Yield representative training samples for quantization calibration."""
     for image in x_train_sample:
         yield [np.expand_dims(image.astype(np.float32), axis=0)]
 
@@ -560,7 +560,7 @@ def _convert_tflite(
     mode: str,
     representative_data,
 ) -> Path:
-    """将 Keras 模型转换成指定精度的 TFLite 模型。"""
+    """Convert a Keras model to TFLite with the requested precision."""
     converter = tf.lite.TFLiteConverter.from_keras_model(model)
     if mode == "dynamic_range":
         converter.optimizations = [tf.lite.Optimize.DEFAULT]
@@ -576,7 +576,7 @@ def _convert_tflite(
         converter.inference_input_type = tf.int8
         converter.inference_output_type = tf.int8
     else:
-        raise ValueError(f"未知的 TFLite 量化模式：{mode}")
+        raise ValueError(f"Unsupported TFLite quantization mode: {mode}")
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_bytes(converter.convert())
@@ -584,7 +584,7 @@ def _convert_tflite(
 
 
 def post_training_quantization(model, x_train_sample):
-    """执行使用训练样本校准的 INT8 PTQ。"""
+    """Apply INT8 post-training quantization with calibration samples."""
     input_size = int(model.input_shape[1])
     sample = np.stack(
         [
@@ -606,7 +606,7 @@ def post_training_quantization(model, x_train_sample):
 
 
 def quantization_aware_training(model, x_train_sample):
-    """对小幅训练样本执行 QAT，并导出 INT8 TFLite。"""
+    """Run quantization-aware training and export an INT8 TFLite model."""
     input_size = int(model.input_shape[1])
     sample = np.stack(
         [
@@ -638,7 +638,7 @@ def quantization_aware_training(model, x_train_sample):
             optimizer.apply_gradients(
                 zip(gradients, qat_model.trainable_variables)
             )
-            # 将卷积核和 Dense 核投影到 8-bit 量化网格，模拟 QAT。
+            # Project convolution and Dense kernels onto an 8-bit weight grid.
             for variable in qat_model.trainable_variables:
                 values = variable.numpy()
                 if values.ndim < 2:
@@ -663,7 +663,7 @@ def quantization_aware_training(model, x_train_sample):
 
 
 def mixed_precision_quantization(model):
-    """将模型导出为 FP16 混合精度 TFLite。"""
+    """Export the model as mixed-precision FP16 TFLite."""
     path = _convert_tflite(
         model,
         QUANTIZED_DIR / "mixed_precision.tflite",
@@ -674,7 +674,7 @@ def mixed_precision_quantization(model):
 
 
 def dynamic_range_quantization(model):
-    """将模型导出为动态范围量化 TFLite。"""
+    """Export the model with dynamic-range quantization."""
     path = _convert_tflite(
         model,
         QUANTIZED_DIR / "dynamic_range.tflite",
@@ -686,14 +686,14 @@ def dynamic_range_quantization(model):
 
 def apply_quantization_optimizations(model, x_train_sample):
     """
-    对模型应用不同的量化技术。
+    Apply the supported quantization techniques to a trained model.
 
-    参数：
-        model：已训练的 Keras 模型
-        x_train_sample：用于校准的代表性数据集
+    Args:
+        model: Trained Keras model
+        x_train_sample: Representative training samples for calibration
 
-    返回：
-        dict：不同量化模型变体
+    Returns:
+        dict: Quantized model variants
     """
     quantized_models = {}
     quantized_models["ptq_int8"] = post_training_quantization(
@@ -710,7 +710,7 @@ def apply_quantization_optimizations(model, x_train_sample):
 
 
 class GradientCheckpointedModel(keras.Model):
-    """使用重新计算降低训练激活内存的包装模型。"""
+    """Use activation recomputation to reduce training memory."""
 
     def __init__(self, network: keras.Model):
         super().__init__()
@@ -725,7 +725,7 @@ class GradientCheckpointedModel(keras.Model):
 
 
 class ShardedInferenceModel(keras.Model):
-    """将特征提取和分类头分配到不同设备的推理包装模型。"""
+    """Place feature extraction and the classifier on separate devices."""
 
     def __init__(self, feature_model: keras.Model, head_model: keras.Model):
         super().__init__()
@@ -740,7 +740,7 @@ class ShardedInferenceModel(keras.Model):
 
 
 class ActivationCompressedModel(keras.Model):
-    """使用 FP16 分类头激活值降低推理激活内存。"""
+    """Use FP16 head activations to reduce inference activation memory."""
 
     def __init__(self, feature_model: keras.Model, head_model: keras.Model):
         super().__init__()
@@ -758,7 +758,7 @@ def _split_feature_and_head(
     model: keras.Model,
     activation_dtype: str = "float32",
 ) -> tuple[keras.Model, keras.Model]:
-    """根据模型末端结构创建共享权重的特征提取器和分类头。"""
+    """Create weight-sharing feature extractor and head views of the model."""
     pooling_name = f"{model.name}_pooling"
     final_pooling = model.get_layer(pooling_name)
     feature_model = keras.Model(model.input, final_pooling.input)
@@ -780,18 +780,18 @@ def _split_feature_and_head(
 
 
 def implement_gradient_checkpointing(model: keras.Model):
-    """把一个模型的训练前向传播包装为梯度检查点模式。"""
+    """Wrap a model's training forward pass with gradient checkpointing."""
     return GradientCheckpointedModel(model)
 
 
 def implement_model_sharding(model: keras.Model):
-    """将特征提取和分类头拆分为两个执行分片。"""
+    """Split feature extraction and classification into separate devices."""
     feature_model, head_model = _split_feature_and_head(model)
     return ShardedInferenceModel(feature_model, head_model)
 
 
 def implement_activation_compression(model: keras.Model):
-    """使用 FP16 分类头激活值作为激活压缩实现。"""
+    """Compress classification-head activations using FP16."""
     feature_model, head_model = _split_feature_and_head(
         model,
         activation_dtype="float16",
@@ -800,7 +800,7 @@ def implement_activation_compression(model: keras.Model):
 
 
 def find_optimal_batch_size(model: keras.Model):
-    """在常见批大小中选择吞吐量最高的配置。"""
+    """Select the highest-throughput batch size from common candidates."""
     input_size = int(model.input_shape[1])
     candidates = (1, 8, 16, 32, 64)
     results = []
@@ -834,13 +834,13 @@ def find_optimal_batch_size(model: keras.Model):
 
 def implement_memory_optimizations(model):
     """
-    实施内存感知优化。
+    Apply the supported memory-aware optimization techniques.
 
-    参数：
-        model：待优化的基础模型
+    Args:
+        model: Base model to optimize
 
-    返回：
-        dict：内存优化结果
+    Returns:
+        dict: Memory optimization results
     """
     optimizations = {}
     optimizations["gradient_checkpointing"] = implement_gradient_checkpointing(model)
@@ -856,7 +856,7 @@ def early_exit_predictions(
     labels: np.ndarray,
     threshold: float = EARLY_EXIT_THRESHOLD,
 ) -> dict[str, float | int]:
-    """模拟早退出：高置信样本使用中间分类器，其余样本运行完整模型。"""
+    """Route confident samples to the early classifier and others to the full model."""
     early_model = keras.Model(model.input, model.output["early_exit"])
     full_model = keras.Model(model.input, model.output["classifier"])
     input_size = int(model.input_shape[1])
@@ -897,7 +897,7 @@ def early_exit_predictions(
 
 
 def _predict_from_model(model: keras.Model, images: np.ndarray) -> np.ndarray:
-    """从单输出模型中获取分类预测。"""
+    """Return class predictions from a single-output model."""
     input_size = int(model.input_shape[1])
     dataset = _classification_dataset(
         images,
@@ -919,7 +919,7 @@ def evaluate_keras_model(
     x_test: np.ndarray,
     y_test: np.ndarray,
 ) -> dict[str, float]:
-    """评估 Keras 模型的测试准确率和单样本平均延迟。"""
+    """Evaluate test accuracy and mean single-sample latency for a Keras model."""
     predictions = _predict_from_model(model, x_test)
     accuracy = float(np.mean(predictions == y_test))
     input_size = int(model.input_shape[1])
@@ -955,7 +955,7 @@ def _latency_only(
     input_size: int,
     runs: int = 20,
 ) -> float:
-    """测量包装模型的单样本推理延迟。"""
+    """Measure single-sample inference latency for a wrapped model."""
     sample = tf.zeros((1, input_size, input_size, 3))
 
     @tf.function(
@@ -980,7 +980,7 @@ def _latency_only(
 
 
 def _weight_sparsity(model: keras.Model) -> float:
-    """统计卷积核和 Dense 核中的零权重比例。"""
+    """Calculate the fraction of zeros in convolution and Dense kernels."""
     total = 0
     zeros = 0
     for variable in model.weights:
@@ -999,7 +999,7 @@ def evaluate_tflite_model(
     *,
     normalize_input: bool = False,
 ) -> dict[str, float]:
-    """评估 TFLite 模型的测试准确率和平均延迟。"""
+    """Evaluate test accuracy and mean latency for a TFLite model."""
     interpreter = tf.lite.Interpreter(model_path=str(path), num_threads=1)
     interpreter.allocate_tensors()
     input_detail = interpreter.get_input_details()[0]
@@ -1060,12 +1060,12 @@ def evaluate_tflite_model(
 
 
 def main() -> None:
-    """训练优化模型、导出量化模型，并保存性能比较。"""
+    """Train optimized models, export quantized variants, and save comparisons."""
     configure_runtime()
     MODEL_DIR.mkdir(parents=True, exist_ok=True)
     QUANTIZED_DIR.mkdir(parents=True, exist_ok=True)
     if not BASELINE_PATH.exists():
-        raise FileNotFoundError(f"找不到 Part 1 基线模型：{BASELINE_PATH}")
+        raise FileNotFoundError(f"Baseline model not found: {BASELINE_PATH}")
 
     x_train, y_train, x_test, y_test = load_and_preprocess_data()
     train_indices, val_indices = _stratified_split(y_train)
@@ -1244,7 +1244,7 @@ def main() -> None:
 
 
 def evaluate_existing_models() -> None:
-    """复用已训练模型，只重建性能比较结果。"""
+    """Reuse trained models and rebuild the performance comparison."""
     configure_runtime()
     model_paths = {
         "latency_optimized": LATENCY_MODEL_PATH,
@@ -1253,7 +1253,7 @@ def evaluate_existing_models() -> None:
     }
     for path in model_paths.values():
         if not path.exists():
-            raise FileNotFoundError(f"缺少已训练模型：{path}")
+            raise FileNotFoundError(f"Trained model not found: {path}")
 
     latency_model = keras.models.load_model(
         LATENCY_MODEL_PATH,
@@ -1288,7 +1288,7 @@ def evaluate_existing_models() -> None:
     for information in quantized_paths.values():
         if not Path(information["path"]).exists():
             raise FileNotFoundError(
-                f"缺少量化模型：{information['path']}"
+                f"Quantized model not found: {information['path']}"
             )
 
     _, _, x_test, y_test = load_and_preprocess_data()

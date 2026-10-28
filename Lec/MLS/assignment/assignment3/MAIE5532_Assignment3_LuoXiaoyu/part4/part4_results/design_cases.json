@@ -1,0 +1,364 @@
+[
+  {
+    "name": "accuracy-sensitive mobile deployment",
+    "constraints": {
+      "platform": "arm_cortex_a78",
+      "accuracy_target": 0.88,
+      "max_latency_ms": 20.0,
+      "max_model_size_mb": 10.0,
+      "max_energy_mj": 20.0,
+      "max_working_set_mb": 8.0,
+      "is_complete": true,
+      "missing_fields": [],
+      "invalid_fields": [],
+      "specification_stage": "before model training"
+    },
+    "priorities": {
+      "platform": "arm_cortex_a78",
+      "constraints_complete": true,
+      "priorities": [
+        {
+          "priority": 1,
+          "technique": "energy-aware inference",
+          "reason": "combine INT8 with early exit when confidence thresholds are reliable"
+        }
+      ]
+    },
+    "design_space": {
+      "base_model": "MobileNetV2 baseline",
+      "constraints": {
+        "platform": "arm_cortex_a78",
+        "accuracy_target": 0.88,
+        "max_latency_ms": 20.0,
+        "max_model_size_mb": 10.0,
+        "max_energy_mj": 20.0,
+        "max_working_set_mb": 8.0,
+        "is_complete": true,
+        "missing_fields": [],
+        "invalid_fields": [],
+        "specification_stage": "before model training"
+      },
+      "candidates": [
+        {
+          "model": "baseline",
+          "accuracy": 0.9370999932289124,
+          "latency_ms": 75.94929549999999,
+          "model_size_mb": 26.008453369140625,
+          "estimated_energy_mj": 101.98480205999999,
+          "working_set_mb": 9.810829162597656,
+          "checks": {
+            "accuracy": true,
+            "latency": false,
+            "model_size": false,
+            "energy": false,
+            "working_set": false
+          },
+          "feasible": false
+        },
+        {
+          "model": "latency_optimized",
+          "accuracy": 0.8934,
+          "latency_ms": 13.2601075,
+          "model_size_mb": 8.483949661254883,
+          "estimated_energy_mj": 18.3545427,
+          "working_set_mb": 5.145606994628906,
+          "checks": {
+            "accuracy": true,
+            "latency": true,
+            "model_size": true,
+            "energy": true,
+            "working_set": true
+          },
+          "feasible": true
+        },
+        {
+          "model": "memory_optimized",
+          "accuracy": 0.8443,
+          "latency_ms": 13.2601075,
+          "model_size_mb": 3.238633155822754,
+          "estimated_energy_mj": 18.3545427,
+          "working_set_mb": 5.145606994628906,
+          "checks": {
+            "accuracy": false,
+            "latency": true,
+            "model_size": true,
+            "energy": true,
+            "working_set": true
+          },
+          "feasible": false
+        },
+        {
+          "model": "energy_optimized",
+          "accuracy": 0.8746,
+          "latency_ms": 13.260595,
+          "model_size_mb": 8.501924514770508,
+          "estimated_energy_mj": 18.3554238,
+          "working_set_mb": 5.1468658447265625,
+          "checks": {
+            "accuracy": false,
+            "latency": true,
+            "model_size": true,
+            "energy": true,
+            "working_set": true
+          },
+          "feasible": false
+        },
+        {
+          "model": "ptq_int8",
+          "accuracy": 0.8784,
+          "latency_ms": 13.2601075,
+          "model_size_mb": 0.9366531372070312,
+          "estimated_energy_mj": 17.67350334,
+          "working_set_mb": 1.5373306274414062,
+          "checks": {
+            "accuracy": false,
+            "latency": true,
+            "model_size": true,
+            "energy": true,
+            "working_set": true
+          },
+          "feasible": false
+        },
+        {
+          "model": "qat_int8",
+          "accuracy": 0.8449,
+          "latency_ms": 13.2601075,
+          "model_size_mb": 0.9366531372070312,
+          "estimated_energy_mj": 17.67350334,
+          "working_set_mb": 1.5373306274414062,
+          "checks": {
+            "accuracy": false,
+            "latency": true,
+            "model_size": true,
+            "energy": true,
+            "working_set": true
+          },
+          "feasible": false
+        },
+        {
+          "model": "mixed_precision",
+          "accuracy": 0.8926,
+          "latency_ms": 13.2601075,
+          "model_size_mb": 1.3688468933105469,
+          "estimated_energy_mj": 18.09519942,
+          "working_set_mb": 3.771556854248047,
+          "checks": {
+            "accuracy": true,
+            "latency": true,
+            "model_size": true,
+            "energy": true,
+            "working_set": true
+          },
+          "feasible": true
+        },
+        {
+          "model": "dynamic_range",
+          "accuracy": 0.8861,
+          "latency_ms": 13.2601075,
+          "model_size_mb": 0.8384857177734375,
+          "estimated_energy_mj": 17.9950971,
+          "working_set_mb": 3.2411956787109375,
+          "checks": {
+            "accuracy": true,
+            "latency": true,
+            "model_size": true,
+            "energy": true,
+            "working_set": true
+          },
+          "feasible": true
+        }
+      ],
+      "feasible_models": [
+        "latency_optimized",
+        "mixed_precision",
+        "dynamic_range"
+      ],
+      "recommended_model": "latency_optimized",
+      "decision_rule": "filter by hard constraints, then prefer accuracy and lower latency among feasible variants"
+    }
+  },
+  {
+    "name": "strict SRAM MCU deployment",
+    "constraints": {
+      "platform": "arm_cortex_m7",
+      "accuracy_target": 0.85,
+      "max_latency_ms": 1000.0,
+      "max_model_size_mb": 1.0,
+      "max_energy_mj": 40.0,
+      "max_working_set_mb": 0.5,
+      "is_complete": true,
+      "missing_fields": [],
+      "invalid_fields": [],
+      "specification_stage": "before model training"
+    },
+    "priorities": {
+      "platform": "arm_cortex_m7",
+      "constraints_complete": true,
+      "priorities": [
+        {
+          "priority": 1,
+          "technique": "INT8 post-training quantization",
+          "reason": "reduce flash, bandwidth and arithmetic cost"
+        },
+        {
+          "priority": 2,
+          "technique": "reduce input resolution and width",
+          "reason": "lower activation and peak working-set size"
+        },
+        {
+          "priority": 3,
+          "technique": "pruning or early exit",
+          "reason": "remove work when accuracy budget permits"
+        }
+      ]
+    },
+    "design_space": {
+      "base_model": "MobileNetV2 baseline",
+      "constraints": {
+        "platform": "arm_cortex_m7",
+        "accuracy_target": 0.85,
+        "max_latency_ms": 1000.0,
+        "max_model_size_mb": 1.0,
+        "max_energy_mj": 40.0,
+        "max_working_set_mb": 0.5,
+        "is_complete": true,
+        "missing_fields": [],
+        "invalid_fields": [],
+        "specification_stage": "before model training"
+      },
+      "candidates": [
+        {
+          "model": "baseline",
+          "accuracy": 0.9370999932289124,
+          "latency_ms": 2069.8952615384615,
+          "model_size_mb": 26.008453369140625,
+          "estimated_energy_mj": 148.72908491692309,
+          "working_set_mb": 9.810829162597656,
+          "checks": {
+            "accuracy": true,
+            "latency": false,
+            "model_size": false,
+            "energy": false,
+            "working_set": false
+          },
+          "feasible": false
+        },
+        {
+          "model": "latency_optimized",
+          "accuracy": 0.8934,
+          "latency_ms": 355.31917948717944,
+          "model_size_mb": 8.483949661254883,
+          "estimated_energy_mj": 28.50681457435897,
+          "working_set_mb": 5.145606994628906,
+          "checks": {
+            "accuracy": true,
+            "latency": true,
+            "model_size": false,
+            "energy": true,
+            "working_set": false
+          },
+          "feasible": false
+        },
+        {
+          "model": "memory_optimized",
+          "accuracy": 0.8443,
+          "latency_ms": 355.31917948717944,
+          "model_size_mb": 3.238633155822754,
+          "estimated_energy_mj": 28.50681457435897,
+          "working_set_mb": 5.145606994628906,
+          "checks": {
+            "accuracy": false,
+            "latency": true,
+            "model_size": false,
+            "energy": true,
+            "working_set": false
+          },
+          "feasible": false
+        },
+        {
+          "model": "energy_optimized",
+          "accuracy": 0.8746,
+          "latency_ms": 355.3325128205128,
+          "model_size_mb": 8.501924514770508,
+          "estimated_energy_mj": 28.50890324102564,
+          "working_set_mb": 5.1468658447265625,
+          "checks": {
+            "accuracy": true,
+            "latency": true,
+            "model_size": false,
+            "energy": true,
+            "working_set": false
+          },
+          "feasible": false
+        },
+        {
+          "model": "ptq_int8",
+          "accuracy": 0.8784,
+          "latency_ms": 355.31917948717944,
+          "model_size_mb": 0.9366531372070312,
+          "estimated_energy_mj": 25.10161777435897,
+          "working_set_mb": 1.5373306274414062,
+          "checks": {
+            "accuracy": true,
+            "latency": true,
+            "model_size": true,
+            "energy": true,
+            "working_set": false
+          },
+          "feasible": false
+        },
+        {
+          "model": "qat_int8",
+          "accuracy": 0.8449,
+          "latency_ms": 355.31917948717944,
+          "model_size_mb": 0.9366531372070312,
+          "estimated_energy_mj": 25.10161777435897,
+          "working_set_mb": 1.5373306274414062,
+          "checks": {
+            "accuracy": false,
+            "latency": true,
+            "model_size": true,
+            "energy": true,
+            "working_set": false
+          },
+          "feasible": false
+        },
+        {
+          "model": "mixed_precision",
+          "accuracy": 0.8926,
+          "latency_ms": 355.31917948717944,
+          "model_size_mb": 1.3688468933105469,
+          "estimated_energy_mj": 27.21009817435897,
+          "working_set_mb": 3.771556854248047,
+          "checks": {
+            "accuracy": true,
+            "latency": true,
+            "model_size": false,
+            "energy": true,
+            "working_set": false
+          },
+          "feasible": false
+        },
+        {
+          "model": "dynamic_range",
+          "accuracy": 0.8861,
+          "latency_ms": 355.31917948717944,
+          "model_size_mb": 0.8384857177734375,
+          "estimated_energy_mj": 26.70958657435897,
+          "working_set_mb": 3.2411956787109375,
+          "checks": {
+            "accuracy": true,
+            "latency": true,
+            "model_size": true,
+            "energy": true,
+            "working_set": false
+          },
+          "feasible": false
+        }
+      ],
+      "feasible_models": [],
+      "recommended_model": null,
+      "decision_rule": "filter by hard constraints, then prefer accuracy and lower latency among feasible variants"
+    }
+  }
+]

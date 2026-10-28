@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""第 4 部分：性能对比、Pareto 分析和硬件利用率建模。"""
+"""Performance comparison, Pareto analysis, and hardware-utilization modeling."""
 
 from __future__ import annotations
 
@@ -81,16 +81,16 @@ PLATFORM_SPECS = {
 
 
 def _load_json(path: Path) -> dict:
-    """读取 JSON，并在输入文件缺失时给出明确错误。"""
+    """Load JSON and report a clear error when an input file is missing."""
     if not path.exists():
         raise FileNotFoundError(
-            f"缺少 Part 4 输入文件：{path}。请先完成对应的前序部分。"
+            f"Input file not found: {path}. Generate it before running this analysis."
         )
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def load_part4_inputs() -> dict[str, dict]:
-    """加载 Part 2 和 Part 3 的分析结果。"""
+def load_analysis_inputs() -> dict[str, dict]:
+    """Load the optimization and cross-platform analysis results."""
     return {
         "part2": _load_json(PART2_JSON),
         "profiles": _load_json(MODEL_PROFILES_JSON),
@@ -102,7 +102,7 @@ def load_part4_inputs() -> dict[str, dict]:
 
 
 def _dominates(left: dict, right: dict, objectives: dict[str, str]) -> bool:
-    """判断 left 是否在所有目标上不差，且至少一个目标更优。"""
+    """Return whether left is no worse on all objectives and better on one."""
     strictly_better = False
     for metric, direction in objectives.items():
         left_value = float(left[metric])
@@ -119,7 +119,7 @@ def _dominates(left: dict, right: dict, objectives: dict[str, str]) -> bool:
             if left_value < right_value - tolerance:
                 strictly_better = True
         else:
-            raise ValueError(f"未知优化方向：{direction}")
+            raise ValueError(f"Unknown optimization direction: {direction}")
     return strictly_better
 
 
@@ -127,7 +127,7 @@ def pareto_frontier(
     rows: Iterable[dict],
     objectives: dict[str, str],
 ) -> list[dict]:
-    """返回非支配解，不预设某个模型一定胜出。"""
+    """Return the non-dominated set without assuming a preferred model."""
     candidates = list(rows)
     frontier = []
     for candidate in candidates:
@@ -141,7 +141,7 @@ def pareto_frontier(
 
 
 def _measured_rows(inputs: dict) -> list[dict]:
-    """合并实测延迟、准确率和模型体积，并附上能耗估算来源。"""
+    """Combine measured accuracy, latency, and size with estimated energy."""
     profiles = inputs["profiles"]
     analytical = inputs["analytical"]["x86_desktop"]
     part2 = inputs["part2"]
@@ -188,7 +188,7 @@ def _platform_rows(
     inputs: dict,
     measured_rows: list[dict],
 ) -> list[dict]:
-    """展开各平台的解析结果，并保留实测/估算状态。"""
+    """Flatten analytical platform results while preserving evidence status."""
     measured_by_model = {row["model"]: row for row in measured_rows}
     rows = []
     for platform in PLATFORM_ORDER:
@@ -223,7 +223,7 @@ def _platform_rows(
 
 
 def generate_performance_report() -> dict:
-    """生成第 4 部分所需的综合性能分析数据。"""
+    """Generate the comprehensive performance-analysis data."""
     performance_data = {
         "models": list(MODEL_ORDER),
         "platforms": list(PLATFORM_ORDER),
@@ -235,7 +235,7 @@ def generate_performance_report() -> dict:
             "throughput_fps",
         ],
     }
-    inputs = load_part4_inputs()
+    inputs = load_analysis_inputs()
     measured = _measured_rows(inputs)
     platforms = _platform_rows(inputs, measured)
 
@@ -341,7 +341,7 @@ def _cache_residency_proxy(
     working_set_bytes: int,
     platform: str,
 ) -> dict:
-    """用工作集与 cache 容量的比例作为容量代理，不声称是实测命中率。"""
+    """Estimate cache residency from working-set size, not measured hits."""
     specs = PLATFORM_SPECS[platform]
     result = {
         "status": "capacity proxy, not a measured hit rate",
@@ -363,8 +363,8 @@ def _cache_residency_proxy(
 def analyze_hardware_utilization(
     performance_data: dict | None = None,
 ) -> dict:
-    """估算各模型在目标硬件上的计算、带宽、缓存代理和能效表现。"""
-    inputs = load_part4_inputs()
+    """Estimate compute, bandwidth, cache, thermal, and energy metrics."""
+    inputs = load_analysis_inputs()
     performance_data = performance_data or generate_performance_report()
     measured_by_model = {
         row["model"]: row for row in performance_data["measured"]

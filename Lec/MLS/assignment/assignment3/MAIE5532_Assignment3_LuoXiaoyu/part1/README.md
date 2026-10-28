@@ -1,15 +1,30 @@
-# Part 1: MobileNetV2 Baseline
+# MobileNetV2 CIFAR-10 Baseline
 
-This directory contains the CIFAR-10 baseline required by Part 1. It uses an
-ImageNet-pretrained MobileNetV2, a custom classification head, and two-stage
-transfer learning.
+This project trains a CIFAR-10 image classifier using an ImageNet-pretrained
+MobileNetV2, a custom classification head, and two-stage transfer learning.
+
+## Model and data
+
+CIFAR-10 contains 50,000 training images and 10,000 test images across ten
+classes. Ten percent of the training set is separated by a stratified split
+for validation, leaving 45,000 training images and 5,000 validation images.
+The original 32x32 inputs are resized to 224x224 with bilinear interpolation.
+Training uses a batch size of 64, horizontal flips, small random rotation,
+8% zoom, and 5% translation. Images remain in the 0-255 range until the model
+rescales them to [-1, 1].
+
+MobileNetV2 uses ImageNet weights without its original classification layer.
+The project adds global average pooling, dropout with a rate of 0.2, and a
+ten-class softmax layer.
 
 ## Environment
 
 The recorded run used Python 3.11.16, TensorFlow 2.15.1, Keras 2.15.0, WSL2
 Ubuntu, and an NVIDIA GeForce RTX 4070 Ti.
+On the first run, TensorFlow downloads CIFAR-10 and the MobileNetV2 ImageNet
+weights. Later runs reuse the local cache.
 
-From the `MAIE5532_Assignment3_LuoXiaoyu` directory:
+From the project root:
 
 ```bash
 python3.11 -m venv ~/.venvs/maie5532
@@ -17,7 +32,7 @@ source ~/.venvs/maie5532/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-## Run
+## Training and evaluation
 
 ```bash
 python part1/part1_baseline_model.py
@@ -32,7 +47,7 @@ Stage 1 runs for up to 8 epochs with a learning rate of `1e-3`. Stage 2 runs
 for up to 25 epochs with a learning rate of `1e-4`. Both stages write epoch
 logs and restore their best validation-accuracy weights at the end.
 
-## Outputs
+## Project files
 
 | Path | Content |
 |---|---|
@@ -41,16 +56,11 @@ logs and restore their best validation-accuracy weights at the end.
 | `part1_results/training_stage2_log.csv` | Fine-tuning log |
 | `part1_results/baseline_metrics.json` | Accuracy and performance metrics |
 
-The simplified workflow intentionally produces only these files. Separate
-checkpoints, training-history JSON, and training-curve images are not required
-by Part 1 and are not generated.
-
-## Recorded Results
+## Results
 
 | Metric | Result |
 |---|---:|
 | CIFAR-10 test accuracy | 93.71% |
-| CIFAR-10 test loss | 0.2242 |
 | Parameters | 2,270,794 |
 | FLOPs per image | 599,594,364 |
 | `.keras` model file size | 26.0085 MiB |

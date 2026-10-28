@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""生成第 4 部分的图、表、Markdown 报告和性能工作簿。"""
+"""Generate charts, tables, Markdown reports, and performance data."""
 
 from __future__ import annotations
 
@@ -435,10 +435,8 @@ def _english_report(
     ]
     pareto = performance["pareto"]
     figure_root = "part4/part4_results/figures"
-    return f"""# Hardware-Aware Design Analysis
+    return f"""# MobileNetV2 CIFAR-10 Hardware-Aware Design Analysis
 
-**Course:** MAIE5532  
-**Assignment:** 3, Part 4  
 **Prepared:** {date.today().isoformat()}
 
 ## Executive summary
@@ -597,7 +595,7 @@ tile and buffer hierarchy.
 Neuromorphic and event-driven hardware could especially benefit
 classification workloads that can stop early on sparse changes. That direction
 requires event-based sensors and new training objectives, so it is a future
-extension rather than a drop-in replacement for this assignment's dense image
+extension rather than a drop-in replacement for the current dense image
 pipeline. The same constraint-first methodology remains applicable.
 
 ## Validity and limitations
@@ -617,160 +615,8 @@ pipeline. The same constraint-first methodology remains applicable.
    Bottlenecks," *CVPR*, 2018.
 3. B. Jacob et al., "Quantization and Training of Neural Networks for
    Efficient Integer-Arithmetic-Only Inference," *CVPR*, 2018.
-4. R. David et al., "TensorFlow Lite Micro: Embedded Machine Learning for
+4. R. David et al., "TensorFlow Lite Micro: Embedded Machine Learning on
    TinyML Systems," *Proceedings of MLSys*, 2021.
-5. Course Week 6, *Hardware Backend Specialization and Optimizations*.
-6. Course Week 7, *Machine Learning for Systems*.
-"""
-
-
-def _chinese_report(
-    performance: dict,
-    utilization: dict,
-    cases: list[dict],
-    figures: dict[str, Path],
-) -> str:
-    metrics = _report_metrics(performance, utilization, cases)
-    baseline = metrics["baseline"]
-    ptq = metrics["ptq"]
-    mixed = metrics["mixed"]
-    qemu = metrics["qemu"]
-    mobile = metrics["mobile_case"]
-    mcu = metrics["mcu_case"]
-    pareto = performance["pareto"]
-    figure_root = "part4/part4_results/figures"
-    return f"""# 硬件感知设计分析
-
-**课程：** MAIE5532  
-**作业：** Assignment 3，第 4 部分  
-**生成日期：** {date.today().isoformat()}
-
-## 摘要
-
-基线 MobileNetV2 的 CIFAR-10 准确率为 {baseline['accuracy'] * 100:.2f}%，
-模型大小为 {baseline['model_size_mb']:.3f} MiB，实测单张图片延迟为
-{baseline['latency_ms']:.3f} ms。PTQ INT8 将实测延迟降低
-{metrics['latency_reduction'] * 100:.1f}%，模型大小降低
-{metrics['size_reduction'] * 100:.1f}%，准确率降低
-{metrics['accuracy_loss'] * 100:.2f} 个百分点。混合精度的实测延迟最低，
-为 {mixed['latency_ms']:.3f} ms，准确率为 {mixed['accuracy'] * 100:.2f}%，
-大小为 {mixed['model_size_mb']:.3f} MiB。因此不存在单一模型在所有指标上
-都最优，实际选择取决于部署约束。
-
-## 1. 硬件与软件协同设计
-
-基线保留 224×224 输入，以符合标准 MobileNetV2，但单张图片需要
-{baseline['flops']:,} FLOPs。硬件优化模型同时把宽度乘数降到 0.5，把输入
-尺寸降到 160×160，使 FLOPs 降到约 {ptq['flops']:,}，下降 83.6%。
-宽度下降会同时减少权重通道和激活宽度，输入尺寸下降会减少各层空间大小，
-所以这两项改变直接对应硬件预算。
-
-准确率与效率存在明显权衡。先缩小宽度和输入，再进行量化；当前简化 QAT
-没有恢复这部分损失，说明训练日程和校准数据质量与优化技术本身同样重要。
-
-![准确率与实测延迟]({figure_root}/accuracy_vs_latency.png)
-
-## 2. 各平台优化结论
-
-在本地 x86 主机上，延迟优化 Keras 模型与基线的耗时接近，说明 GPU 启动和
-框架调度在单张图片推理中占比较大。PTQ INT8 的实测延迟为
-{ptq['latency_ms']:.3f} ms，说明降低图计算量、切换 TFLite 运行时和量化
-需要一起实施。对 CPU 类平台，优先顺序应是减少图计算量、INT8 量化，
-再选择高效的算子库与运行时。
-
-![跨平台优化效果]({figure_root}/platform_effectiveness.png)
-
-Cortex-M 的瓶颈首先是内存。INT8 文件为 {qemu['model_bytes']:,} bytes，
-可以放入假设的 2 MiB flash；但 TFLite Micro arena 实际占用
-{qemu['tensor_arena_used_bytes']:,} bytes，超过假设的 512 KiB SRAM。
-因此 QEMU 跑通只说明功能可执行，不代表该模型能直接部署在 512 KiB SRAM
-的 MCU 上。真实部署还需要更小的输入、更紧凑的激活缓冲区或更大的 SRAM。
-
-x86 更受益于大 cache 和 SIMD；Cortex-A 更受带宽和热降频影响；WebGPU
-代理的主要成本是启动、提交和同步。移动 GPU 只有在并行任务足够大时，
-才能用并行度抵消固定开销。
-
-## 3. 能量、延迟和准确率权衡
-
-![归一化多目标权衡]({figure_root}/normalized_tradeoffs.png)
-
-在“准确率最大、实测延迟最小、模型大小最小”三维目标下，Pareto 前沿为：
-
-**{', '.join(pareto['accuracy_latency_size'])}。**
-
-准确率-延迟二维前沿包含
-**{', '.join(pareto['accuracy_latency'])}**；准确率-模型大小二维前沿包含
-**{', '.join(pareto['accuracy_model_size'])}**。基线保留了最高准确率，
-PTQ 和动态范围量化显著压缩模型，混合精度在准确率和延迟之间取得平衡。
-稀疏内存模型不能仅凭 30% 稀疏率判定为最优，因为它序列化后仍大于多个
-量化模型。
-
-![准确率与模型大小]({figure_root}/accuracy_vs_model_size.png)
-
-能量数字来自解析估算，不是功率计测量。由于多个优化模型的 FLOPs 接近，
-完整模型图上的能耗下降不如模型大小下降明显。Early exit 只被
-0.81% 的样本触发，因此平均能耗收益有限。对电池设备，INT8 仍是通用性
-最好的方案；如果能源是最紧约束，还需要事件驱动推理或更激进的条件计算。
-
-## 4. 可扩展性与部署
-
-批大小从 1 增加到 64 时，吞吐量从约 525 samples/s 增加到约
-10,000 samples/s，但单次总延迟也从约 1.91 ms 增加到 6.40 ms。
-大批量适合服务器离线处理或吞吐优先场景，不适合要求单帧即时响应的
-交互式相机流水线。
-
-![批大小扩展]({figure_root}/batch_scaling.png)
-
-异构硬件部署需要分别验证精度、算子支持、tensor arena、模型格式和加速器
-可用性。模型更新应签名和版本化；资源受限设备应接收完整的 INT8 模型或
-压缩增量，激活新模型前完成校验，并保留可回滚的已知良好版本。
-
-## 5. 设计方法建议
-
-设计应从硬约束出发，而不是先选模型。框架需要记录准确率目标、延迟预算、
-模型大小、工作集或 SRAM、能耗和平台类型。
-
-- 移动端案例可行集合：
-  {mobile['design_space']['feasible_models']}；推荐模型：
-  **{mobile['design_space']['recommended_model']}**。
-- MCU 案例可行集合：{mcu['design_space']['feasible_models']}。
-  虽然 INT8 模型可放入 flash，但 arena 超过 SRAM，因此没有模型满足全部
-  约束。该结论说明功能仿真不能替代容量验证。
-
-建议流程是：定义约束；用最终运行时测量基线；先减少架构计算量；量化并用
-完整测试集验证；在目标运行时检查内存和算子；热稳定后重新测量；
-在满足所有硬约束的模型中选最小者。
-
-## 6. 未来硬件趋势
-
-边缘 AI 加速器会提高固定算子的效率，但内存移动仍将限制性能。编译器融合、
-结构化稀疏和混合精度能否发挥优势，取决于硬件 tile、缓冲区层级和算子覆盖。
-
-神经形态或事件驱动硬件更适合稀疏事件流；它需要事件相机和新的训练目标，
-不能直接替代当前的稠密图像流水线。约束优先、运行时验证和多目标比较的方法
-仍然适用。
-
-## 有效性与局限
-
-- 准确率和本地主机延迟为实测；除 QEMU-CM 和 WebGPU 代理外，平台延迟与
-  能耗为解析估算。
-- cache 指标是容量代理，不是实测命中率。
-- 热降频系数是假设值，没有温度传感器数据。
-- QEMU 用户模式不执行物理 SRAM、flash、cache 或热限制。
-- WebGPU 是桌面代理，不是手机实测。
-
-## 参考文献
-
-1. S. Williams, A. Waterman, and D. Patterson, "Roofline: An Insightful
-   Visual Performance Model for Multicore Architectures," *CACM*, 2009.
-2. M. Sandler et al., "MobileNetV2: Inverted Residuals and Linear
-   Bottlenecks," *CVPR*, 2018.
-3. B. Jacob et al., "Quantization and Training of Neural Networks for
-   Efficient Integer-Arithmetic-Only Inference," *CVPR*, 2018.
-4. R. David et al., "TensorFlow Lite Micro: Embedded Machine Learning for
-   TinyML Systems," *Proceedings of MLSys*, 2021.
-5. 课程第 6 周，*Hardware Backend Specialization and Optimizations*。
-6. 课程第 7 周，*Machine Learning for Systems*。
 """
 
 
@@ -840,64 +686,6 @@ Keep a rollback artifact on the device.
 """
 
 
-def _guidelines_chinese(performance: dict, cases: list[dict]) -> str:
-    pareto = performance["pareto"]
-    return f"""# 硬件感知优化指南
-
-## 1. 先定义约束，再选择模型
-
-在训练或优化前记录平台、执行标签、最低准确率、延迟上限、能耗预算、模型
-大小上限以及 SRAM 或工作集上限。任何硬约束不满足的模型都应直接淘汰。
-
-## 2. 使用分阶段优化顺序
-
-1. 用最终部署运行时测量基线。
-2. 降低输入分辨率、宽度或计算图工作量。
-3. 在运行时支持整数算子时使用 INT8 PTQ。
-4. 只有在校准数据和训练时间足够时使用 QAT。
-5. 工作负载分布合适时再加入剪枝或早退出。
-6. 在目标运行时重新测量内存、延迟、准确率和能耗。
-
-## 3. 按瓶颈选择优化方法
-
-- **x86 CPU：** 使用支持 SIMD 的运行时，并分别测量预热后的单图和批量推理。
-- **ARM Cortex-A：** 优先减少 FLOPs，再考虑 FP16、INT8 和带宽友好布局。
-- **Cortex-M：** 分别检查 flash 和 SRAM。模型能放入 flash，arena 仍可能
-  超出 SRAM。
-- **移动 GPU/WebGPU：** 让每次启动承载足够多的并行工作，避免把模型缩小
-  误认为端到端延迟会等比例下降。
-
-## 4. 使用 Pareto 分析
-
-准确率、延迟和模型大小的实测 Pareto 集合为：
-
-**{', '.join(pareto['accuracy_latency_size'])}。**
-
-误差代价高的应用选择高准确率模型；资源预算最紧的应用选择最小或最快模型；
-约束均衡的应用选择折中模型。
-
-## 5. 部署前验证
-
-用完整测试集评估准确率，确认目标运行时支持全部算子，测量热稳定后的持续
-性能，记录模型哈希和运行时版本，并在设备上保留可回滚模型。
-
-## 参考设计案例
-
-{_markdown_table(
-    ['案例', '平台', '可行模型', '推荐'],
-    [
-        [
-            case['name'],
-            case['constraints']['platform'],
-            ', '.join(case['design_space']['feasible_models']) or '无',
-            case['design_space']['recommended_model'] or '没有完全可行的模型',
-        ]
-        for case in cases
-    ],
-)}
-"""
-
-
 def _write_excel(
     path: Path,
     performance: dict,
@@ -905,7 +693,7 @@ def _write_excel(
     utilization_rows: list[dict],
     cases: list[dict],
 ) -> bool:
-    """使用 openpyxl 生成可编辑的性能工作簿。"""
+    """Generate an editable performance workbook with openpyxl."""
     try:
         from openpyxl import Workbook
         from openpyxl.chart import LineChart, ScatterChart, Series, Reference
@@ -913,8 +701,8 @@ def _write_excel(
         from openpyxl.worksheet.table import Table, TableStyleInfo
     except ImportError:
         print(
-            "警告：未安装 openpyxl，跳过 performance_benchmarks.xlsx。"
-            "请安装 requirements.txt 中的依赖后重新运行。"
+            "openpyxl is not installed; skipping performance_benchmarks.xlsx. "
+            "Install the dependency and run again with --write-excel."
         )
         return False
 
@@ -1300,8 +1088,8 @@ def _write_excel(
     return True
 
 
-def generate_all(output_dir: Path, skip_excel: bool = False) -> dict:
-    """执行 Part 4 全部分析并写入交付目录。"""
+def generate_all(output_dir: Path, write_excel: bool = False) -> dict:
+    """Run the complete analysis and write the selected result files."""
     output_dir.mkdir(parents=True, exist_ok=True)
     performance = generate_performance_report()
     utilization = analyze_hardware_utilization(performance)
@@ -1327,21 +1115,13 @@ def generate_all(output_dir: Path, skip_excel: bool = False) -> dict:
         _english_report(performance, utilization, cases, figures),
         encoding="utf-8",
     )
-    (PROJECT_ROOT / "hardware_aware_analysis_zh-CN.md").write_text(
-        _chinese_report(performance, utilization, cases, figures),
-        encoding="utf-8",
-    )
     (PROJECT_ROOT / "optimization_guidelines.md").write_text(
         _guidelines(performance, cases),
         encoding="utf-8",
     )
-    (PROJECT_ROOT / "optimization_guidelines_zh-CN.md").write_text(
-        _guidelines_chinese(performance, cases),
-        encoding="utf-8",
-    )
 
     workbook_written = False
-    if not skip_excel:
+    if write_excel:
         workbook_written = _write_excel(
             PROJECT_ROOT / "performance_benchmarks.xlsx",
             performance,
@@ -1365,21 +1145,21 @@ def main() -> None:
         "--output-dir",
         type=Path,
         default=RESULTS_DIR,
-        help="JSON/CSV 结果目录；Markdown 始终写到提交目录根目录。",
+        help="Directory for JSON and CSV results.",
     )
     parser.add_argument(
-        "--skip-excel",
+        "--write-excel",
         action="store_true",
-        help="仅生成分析、图、CSV 和 Markdown，不生成 xlsx。",
+        help="Regenerate performance_benchmarks.xlsx from this script.",
     )
     args = parser.parse_args()
     result = generate_all(
         output_dir=args.output_dir,
-        skip_excel=args.skip_excel,
+        write_excel=args.write_excel,
     )
     summary = result["performance"]["summary"]
     memory = result["utilization"]["mcu_memory_validity"]
-    print("Part 4 analysis complete.")
+    print("Analysis complete.")
     print(f"Best accuracy: {summary['best_accuracy_model']}")
     print(f"Lowest latency: {summary['lowest_latency_model']}")
     print(f"Smallest model: {summary['smallest_model']}")

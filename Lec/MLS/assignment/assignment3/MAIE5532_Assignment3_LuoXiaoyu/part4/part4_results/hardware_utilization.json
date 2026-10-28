@@ -1,0 +1,1019 @@
+{
+  "cpu_simd_utilization": {
+    "x86_desktop/baseline": {
+      "estimated_compute_utilization": 0.9333632201791924,
+      "achieved_gops": 70.00224151343943,
+      "effective_compute_gops": 75.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "x86_desktop/latency_optimized": {
+      "estimated_compute_utilization": 0.8566536904666026,
+      "achieved_gops": 64.2490267849952,
+      "effective_compute_gops": 75.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "x86_desktop/memory_optimized": {
+      "estimated_compute_utilization": 0.8566536904666026,
+      "achieved_gops": 64.2490267849952,
+      "effective_compute_gops": 75.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "x86_desktop/energy_optimized": {
+      "estimated_compute_utilization": 0.8566570373733157,
+      "achieved_gops": 64.24927780299868,
+      "effective_compute_gops": 75.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "x86_desktop/ptq_int8": {
+      "estimated_compute_utilization": 0.8566536904666026,
+      "achieved_gops": 64.2490267849952,
+      "effective_compute_gops": 75.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "x86_desktop/qat_int8": {
+      "estimated_compute_utilization": 0.8566536904666026,
+      "achieved_gops": 64.2490267849952,
+      "effective_compute_gops": 75.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "x86_desktop/mixed_precision": {
+      "estimated_compute_utilization": 0.8566536904666026,
+      "achieved_gops": 64.2490267849952,
+      "effective_compute_gops": 75.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "x86_desktop/dynamic_range": {
+      "estimated_compute_utilization": 0.8566536904666026,
+      "achieved_gops": 64.2490267849952,
+      "effective_compute_gops": 75.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "arm_cortex_a78/baseline": {
+      "estimated_compute_utilization": 0.789466656738113,
+      "achieved_gops": 7.8946665673811305,
+      "effective_compute_gops": 10.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "arm_cortex_a78/latency_optimized": {
+      "estimated_compute_utilization": 0.7396686640738018,
+      "achieved_gops": 7.396686640738018,
+      "effective_compute_gops": 10.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "arm_cortex_a78/memory_optimized": {
+      "estimated_compute_utilization": 0.7396686640738018,
+      "achieved_gops": 7.396686640738018,
+      "effective_compute_gops": 10.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "arm_cortex_a78/energy_optimized": {
+      "estimated_compute_utilization": 0.7396708820380986,
+      "achieved_gops": 7.396708820380986,
+      "effective_compute_gops": 10.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "arm_cortex_a78/ptq_int8": {
+      "estimated_compute_utilization": 0.7396686640738018,
+      "achieved_gops": 7.396686640738018,
+      "effective_compute_gops": 10.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "arm_cortex_a78/qat_int8": {
+      "estimated_compute_utilization": 0.7396686640738018,
+      "achieved_gops": 7.396686640738018,
+      "effective_compute_gops": 10.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "arm_cortex_a78/mixed_precision": {
+      "estimated_compute_utilization": 0.7396686640738018,
+      "achieved_gops": 7.396686640738018,
+      "effective_compute_gops": 10.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "arm_cortex_a78/dynamic_range": {
+      "estimated_compute_utilization": 0.7396686640738018,
+      "achieved_gops": 7.396686640738018,
+      "effective_compute_gops": 10.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "arm_cortex_m7/baseline": {
+      "estimated_compute_utilization": 0.6437194889801634,
+      "achieved_gops": 0.28967377004107353,
+      "effective_compute_gops": 0.45,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "arm_cortex_m7/latency_optimized": {
+      "estimated_compute_utilization": 0.6134131767984986,
+      "achieved_gops": 0.2760359295593244,
+      "effective_compute_gops": 0.45,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "arm_cortex_m7/memory_optimized": {
+      "estimated_compute_utilization": 0.6134131767984986,
+      "achieved_gops": 0.2760359295593244,
+      "effective_compute_gops": 0.45,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "arm_cortex_m7/energy_optimized": {
+      "estimated_compute_utilization": 0.6134145496655786,
+      "achieved_gops": 0.2760365473495104,
+      "effective_compute_gops": 0.45,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "arm_cortex_m7/ptq_int8": {
+      "estimated_compute_utilization": 0.6134131767984986,
+      "achieved_gops": 0.2760359295593244,
+      "effective_compute_gops": 0.45,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "arm_cortex_m7/qat_int8": {
+      "estimated_compute_utilization": 0.6134131767984986,
+      "achieved_gops": 0.2760359295593244,
+      "effective_compute_gops": 0.45,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "arm_cortex_m7/mixed_precision": {
+      "estimated_compute_utilization": 0.6134131767984986,
+      "achieved_gops": 0.2760359295593244,
+      "effective_compute_gops": 0.45,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "arm_cortex_m7/dynamic_range": {
+      "estimated_compute_utilization": 0.6134131767984986,
+      "achieved_gops": 0.2760359295593244,
+      "effective_compute_gops": 0.45,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "webgpu_proxy/baseline": {
+      "estimated_compute_utilization": 0.1410978604622725,
+      "achieved_gops": 141.09786046227248,
+      "effective_compute_gops": 1000.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "webgpu_proxy/latency_optimized": {
+      "estimated_compute_utilization": 0.027074706259231154,
+      "achieved_gops": 27.074706259231153,
+      "effective_compute_gops": 1000.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "webgpu_proxy/memory_optimized": {
+      "estimated_compute_utilization": 0.027074706259231154,
+      "achieved_gops": 27.074706259231153,
+      "effective_compute_gops": 1000.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "webgpu_proxy/energy_optimized": {
+      "estimated_compute_utilization": 0.02707574639742421,
+      "achieved_gops": 27.075746397424208,
+      "effective_compute_gops": 1000.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "webgpu_proxy/ptq_int8": {
+      "estimated_compute_utilization": 0.027074706259231154,
+      "achieved_gops": 27.074706259231153,
+      "effective_compute_gops": 1000.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "webgpu_proxy/qat_int8": {
+      "estimated_compute_utilization": 0.027074706259231154,
+      "achieved_gops": 27.074706259231153,
+      "effective_compute_gops": 1000.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "webgpu_proxy/mixed_precision": {
+      "estimated_compute_utilization": 0.027074706259231154,
+      "achieved_gops": 27.074706259231153,
+      "effective_compute_gops": 1000.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    },
+    "webgpu_proxy/dynamic_range": {
+      "estimated_compute_utilization": 0.027074706259231154,
+      "achieved_gops": 27.074706259231153,
+      "effective_compute_gops": 1000.0,
+      "bottleneck": "compute",
+      "status": "analytical estimate"
+    }
+  },
+  "memory_bandwidth_efficiency": {
+    "x86_desktop/baseline": {
+      "memory_bandwidth_utilization": 0.040034902626567316,
+      "achieved_bandwidth_gbps": 1.2010470787970196,
+      "effective_bandwidth_gbps": 30.0,
+      "working_set_mb": 9.810829162597656,
+      "status": "analytical estimate"
+    },
+    "x86_desktop/latency_optimized": {
+      "memory_bandwidth_utilization": 0.11781417868210939,
+      "achieved_bandwidth_gbps": 3.5344253604632816,
+      "effective_bandwidth_gbps": 30.0,
+      "working_set_mb": 5.145606994628906,
+      "status": "analytical estimate"
+    },
+    "x86_desktop/memory_optimized": {
+      "memory_bandwidth_utilization": 0.11781417868210939,
+      "achieved_bandwidth_gbps": 3.5344253604632816,
+      "effective_bandwidth_gbps": 30.0,
+      "working_set_mb": 5.145606994628906,
+      "status": "analytical estimate"
+    },
+    "x86_desktop/energy_optimized": {
+      "memory_bandwidth_utilization": 0.1178387761732633,
+      "achieved_bandwidth_gbps": 3.535163285197899,
+      "effective_bandwidth_gbps": 30.0,
+      "working_set_mb": 5.1468658447265625,
+      "status": "analytical estimate"
+    },
+    "x86_desktop/ptq_int8": {
+      "memory_bandwidth_utilization": 0.035198829880307106,
+      "achieved_bandwidth_gbps": 1.0559648964092132,
+      "effective_bandwidth_gbps": 30.0,
+      "working_set_mb": 1.5373306274414062,
+      "status": "analytical estimate"
+    },
+    "x86_desktop/qat_int8": {
+      "memory_bandwidth_utilization": 0.035198829880307106,
+      "achieved_bandwidth_gbps": 1.0559648964092132,
+      "effective_bandwidth_gbps": 30.0,
+      "working_set_mb": 1.5373306274414062,
+      "status": "analytical estimate"
+    },
+    "x86_desktop/mixed_precision": {
+      "memory_bandwidth_utilization": 0.08635383028667527,
+      "achieved_bandwidth_gbps": 2.590614908600258,
+      "effective_bandwidth_gbps": 30.0,
+      "working_set_mb": 3.771556854248047,
+      "status": "analytical estimate"
+    },
+    "x86_desktop/dynamic_range": {
+      "memory_bandwidth_utilization": 0.07421064360996157,
+      "achieved_bandwidth_gbps": 2.226319308298847,
+      "effective_bandwidth_gbps": 30.0,
+      "working_set_mb": 3.2411956787109375,
+      "status": "analytical estimate"
+    },
+    "arm_cortex_a78/baseline": {
+      "memory_bandwidth_utilization": 0.01505009937115802,
+      "achieved_bandwidth_gbps": 0.13545089434042218,
+      "effective_bandwidth_gbps": 9.0,
+      "working_set_mb": 9.810829162597656,
+      "status": "analytical estimate"
+    },
+    "arm_cortex_a78/latency_optimized": {
+      "memory_bandwidth_utilization": 0.045211297620827484,
+      "achieved_bandwidth_gbps": 0.40690167858744736,
+      "effective_bandwidth_gbps": 9.0,
+      "working_set_mb": 5.145606994628906,
+      "status": "analytical estimate"
+    },
+    "arm_cortex_a78/memory_optimized": {
+      "memory_bandwidth_utilization": 0.045211297620827484,
+      "achieved_bandwidth_gbps": 0.40690167858744736,
+      "effective_bandwidth_gbps": 9.0,
+      "working_set_mb": 5.145606994628906,
+      "status": "analytical estimate"
+    },
+    "arm_cortex_a78/energy_optimized": {
+      "memory_bandwidth_utilization": 0.045220695853642565,
+      "achieved_bandwidth_gbps": 0.4069862626827831,
+      "effective_bandwidth_gbps": 9.0,
+      "working_set_mb": 5.1468658447265625,
+      "status": "analytical estimate"
+    },
+    "arm_cortex_a78/ptq_int8": {
+      "memory_bandwidth_utilization": 0.013507582800516511,
+      "achieved_bandwidth_gbps": 0.12156824520464861,
+      "effective_bandwidth_gbps": 9.0,
+      "working_set_mb": 1.5373306274414062,
+      "status": "analytical estimate"
+    },
+    "arm_cortex_a78/qat_int8": {
+      "memory_bandwidth_utilization": 0.013507582800516511,
+      "achieved_bandwidth_gbps": 0.12156824520464861,
+      "effective_bandwidth_gbps": 9.0,
+      "working_set_mb": 1.5373306274414062,
+      "status": "analytical estimate"
+    },
+    "arm_cortex_a78/mixed_precision": {
+      "memory_bandwidth_utilization": 0.03313836047122712,
+      "achieved_bandwidth_gbps": 0.29824524424104404,
+      "effective_bandwidth_gbps": 9.0,
+      "working_set_mb": 3.771556854248047,
+      "status": "analytical estimate"
+    },
+    "arm_cortex_a78/dynamic_range": {
+      "memory_bandwidth_utilization": 0.028478401601696415,
+      "achieved_bandwidth_gbps": 0.2563056144152677,
+      "effective_bandwidth_gbps": 9.0,
+      "working_set_mb": 3.2411956787109375,
+      "status": "analytical estimate"
+    },
+    "arm_cortex_m7/baseline": {
+      "memory_bandwidth_utilization": 0.06212512410141124,
+      "achieved_bandwidth_gbps": 0.004970009928112899,
+      "effective_bandwidth_gbps": 0.08,
+      "working_set_mb": 9.810829162597656,
+      "status": "analytical estimate"
+    },
+    "arm_cortex_m7/latency_optimized": {
+      "memory_bandwidth_utilization": 0.18981384595489734,
+      "achieved_bandwidth_gbps": 0.015185107676391788,
+      "effective_bandwidth_gbps": 0.08,
+      "working_set_mb": 5.145606994628906,
+      "status": "analytical estimate"
+    },
+    "arm_cortex_m7/memory_optimized": {
+      "memory_bandwidth_utilization": 0.18981384595489734,
+      "achieved_bandwidth_gbps": 0.015185107676391788,
+      "effective_bandwidth_gbps": 0.08,
+      "working_set_mb": 5.145606994628906,
+      "status": "analytical estimate"
+    },
+    "arm_cortex_m7/energy_optimized": {
+      "memory_bandwidth_utilization": 0.1898531588469536,
+      "achieved_bandwidth_gbps": 0.015188252707756289,
+      "effective_bandwidth_gbps": 0.08,
+      "working_set_mb": 5.1468658447265625,
+      "status": "analytical estimate"
+    },
+    "arm_cortex_m7/ptq_int8": {
+      "memory_bandwidth_utilization": 0.05670985739942881,
+      "achieved_bandwidth_gbps": 0.004536788591954305,
+      "effective_bandwidth_gbps": 0.08,
+      "working_set_mb": 1.5373306274414062,
+      "status": "analytical estimate"
+    },
+    "arm_cortex_m7/qat_int8": {
+      "memory_bandwidth_utilization": 0.05670985739942881,
+      "achieved_bandwidth_gbps": 0.004536788591954305,
+      "effective_bandwidth_gbps": 0.08,
+      "working_set_mb": 1.5373306274414062,
+      "status": "analytical estimate"
+    },
+    "arm_cortex_m7/mixed_precision": {
+      "memory_bandwidth_utilization": 0.1391271646842911,
+      "achieved_bandwidth_gbps": 0.011130173174743288,
+      "effective_bandwidth_gbps": 0.08,
+      "working_set_mb": 3.771556854248047,
+      "status": "analytical estimate"
+    },
+    "arm_cortex_m7/dynamic_range": {
+      "memory_bandwidth_utilization": 0.11956292385149128,
+      "achieved_bandwidth_gbps": 0.009565033908119303,
+      "effective_bandwidth_gbps": 0.08,
+      "working_set_mb": 3.2411956787109375,
+      "status": "analytical estimate"
+    },
+    "webgpu_proxy/baseline": {
+      "memory_bandwidth_utilization": 0.024208535251001494,
+      "achieved_bandwidth_gbps": 2.4208535251001493,
+      "effective_bandwidth_gbps": 100.0,
+      "working_set_mb": 9.810829162597656,
+      "status": "analytical estimate"
+    },
+    "webgpu_proxy/latency_optimized": {
+      "memory_bandwidth_utilization": 0.014894159992485511,
+      "achieved_bandwidth_gbps": 1.4894159992485512,
+      "effective_bandwidth_gbps": 100.0,
+      "working_set_mb": 5.145606994628906,
+      "status": "analytical estimate"
+    },
+    "webgpu_proxy/memory_optimized": {
+      "memory_bandwidth_utilization": 0.014894159992485511,
+      "achieved_bandwidth_gbps": 1.4894159992485512,
+      "effective_bandwidth_gbps": 100.0,
+      "working_set_mb": 5.145606994628906,
+      "status": "analytical estimate"
+    },
+    "webgpu_proxy/energy_optimized": {
+      "memory_bandwidth_utilization": 0.014897783734938103,
+      "achieved_bandwidth_gbps": 1.4897783734938104,
+      "effective_bandwidth_gbps": 100.0,
+      "working_set_mb": 5.1468658447265625,
+      "status": "analytical estimate"
+    },
+    "webgpu_proxy/ptq_int8": {
+      "memory_bandwidth_utilization": 0.004449863417544534,
+      "achieved_bandwidth_gbps": 0.44498634175445334,
+      "effective_bandwidth_gbps": 100.0,
+      "working_set_mb": 1.5373306274414062,
+      "status": "analytical estimate"
+    },
+    "webgpu_proxy/qat_int8": {
+      "memory_bandwidth_utilization": 0.004449863417544534,
+      "achieved_bandwidth_gbps": 0.44498634175445334,
+      "effective_bandwidth_gbps": 100.0,
+      "working_set_mb": 1.5373306274414062,
+      "status": "analytical estimate"
+    },
+    "webgpu_proxy/mixed_precision": {
+      "memory_bandwidth_utilization": 0.010916918308483636,
+      "achieved_bandwidth_gbps": 1.0916918308483636,
+      "effective_bandwidth_gbps": 100.0,
+      "working_set_mb": 3.771556854248047,
+      "status": "analytical estimate"
+    },
+    "webgpu_proxy/dynamic_range": {
+      "memory_bandwidth_utilization": 0.009381767215425453,
+      "achieved_bandwidth_gbps": 0.9381767215425453,
+      "effective_bandwidth_gbps": 100.0,
+      "working_set_mb": 3.2411956787109375,
+      "status": "analytical estimate"
+    }
+  },
+  "cache_efficiency": {
+    "x86_desktop/baseline": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "x86_desktop",
+      "l1_capacity_fraction": 0.003185255749752124,
+      "l2_capacity_fraction": 0.02548204599801699,
+      "l3_capacity_fraction": null
+    },
+    "x86_desktop/latency_optimized": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "x86_desktop",
+      "l1_capacity_fraction": 0.006073141620146935,
+      "l2_capacity_fraction": 0.04858513296117548,
+      "l3_capacity_fraction": null
+    },
+    "x86_desktop/memory_optimized": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "x86_desktop",
+      "l1_capacity_fraction": 0.006073141620146935,
+      "l2_capacity_fraction": 0.04858513296117548,
+      "l3_capacity_fraction": null
+    },
+    "x86_desktop/energy_optimized": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "x86_desktop",
+      "l1_capacity_fraction": 0.006071656216184166,
+      "l2_capacity_fraction": 0.04857324972947333,
+      "l3_capacity_fraction": null
+    },
+    "x86_desktop/ptq_int8": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "x86_desktop",
+      "l1_capacity_fraction": 0.02032744254370946,
+      "l2_capacity_fraction": 0.16261954034967568,
+      "l3_capacity_fraction": null
+    },
+    "x86_desktop/qat_int8": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "x86_desktop",
+      "l1_capacity_fraction": 0.02032744254370946,
+      "l2_capacity_fraction": 0.16261954034967568,
+      "l3_capacity_fraction": null
+    },
+    "x86_desktop/mixed_precision": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "x86_desktop",
+      "l1_capacity_fraction": 0.008285703015401172,
+      "l2_capacity_fraction": 0.06628562412320937,
+      "l3_capacity_fraction": null
+    },
+    "x86_desktop/dynamic_range": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "x86_desktop",
+      "l1_capacity_fraction": 0.009641503660287645,
+      "l2_capacity_fraction": 0.07713202928230116,
+      "l3_capacity_fraction": null
+    },
+    "arm_cortex_a78/baseline": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "arm_cortex_a78",
+      "l1_capacity_fraction": 0.006370511499504248,
+      "l2_capacity_fraction": 0.05096409199603398,
+      "l3_capacity_fraction": null
+    },
+    "arm_cortex_a78/latency_optimized": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "arm_cortex_a78",
+      "l1_capacity_fraction": 0.01214628324029387,
+      "l2_capacity_fraction": 0.09717026592235097,
+      "l3_capacity_fraction": null
+    },
+    "arm_cortex_a78/memory_optimized": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "arm_cortex_a78",
+      "l1_capacity_fraction": 0.01214628324029387,
+      "l2_capacity_fraction": 0.09717026592235097,
+      "l3_capacity_fraction": null
+    },
+    "arm_cortex_a78/energy_optimized": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "arm_cortex_a78",
+      "l1_capacity_fraction": 0.012143312432368332,
+      "l2_capacity_fraction": 0.09714649945894666,
+      "l3_capacity_fraction": null
+    },
+    "arm_cortex_a78/ptq_int8": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "arm_cortex_a78",
+      "l1_capacity_fraction": 0.04065488508741892,
+      "l2_capacity_fraction": 0.32523908069935137,
+      "l3_capacity_fraction": null
+    },
+    "arm_cortex_a78/qat_int8": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "arm_cortex_a78",
+      "l1_capacity_fraction": 0.04065488508741892,
+      "l2_capacity_fraction": 0.32523908069935137,
+      "l3_capacity_fraction": null
+    },
+    "arm_cortex_a78/mixed_precision": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "arm_cortex_a78",
+      "l1_capacity_fraction": 0.016571406030802344,
+      "l2_capacity_fraction": 0.13257124824641875,
+      "l3_capacity_fraction": null
+    },
+    "arm_cortex_a78/dynamic_range": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "arm_cortex_a78",
+      "l1_capacity_fraction": 0.01928300732057529,
+      "l2_capacity_fraction": 0.15426405856460232,
+      "l3_capacity_fraction": null
+    },
+    "arm_cortex_m7/baseline": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "arm_cortex_m7",
+      "l1_capacity_fraction": null,
+      "l2_capacity_fraction": null,
+      "l3_capacity_fraction": null
+    },
+    "arm_cortex_m7/latency_optimized": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "arm_cortex_m7",
+      "l1_capacity_fraction": null,
+      "l2_capacity_fraction": null,
+      "l3_capacity_fraction": null
+    },
+    "arm_cortex_m7/memory_optimized": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "arm_cortex_m7",
+      "l1_capacity_fraction": null,
+      "l2_capacity_fraction": null,
+      "l3_capacity_fraction": null
+    },
+    "arm_cortex_m7/energy_optimized": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "arm_cortex_m7",
+      "l1_capacity_fraction": null,
+      "l2_capacity_fraction": null,
+      "l3_capacity_fraction": null
+    },
+    "arm_cortex_m7/ptq_int8": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "arm_cortex_m7",
+      "l1_capacity_fraction": null,
+      "l2_capacity_fraction": null,
+      "l3_capacity_fraction": null
+    },
+    "arm_cortex_m7/qat_int8": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "arm_cortex_m7",
+      "l1_capacity_fraction": null,
+      "l2_capacity_fraction": null,
+      "l3_capacity_fraction": null
+    },
+    "arm_cortex_m7/mixed_precision": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "arm_cortex_m7",
+      "l1_capacity_fraction": null,
+      "l2_capacity_fraction": null,
+      "l3_capacity_fraction": null
+    },
+    "arm_cortex_m7/dynamic_range": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "arm_cortex_m7",
+      "l1_capacity_fraction": null,
+      "l2_capacity_fraction": null,
+      "l3_capacity_fraction": null
+    },
+    "webgpu_proxy/baseline": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "webgpu_proxy",
+      "l1_capacity_fraction": null,
+      "l2_capacity_fraction": null,
+      "l3_capacity_fraction": null
+    },
+    "webgpu_proxy/latency_optimized": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "webgpu_proxy",
+      "l1_capacity_fraction": null,
+      "l2_capacity_fraction": null,
+      "l3_capacity_fraction": null
+    },
+    "webgpu_proxy/memory_optimized": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "webgpu_proxy",
+      "l1_capacity_fraction": null,
+      "l2_capacity_fraction": null,
+      "l3_capacity_fraction": null
+    },
+    "webgpu_proxy/energy_optimized": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "webgpu_proxy",
+      "l1_capacity_fraction": null,
+      "l2_capacity_fraction": null,
+      "l3_capacity_fraction": null
+    },
+    "webgpu_proxy/ptq_int8": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "webgpu_proxy",
+      "l1_capacity_fraction": null,
+      "l2_capacity_fraction": null,
+      "l3_capacity_fraction": null
+    },
+    "webgpu_proxy/qat_int8": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "webgpu_proxy",
+      "l1_capacity_fraction": null,
+      "l2_capacity_fraction": null,
+      "l3_capacity_fraction": null
+    },
+    "webgpu_proxy/mixed_precision": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "webgpu_proxy",
+      "l1_capacity_fraction": null,
+      "l2_capacity_fraction": null,
+      "l3_capacity_fraction": null
+    },
+    "webgpu_proxy/dynamic_range": {
+      "status": "capacity proxy, not a measured hit rate",
+      "platform": "webgpu_proxy",
+      "l1_capacity_fraction": null,
+      "l2_capacity_fraction": null,
+      "l3_capacity_fraction": null
+    }
+  },
+  "thermal_characteristics": {
+    "x86_desktop/baseline": {
+      "thermal_derate": 0.95,
+      "status": "assumption only; temperature was not measured"
+    },
+    "x86_desktop/latency_optimized": {
+      "thermal_derate": 0.95,
+      "status": "assumption only; temperature was not measured"
+    },
+    "x86_desktop/memory_optimized": {
+      "thermal_derate": 0.95,
+      "status": "assumption only; temperature was not measured"
+    },
+    "x86_desktop/energy_optimized": {
+      "thermal_derate": 0.95,
+      "status": "assumption only; temperature was not measured"
+    },
+    "x86_desktop/ptq_int8": {
+      "thermal_derate": 0.95,
+      "status": "assumption only; temperature was not measured"
+    },
+    "x86_desktop/qat_int8": {
+      "thermal_derate": 0.95,
+      "status": "assumption only; temperature was not measured"
+    },
+    "x86_desktop/mixed_precision": {
+      "thermal_derate": 0.95,
+      "status": "assumption only; temperature was not measured"
+    },
+    "x86_desktop/dynamic_range": {
+      "thermal_derate": 0.95,
+      "status": "assumption only; temperature was not measured"
+    },
+    "arm_cortex_a78/baseline": {
+      "thermal_derate": 0.8,
+      "status": "assumption only; temperature was not measured"
+    },
+    "arm_cortex_a78/latency_optimized": {
+      "thermal_derate": 0.8,
+      "status": "assumption only; temperature was not measured"
+    },
+    "arm_cortex_a78/memory_optimized": {
+      "thermal_derate": 0.8,
+      "status": "assumption only; temperature was not measured"
+    },
+    "arm_cortex_a78/energy_optimized": {
+      "thermal_derate": 0.8,
+      "status": "assumption only; temperature was not measured"
+    },
+    "arm_cortex_a78/ptq_int8": {
+      "thermal_derate": 0.8,
+      "status": "assumption only; temperature was not measured"
+    },
+    "arm_cortex_a78/qat_int8": {
+      "thermal_derate": 0.8,
+      "status": "assumption only; temperature was not measured"
+    },
+    "arm_cortex_a78/mixed_precision": {
+      "thermal_derate": 0.8,
+      "status": "assumption only; temperature was not measured"
+    },
+    "arm_cortex_a78/dynamic_range": {
+      "thermal_derate": 0.8,
+      "status": "assumption only; temperature was not measured"
+    },
+    "arm_cortex_m7/baseline": {
+      "thermal_derate": 0.65,
+      "status": "assumption only; temperature was not measured"
+    },
+    "arm_cortex_m7/latency_optimized": {
+      "thermal_derate": 0.65,
+      "status": "assumption only; temperature was not measured"
+    },
+    "arm_cortex_m7/memory_optimized": {
+      "thermal_derate": 0.65,
+      "status": "assumption only; temperature was not measured"
+    },
+    "arm_cortex_m7/energy_optimized": {
+      "thermal_derate": 0.65,
+      "status": "assumption only; temperature was not measured"
+    },
+    "arm_cortex_m7/ptq_int8": {
+      "thermal_derate": 0.65,
+      "status": "assumption only; temperature was not measured"
+    },
+    "arm_cortex_m7/qat_int8": {
+      "thermal_derate": 0.65,
+      "status": "assumption only; temperature was not measured"
+    },
+    "arm_cortex_m7/mixed_precision": {
+      "thermal_derate": 0.65,
+      "status": "assumption only; temperature was not measured"
+    },
+    "arm_cortex_m7/dynamic_range": {
+      "thermal_derate": 0.65,
+      "status": "assumption only; temperature was not measured"
+    },
+    "webgpu_proxy/baseline": {
+      "thermal_derate": 0.8,
+      "status": "assumption only; temperature was not measured"
+    },
+    "webgpu_proxy/latency_optimized": {
+      "thermal_derate": 0.8,
+      "status": "assumption only; temperature was not measured"
+    },
+    "webgpu_proxy/memory_optimized": {
+      "thermal_derate": 0.8,
+      "status": "assumption only; temperature was not measured"
+    },
+    "webgpu_proxy/energy_optimized": {
+      "thermal_derate": 0.8,
+      "status": "assumption only; temperature was not measured"
+    },
+    "webgpu_proxy/ptq_int8": {
+      "thermal_derate": 0.8,
+      "status": "assumption only; temperature was not measured"
+    },
+    "webgpu_proxy/qat_int8": {
+      "thermal_derate": 0.8,
+      "status": "assumption only; temperature was not measured"
+    },
+    "webgpu_proxy/mixed_precision": {
+      "thermal_derate": 0.8,
+      "status": "assumption only; temperature was not measured"
+    },
+    "webgpu_proxy/dynamic_range": {
+      "thermal_derate": 0.8,
+      "status": "assumption only; temperature was not measured"
+    }
+  },
+  "power_efficiency": {
+    "x86_desktop/baseline": {
+      "estimated_energy_mj": 132.40423024105263,
+      "estimated_energy_pj_per_flop": 220.82300667031058,
+      "measured_latency_ms": 2.4971620600081224,
+      "status": "analytical estimate from operation counts"
+    },
+    "x86_desktop/latency_optimized": {
+      "estimated_energy_mj": 23.874606805263163,
+      "estimated_energy_pj_per_flop": 243.41759243610997,
+      "measured_latency_ms": 2.4561327903938945,
+      "status": "analytical estimate from operation counts"
+    },
+    "x86_desktop/memory_optimized": {
+      "estimated_energy_mj": 23.874606805263163,
+      "estimated_energy_pj_per_flop": 243.41759243610997,
+      "measured_latency_ms": 2.450955699532642,
+      "status": "analytical estimate from operation counts"
+    },
+    "x86_desktop/energy_optimized": {
+      "estimated_energy_mj": 23.875566157894735,
+      "estimated_energy_pj_per_flop": 243.41769463364886,
+      "measured_latency_ms": 2.284400490098051,
+      "status": "analytical estimate from operation counts"
+    },
+    "x86_desktop/ptq_int8": {
+      "estimated_energy_mj": 23.53408712526316,
+      "estimated_energy_pj_per_flop": 239.9457664345843,
+      "measured_latency_ms": 0.6629447799787158,
+      "status": "analytical estimate from operation counts"
+    },
+    "x86_desktop/qat_int8": {
+      "estimated_energy_mj": 23.53408712526316,
+      "estimated_energy_pj_per_flop": 239.9457664345843,
+      "measured_latency_ms": 0.6619670001236955,
+      "status": "analytical estimate from operation counts"
+    },
+    "x86_desktop/mixed_precision": {
+      "estimated_energy_mj": 23.744935165263158,
+      "estimated_energy_pj_per_flop": 242.0955032945588,
+      "measured_latency_ms": 0.5353844596538693,
+      "status": "analytical estimate from operation counts"
+    },
+    "x86_desktop/dynamic_range": {
+      "estimated_energy_mj": 23.694884005263162,
+      "estimated_energy_pj_per_flop": 241.58519822586345,
+      "measured_latency_ms": 0.9725343394529773,
+      "status": "analytical estimate from operation counts"
+    },
+    "arm_cortex_a78/baseline": {
+      "estimated_energy_mj": 101.98480205999999,
+      "estimated_energy_pj_per_flop": 170.08966091615895,
+      "measured_latency_ms": 2.4971620600081224,
+      "status": "analytical estimate from operation counts"
+    },
+    "arm_cortex_a78/latency_optimized": {
+      "estimated_energy_mj": 18.3545427,
+      "estimated_energy_pj_per_flop": 187.13684504805525,
+      "measured_latency_ms": 2.4561327903938945,
+      "status": "analytical estimate from operation counts"
+    },
+    "arm_cortex_a78/memory_optimized": {
+      "estimated_energy_mj": 18.3545427,
+      "estimated_energy_pj_per_flop": 187.13684504805525,
+      "measured_latency_ms": 2.450955699532642,
+      "status": "analytical estimate from operation counts"
+    },
+    "arm_cortex_a78/energy_optimized": {
+      "estimated_energy_mj": 18.3554238,
+      "estimated_energy_pj_per_flop": 187.1383872479272,
+      "measured_latency_ms": 2.284400490098051,
+      "status": "analytical estimate from operation counts"
+    },
+    "arm_cortex_a78/ptq_int8": {
+      "estimated_energy_mj": 17.67350334,
+      "estimated_energy_pj_per_flop": 180.19319304500388,
+      "measured_latency_ms": 0.6629447799787158,
+      "status": "analytical estimate from operation counts"
+    },
+    "arm_cortex_a78/qat_int8": {
+      "estimated_energy_mj": 17.67350334,
+      "estimated_energy_pj_per_flop": 180.19319304500388,
+      "measured_latency_ms": 0.6619670001236955,
+      "status": "analytical estimate from operation counts"
+    },
+    "arm_cortex_a78/mixed_precision": {
+      "estimated_energy_mj": 18.09519942,
+      "estimated_energy_pj_per_flop": 184.49266676495293,
+      "measured_latency_ms": 0.5353844596538693,
+      "status": "analytical estimate from operation counts"
+    },
+    "arm_cortex_a78/dynamic_range": {
+      "estimated_energy_mj": 17.9950971,
+      "estimated_energy_pj_per_flop": 183.4720566275622,
+      "measured_latency_ms": 0.9725343394529773,
+      "status": "analytical estimate from operation counts"
+    },
+    "arm_cortex_m7/baseline": {
+      "estimated_energy_mj": 148.72908491692309,
+      "estimated_energy_pj_per_flop": 248.04950454291307,
+      "measured_latency_ms": 2.4971620600081224,
+      "status": "analytical estimate from operation counts"
+    },
+    "arm_cortex_m7/latency_optimized": {
+      "estimated_energy_mj": 28.50681457435897,
+      "estimated_energy_pj_per_flop": 290.64605035436034,
+      "measured_latency_ms": 2.4561327903938945,
+      "status": "analytical estimate from operation counts"
+    },
+    "arm_cortex_m7/memory_optimized": {
+      "estimated_energy_mj": 28.50681457435897,
+      "estimated_energy_pj_per_flop": 290.64605035436034,
+      "measured_latency_ms": 2.450955699532642,
+      "status": "analytical estimate from operation counts"
+    },
+    "arm_cortex_m7/energy_optimized": {
+      "estimated_energy_mj": 28.50890324102564,
+      "estimated_energy_pj_per_flop": 290.65578833068093,
+      "measured_latency_ms": 2.284400490098051,
+      "status": "analytical estimate from operation counts"
+    },
+    "arm_cortex_m7/ptq_int8": {
+      "estimated_energy_mj": 25.10161777435897,
+      "estimated_energy_pj_per_flop": 255.92779033910358,
+      "measured_latency_ms": 0.6629447799787158,
+      "status": "analytical estimate from operation counts"
+    },
+    "arm_cortex_m7/qat_int8": {
+      "estimated_energy_mj": 25.10161777435897,
+      "estimated_energy_pj_per_flop": 255.92779033910358,
+      "measured_latency_ms": 0.6619670001236955,
+      "status": "analytical estimate from operation counts"
+    },
+    "arm_cortex_m7/mixed_precision": {
+      "estimated_energy_mj": 27.21009817435897,
+      "estimated_energy_pj_per_flop": 277.4251589388487,
+      "measured_latency_ms": 0.5353844596538693,
+      "status": "analytical estimate from operation counts"
+    },
+    "arm_cortex_m7/dynamic_range": {
+      "estimated_energy_mj": 26.70958657435897,
+      "estimated_energy_pj_per_flop": 272.32210825189514,
+      "measured_latency_ms": 0.9725343394529773,
+      "status": "analytical estimate from operation counts"
+    },
+    "webgpu_proxy/baseline": {
+      "estimated_energy_mj": 35.658065368,
+      "estimated_energy_pj_per_flop": 59.47031444745201,
+      "measured_latency_ms": 2.4971620600081224,
+      "status": "analytical estimate from operation counts"
+    },
+    "webgpu_proxy/latency_optimized": {
+      "estimated_energy_mj": 29.41977052,
+      "estimated_energy_pj_per_flop": 299.95424713853447,
+      "measured_latency_ms": 2.4561327903938945,
+      "status": "analytical estimate from operation counts"
+    },
+    "webgpu_proxy/memory_optimized": {
+      "estimated_energy_mj": 29.41977052,
+      "estimated_energy_pj_per_flop": 299.95424713853447,
+      "measured_latency_ms": 2.450955699532642,
+      "status": "analytical estimate from operation counts"
+    },
+    "webgpu_proxy/energy_optimized": {
+      "estimated_energy_mj": 29.41987672,
+      "estimated_energy_pj_per_flop": 299.94340323613983,
+      "measured_latency_ms": 2.284400490098051,
+      "status": "analytical estimate from operation counts"
+    },
+    "webgpu_proxy/ptq_int8": {
+      "estimated_energy_mj": 29.249510679999997,
+      "estimated_energy_pj_per_flop": 298.2183341377716,
+      "measured_latency_ms": 0.6629447799787158,
+      "status": "analytical estimate from operation counts"
+    },
+    "webgpu_proxy/qat_int8": {
+      "estimated_energy_mj": 29.249510679999997,
+      "estimated_energy_pj_per_flop": 298.2183341377716,
+      "measured_latency_ms": 0.6619670001236955,
+      "status": "analytical estimate from operation counts"
+    },
+    "webgpu_proxy/mixed_precision": {
+      "estimated_energy_mj": 29.354934699999998,
+      "estimated_energy_pj_per_flop": 299.2932025677589,
+      "measured_latency_ms": 0.5353844596538693,
+      "status": "analytical estimate from operation counts"
+    },
+    "webgpu_proxy/dynamic_range": {
+      "estimated_energy_mj": 29.329909119999996,
+      "estimated_energy_pj_per_flop": 299.0380500334112,
+      "measured_latency_ms": 0.9725343394529773,
+      "status": "analytical estimate from operation counts"
+    }
+  },
+  "mcu_memory_validity": {
+    "model_bytes": 982152,
+    "tensor_arena_used_bytes": 707028,
+    "flash_limit_bytes": 2097152,
+    "sram_limit_bytes": 524288,
+    "fits_flash": true,
+    "fits_sram": false,
+    "status": "TFLite Micro arena measured inside QEMU-CM"
+  },
+  "webgpu_proxy": {
+    "mean_ms": 4.907,
+    "median_ms": 5.0,
+    "p95_ms": 6.1,
+    "status": "desktop proxy; not a smartphone measurement"
+  }
+}

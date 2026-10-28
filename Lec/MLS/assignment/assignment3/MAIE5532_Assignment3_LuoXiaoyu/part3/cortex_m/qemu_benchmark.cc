@@ -47,7 +47,7 @@ int main(int argc, char** argv) {
     return 1;
   }
 
-  // 使用接近 MCU 规模的上限，检查模型是否真的能放入 SRAM。
+  // Keep the arena at an MCU-scale limit to test whether the model fits in SRAM.
   alignas(16) static uint8_t tensor_arena[1024 * 1024];
   tflite::MicroProfiler profiler;
   tflite::MicroInterpreter interpreter(

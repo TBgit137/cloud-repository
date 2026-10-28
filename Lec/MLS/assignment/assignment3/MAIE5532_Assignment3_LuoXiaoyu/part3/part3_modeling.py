@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""第 3 部分 Track B：跨平台性能建模与仿真验证。"""
+"""Cross-platform performance modeling and simulation validation."""
 
 from __future__ import annotations
 
@@ -39,7 +39,7 @@ def _write_json(path: Path, value: object) -> None:
 
 
 def _activation_bytes(model: keras.Model) -> int:
-    """根据各层输出形状估算最大单层激活存储量。"""
+    """Estimate the largest single-layer activation buffer in bytes."""
     maximum = 0
     for layer in model.layers:
         shape = getattr(layer, "output_shape", None)
@@ -56,7 +56,7 @@ def _activation_bytes(model: keras.Model) -> int:
 
 
 def _estimate_flops(model: keras.Model) -> int:
-    """使用 TensorFlow profiler 估算单张图片的 FLOPs。"""
+    """Estimate FLOPs for one image with the TensorFlow profiler."""
     input_shape = tuple(model.input_shape[1:])
     concrete = tf.function(
         lambda images: model(images, training=False)
@@ -76,7 +76,7 @@ def _estimate_flops(model: keras.Model) -> int:
 
 
 def _keras_profile(path: Path, result: dict) -> dict:
-    """从 Keras 模型和 Part 2 结果提取性能模型输入。"""
+    """Extract performance-model inputs from a Keras model and result record."""
     model = keras.models.load_model(path, compile=False)
     weight_bytes = sum(
         int(tf.size(weight).numpy()) * tf.as_dtype(weight.dtype).size
@@ -98,7 +98,7 @@ def _keras_profile(path: Path, result: dict) -> dict:
 
 
 def collect_model_profiles() -> dict[str, dict]:
-    """收集基线、架构变体和量化变体的性能模型输入。"""
+    """Collect profile inputs for baseline, architecture, and quantized models."""
     comparison = json.loads(PART2_JSON.read_text(encoding="utf-8"))
     baseline_model = keras.models.load_model(
         PART1 / "baseline_mobilenetv2.keras",
@@ -158,14 +158,14 @@ def collect_model_profiles() -> dict[str, dict]:
 
 
 class PlatformPerformanceModel:
-    """对不同硬件平台的性能特征进行建模。"""
+    """Model performance characteristics for different hardware platforms."""
 
     def __init__(self, platform_specs):
         self.platform_specs = platform_specs
         self.performance_models = self._build_performance_models()
 
     def _build_performance_models(self):
-        """为每个平台构建解析性能模型。"""
+        """Build analytical performance models for the target platform."""
         models = {}
         models["roofline"] = self._build_roofline_model()
         models["energy"] = self._build_energy_model()
@@ -173,7 +173,7 @@ class PlatformPerformanceModel:
         return models
 
     def _build_roofline_model(self):
-        """返回 Roofline 延迟计算公式。"""
+        """Return the Roofline latency estimator."""
         specs = self.platform_specs
 
         def estimate(flops: int, memory_bytes: int) -> float:
@@ -195,7 +195,7 @@ class PlatformPerformanceModel:
         return estimate
 
     def _build_energy_model(self):
-        """返回基于运算量和内存访问量的能耗公式。"""
+        """Return the operation- and memory-based energy estimator."""
         specs = self.platform_specs
 
         def estimate(
@@ -213,16 +213,17 @@ class PlatformPerformanceModel:
         return estimate
 
     def _build_memory_model(self):
-        """返回权重和峰值激活的内存占用模型。"""
+        """Return the weight and peak-activation memory estimator."""
         return lambda weights: weights["weight_bytes"] + 2 * weights[
             "activation_bytes"
         ]
 
     def estimate_performance(self, model_graph, platform_type):
-        """估计模型在指定平台上的延迟、内存和能耗。"""
+        """Estimate latency, memory, and energy on a target platform."""
         if platform_type != self.platform_specs["name"]:
             raise ValueError(
-                f"平台配置 {self.platform_specs['name']} 与 {platform_type} 不匹配。"
+                f"Platform configuration {self.platform_specs['name']} "
+                f"does not match {platform_type}."
             )
         memory_working_set = self.performance_models["memory"](model_graph)
         roofline_ms = self.performance_models["roofline"](
@@ -246,13 +247,13 @@ class PlatformPerformanceModel:
 
 
 class CrossPlatformAnalyzer:
-    """分析优化在不同平台上的有效性。"""
+    """Analyze optimization effectiveness across target platforms."""
 
     def __init__(self):
         self.platform_characteristics = self._load_platform_specs()
 
     def _load_platform_specs(self):
-        """加载目标平台的详细规格。"""
+        """Load detailed specifications for the target platforms."""
         return {
             "x86_desktop": {
                 "name": "x86_desktop",
@@ -330,7 +331,7 @@ class CrossPlatformAnalyzer:
         baseline_model,
         optimized_models,
     ):
-        """分析不同优化在各平台上的速度、内存、能耗和准确率变化。"""
+        """Compare speed, memory, energy, and accuracy across platforms."""
         results = {}
         for platform, specs in self.platform_characteristics.items():
             estimator = PlatformPerformanceModel(specs)
@@ -361,7 +362,7 @@ class CrossPlatformAnalyzer:
         return results
 
     def model_performance(self, model, platform):
-        """对模型在指定平台上的性能进行估计。"""
+        """Estimate model performance on the specified platform."""
         specs = self.platform_characteristics[platform]
         return PlatformPerformanceModel(specs).estimate_performance(
             model,
@@ -370,10 +371,10 @@ class CrossPlatformAnalyzer:
 
 
 def simulate_arm_performance(models):
-    """为 ARM Cortex-A 生成解析性能估计。
+    """Generate analytical performance estimates for ARM Cortex-A.
 
-    Track B 的主要实测 ARM 结果是 QEMU Cortex-M；Cortex-A 数据来自
-    Roofline 模型，并明确标记为 modeled，而不是冒充真实测量。
+    Cortex-A values are modeled estimates. QEMU results are reported
+    separately as Cortex-M measurements.
     """
     analyzer = CrossPlatformAnalyzer()
     specs = analyzer.platform_characteristics["arm_cortex_a78"]
@@ -389,10 +390,11 @@ def simulate_arm_performance(models):
 
 
 def _run_qemu_benchmark() -> dict:
-    """运行已编译的 QEMU Cortex-M CIFAR 固件并解析输出。"""
+    """Run the compiled QEMU Cortex-M CIFAR firmware and parse its output."""
     if not QEMU_BINARY.exists():
         raise FileNotFoundError(
-            f"缺少 QEMU 固件：{QEMU_BINARY}。请先编译 Cortex-M benchmark。"
+            f"QEMU firmware not found: {QEMU_BINARY}. "
+            "Build the Cortex-M benchmark first."
         )
     result = subprocess.run(
         ["qemu-arm", "-cpu", "cortex-m3", str(QEMU_BINARY)],
@@ -426,7 +428,7 @@ def _run_qemu_benchmark() -> dict:
             clock_hz_match,
         )
     ):
-        raise RuntimeError(f"无法解析 QEMU 输出：\n{output}")
+        raise RuntimeError(f"Could not parse QEMU output:\n{output}")
     clock_hz = int(clock_hz_match.group(1))
     result = {
         "execution_context": "[QEMU-CM]",
@@ -445,7 +447,7 @@ def _run_qemu_benchmark() -> dict:
 
 
 def simulate_cortex_m_performance(models):
-    """使用 QEMU 和 TFLite Micro 运行 Cortex-M 基准。"""
+    """Run the Cortex-M benchmark with QEMU and TFLite Micro."""
     measured = _run_qemu_benchmark()
     measured["available_models"] = [
         name for name in models if name == "ptq_int8"
@@ -454,9 +456,9 @@ def simulate_cortex_m_performance(models):
 
 
 def simulate_mobile_gpu_performance(models):
-    """读取 ONNX Runtime Web 的 WebGPU proxy 测量结果。"""
+    """Read the ONNX Runtime Web WebGPU proxy measurement."""
     if not WEBGPU_RESULT.exists():
-        raise FileNotFoundError(f"缺少 WebGPU 结果：{WEBGPU_RESULT}")
+        raise FileNotFoundError(f"WebGPU result not found: {WEBGPU_RESULT}")
     result = json.loads(WEBGPU_RESULT.read_text(encoding="utf-8"))
     result["status"] = "measured"
     result["available_models"] = [
@@ -466,7 +468,7 @@ def simulate_mobile_gpu_performance(models):
 
 
 def cross_validate_models(validation_results):
-    """将解析预测与仿真或代理测量结果进行比较。"""
+    """Compare analytical predictions with simulation or proxy measurements."""
     comparisons = []
     pairs = [
         (
@@ -513,7 +515,7 @@ def cross_validate_models(validation_results):
 
 
 def validate_with_simulation(models, platform_configs):
-    """使用仿真工具验证性能估计。"""
+    """Validate performance estimates with simulation and proxy evidence."""
     analyzer = CrossPlatformAnalyzer()
     analytical = {
         platform: {
@@ -550,7 +552,7 @@ def _write_report(
     simulation: dict,
     cross_platform: dict,
 ) -> None:
-    """生成 Part 3 的技术分析报告。"""
+    """Generate the technical analysis report."""
     qemu = simulation["qemu_cm"]
     webgpu = simulation["webgpu_proxy"]
     specs = CrossPlatformAnalyzer().platform_characteristics
@@ -569,7 +571,7 @@ def _write_report(
     )
 
     lines = [
-        "# Part 3: Multi-Platform Analysis",
+        "# MobileNetV2 CIFAR-10 Multi-Platform Analysis",
         "",
         "## Objective and scope",
         "",
@@ -769,10 +771,7 @@ def _write_report(
             "separable convolution to reduce multiply-accumulates; INT8 "
             "quantization replaces float storage and integerizable compute, "
             "which is visible in the measured 0.937 MiB model size. These "
-            "observations agree with the assignment's Week 6 treatment of "
-            "latency, memory, energy, and quantized variants, and with the "
-            "Week 7 discussion of data movement and cross-platform "
-            "optimization.",
+            "changes reduce both arithmetic work and storage demand.",
             "",
             "The measured disagreements also identify the missing effects: "
             "cache reuse, SIMD/kernel selection, framework dispatch, and "
@@ -793,23 +792,6 @@ def _write_report(
             "Core or NPU execution.",
             "- Only one INT8 model was executed on Cortex-M. The other model "
             "rows are analytical predictions.",
-            "",
-            "## Deliverable coverage",
-            "",
-            "| Track B deliverable | Evidence in this directory |",
-            "|---|---|",
-            "| 3+ platform types | x86, Cortex-M, Cortex-A78, and GPU proxy |",
-            "| Multiple validation tools | TFLite, TFLite Micro/QEMU, "
-            "TensorFlow profiler, ONNX Runtime Web/WebGPU |",
-            "| Cross-platform effectiveness | `cross_platform_analysis.json` "
-            "and the table above |",
-            "| Theoretical analysis with literature validation | Roofline, "
-            "energy, memory models, measurements, and references below |",
-            "| Reproducible commands | `README.md` and `cortex_m/Makefile` |",
-            "",
-            "The assignment permits QEMU Cortex-M when Renode is unavailable; "
-            "Renode is therefore not required for Track B when QEMU-CM "
-            "results are clearly labelled and their limits are disclosed.",
             "",
             "Qualified execution labels:",
             "",
@@ -832,12 +814,7 @@ def _write_report(
             "Networks for Efficient Integer-Arithmetic-Only Inference,\" "
             "*CVPR*, 2018.",
             "4. R. David et al., \"TensorFlow Lite Micro: Embedded Machine "
-            "Learning for TinyML Systems,\" *Proceedings of MLSys*, 2021.",
-            "5. Course Week 6, *Hardware Backend Specialization and "
-            "Optimizations*, especially the latency/memory/energy/quantized "
-            "variants.",
-            "6. Course Week 7, *Machine Learning for Systems*, sections on "
-            "data movement and cross-platform optimization.",
+            "Learning on TinyML Systems,\" *Proceedings of MLSys*, 2021.",
         ]
     )
     (HERE / "part3_report.md").write_text(
@@ -846,211 +823,8 @@ def _write_report(
     )
 
 
-def _write_chinese_report(
-    model_profiles: dict,
-    analytical: dict,
-    simulation: dict,
-    cross_platform: dict,
-) -> None:
-    """生成与英文报告数据一致的中文对照版。"""
-    qemu = simulation["qemu_cm"]
-    webgpu = simulation["webgpu_proxy"]
-    specs = CrossPlatformAnalyzer().platform_characteristics
-    m7_specs = specs["arm_cortex_m7"]
-    m7_arena_fits = (
-        qemu["tensor_arena_used_bytes"] <= m7_specs["memory_capacity_bytes"]
-    )
-    m7_flash_fits = (
-        qemu["model_bytes"] <= m7_specs["flash_mb"] * 1024 * 1024
-    )
-    lines = [
-        "# 第 3 部分：多平台分析",
-        "",
-        "## 目标和范围",
-        "",
-        "本部分选择 Track B。分析覆盖四种执行环境：本地 x86 TFLite、"
-        "QEMU 模拟 Cortex-M3、桌面 WebGPU 移动 GPU 代理，以及 Cortex-A78 "
-        "解析模型。QEMU 和 WebGPU 结果属于仿真或代理证据，不是真机和"
-        "智能手机测量。",
-        "",
-        "| 标签 | 平台类型 | 证据 |",
-        "|---|---|---|",
-        "| `[native-x86]` | 桌面 CPU | TFLite 实测 |",
-        "| `[QEMU-CM]` | Cortex-M MCU | QEMU 用户模式实测 |",
-        "| `[WebGPU-proxy]` | 移动 GPU 代理 | ONNX Runtime Web/WebGPU 实测 |",
-        "| `[modeled-ARM]` | Cortex-A 移动 CPU | 仅解析估算 |",
-        "",
-        "## 模型概况",
-        "",
-        "| 模型 | 准确率 | 参数量 | FLOPs | 文件 MiB |",
-        "|---|---:|---:|---:|---:|",
-    ]
-    for name, profile in model_profiles.items():
-        lines.append(
-            f"| {name} | {profile['accuracy'] * 100:.2f}% | "
-            f"{profile['parameters']:,} | {profile['flops']:,} | "
-            f"{profile['file_size_mb']:.3f} |"
-        )
-
-    lines.extend(
-        [
-            "",
-            "## 性能模型",
-            "",
-            "延迟使用 Roofline 思路，取计算时间和访存时间的较大值，再除以"
-            "热降频系数并加上固定调用开销：",
-            "",
-            "```text",
-            "L_est = max(F / 有效GOPs, B / 有效GBps)",
-            "        / 热降频系数 + 固定开销",
-            "```",
-            "",
-            "工作集近似为 `B = 权重字节数 + 2 × 峰值激活字节数`。能量估算为：",
-            "",
-            "```text",
-            "E_est = (F × 每FLOP能耗 + B × 每字节能耗) / 1e12",
-            "        + 空闲功率 × 估算延迟",
-            "```",
-            "",
-            "这是未经实测校准的简化模型，没有逐层模拟 cache、流水线或"
-            "实际内核调度。",
-            "",
-            "### 各平台估算",
-            "",
-            "| 平台 | 模型 | 延迟 ms | 内存 MiB | 能量 mJ |",
-            "|---|---|---:|---:|---:|",
-        ]
-    )
-    for platform, models in analytical.items():
-        for name, metrics in models.items():
-            lines.append(
-                f"| {platform} | {name} | {metrics['latency_ms']:.3f} | "
-                f"{metrics['memory_bytes'] / (1024 ** 2):.3f} | "
-                f"{metrics['energy_j'] * 1000:.3f} |"
-            )
-
-    lines.extend(
-        [
-            "",
-            "## 仿真和代理验证",
-            "",
-            f"本地 x86 PTQ INT8 延迟为 "
-            f"{simulation['native_x86']['measured_latency_ms']:.3f} ms。",
-            "",
-            f"QEMU Cortex-M PTQ INT8 延迟为 "
-            f"{qemu['average_simulated_cpu_ms']:.3f} ms。固件时钟精度为 "
-            f"{qemu['clock_resolution_ms']:.1f} ms，共测量 5 次。",
-            "",
-            f"WebGPU 代理延迟为均值 {webgpu['mean_ms']:.3f} ms、中位数 "
-            f"{webgpu['median_ms']:.3f} ms、P95 {webgpu['p95_ms']:.3f} ms，"
-            "共测量 100 次。",
-            "",
-            "| 平台 | 模型 | 实测 ms | 预测 ms | 相对误差 |",
-            "|---|---|---:|---:|---:|",
-        ]
-    )
-    for row in simulation["model_accuracy"]["comparisons"]:
-        lines.append(
-            f"| {row['platform']} | {row['model']} | "
-            f"{row['measured_ms']:.3f} | {row['predicted_ms']:.3f} | "
-            f"{row['relative_error_percent']:.2f}% |"
-        )
-
-    lines.extend(
-        [
-            "",
-            "误差来源如下：",
-            "",
-            "- x86 预测偏慢，因为有效吞吐参数没有充分计入 XNNPACK、"
-            "AVX2/AVX-512、权重缓存复用和流水线执行。",
-            "- Cortex-M 预测偏快，因为当前 TFLite Micro 静态库主要使用"
-            "可移植内核，没有采用解析模型假定的 CMSIS-NN/SIMD 加速程度。",
-            "- WebGPU 预测偏快，因为浏览器提交、队列调度、同步和桌面驱动"
-            "带来额外开销。",
-            "",
-            "### MCU 内存检查",
-            "",
-            f"PTQ INT8 模型为 {qemu['model_bytes']:,} bytes，TFLite Micro "
-            f"实际使用 {qemu['tensor_arena_used_bytes']:,} bytes arena；"
-            f"配置的 arena 上限为 {qemu['tensor_arena_bytes']:,} bytes。"
-            "相对于示例 Cortex-M7 的 2 MiB flash 和 512 KiB SRAM：",
-            "",
-            f"- 模型{'可以' if m7_flash_fits else '不能'}放入 flash。",
-            f"- arena {'可以' if m7_arena_fits else '不能'}放入 SRAM。",
-            "",
-            "QEMU 用户模式只能证明程序能够执行，不会真正执行 512 KiB "
-            "SRAM 上限检查。",
-            "",
-            "## 跨平台优化效果",
-            "",
-            "| 平台 | 变体 | 加速 | 工作集下降 | 能量下降 | "
-            "准确率损失 | 满足内存约束 |",
-            "|---|---|---:|---:|---:|---:|---|",
-        ]
-    )
-    selected_variants = [
-        "latency_optimized",
-        "memory_optimized",
-        "energy_optimized",
-        "ptq_int8",
-        "mixed_precision",
-    ]
-    for platform in (
-        "x86_desktop",
-        "arm_cortex_a78",
-        "arm_cortex_m7",
-        "webgpu_proxy",
-    ):
-        for model_name in selected_variants:
-            metrics = cross_platform[platform][model_name]
-            lines.append(
-                f"| {platform} | {model_name} | {metrics['speedup']:.2f}x | "
-                f"{metrics['memory_reduction'] * 100:.2f}% | "
-                f"{metrics['energy_reduction'] * 100:.2f}% | "
-                f"{metrics['accuracy_loss'] * 100:.2f} 个百分点 | "
-                f"{metrics['fits_target_memory']} |"
-            )
-
-    lines.extend(
-        [
-            "",
-            "## 结论和局限",
-            "",
-            "- 输入从 224 降到 160、宽度乘数降到 0.5 后，FLOPs 从约 "
-            "599.6M 降到约 98.1M，因此 CPU 解析模型给出约 5.6 到 5.8 倍"
-            "加速。",
-            "- INT8 将工作集估算降低约 84.3%，是将模型压入边缘设备存储"
-            "预算的主要手段。",
-            "- WebGPU 的固定调用开销显著，模型计算量减少并未带来同等比例"
-            "的端到端加速。",
-            "- 能量值来自运算量和访存量的解析公式，不是功率计实测。",
-            "- QEMU 不模拟 cache、总线、功耗、温度和物理 SRAM 限制。",
-            "",
-            "课程第 6 周对延迟、内存、能量和量化变体的划分，以及第 7 周"
-            "关于数据移动和跨平台优化的讨论，与上述结果方向一致。"
-            "Roofline、MobileNetV2、整数推断量化和 TFLite Micro 的原始"
-            "文献见英文报告的 References。",
-            "",
-            "## Track B 交付覆盖",
-            "",
-            "| 要求 | 对应产物 |",
-            "|---|---|",
-            "| 3 种以上平台 | x86、Cortex-M、Cortex-A78、GPU 代理 |",
-            "| 多工具验证 | TFLite、TFLite Micro/QEMU、TensorFlow profiler、"
-            "ONNX Runtime Web/WebGPU |",
-            "| 跨平台优化分析 | `cross_platform_analysis.json` 和本文表格 |",
-            "| 理论及文献验证 | Roofline/能量/内存模型、实测对照和参考文献 |",
-            "| 可复现说明 | `README.md`、`cortex_m/Makefile` |",
-        ]
-    )
-    (HERE / "part3_report_zh-CN.md").write_text(
-        "\n".join(lines) + "\n",
-        encoding="utf-8",
-    )
-
-
 def main() -> None:
-    """执行 Part 3 建模、仿真验证和跨平台比较。"""
+    """Run modeling, simulation validation, and cross-platform comparison."""
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     profiles = collect_model_profiles()
     analyzer = CrossPlatformAnalyzer()
@@ -1082,12 +856,6 @@ def main() -> None:
     _write_json(RESULTS_DIR / "simulation_validation.json", simulation)
     _write_json(RESULTS_DIR / "cross_platform_analysis.json", cross_platform)
     _write_report(profiles, analytical, simulation, cross_platform)
-    _write_chinese_report(
-        profiles,
-        analytical,
-        simulation,
-        cross_platform,
-    )
     print(json.dumps(cross_platform, indent=2))
 
 

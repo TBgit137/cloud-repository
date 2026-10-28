@@ -1,0 +1,9 @@
+model,accuracy,latency_ms,model_size_mb,estimated_energy_mj,throughput_fps,parameters,flops,backend,latency_status,energy_status,kernel_sparsity,early_exit_samples,early_exit_fraction,source_model,input_range
+baseline,0.9370999932289124,2.4971620600081224,26.008453369140625,132.40423024105263,400.4545864343091,2270794,599594364,Keras GPU,measured on local x86 host,analytical estimate,,,,,
+latency_optimized,0.8934,2.4561327903938945,8.483949661254883,23.874606805263163,407.14411041254334,719034,98080860,Keras GPU,measured on local x86 host,analytical estimate,,,,,
+memory_optimized,0.8443,2.450955699532642,3.238633155822754,23.874606805263163,408.00411047440963,719034,98080860,Keras GPU,measured on local x86 host,analytical estimate,0.3000061589357359,,,,
+energy_optimized,0.8746,2.284400490098051,8.501924514770508,23.875566157894735,437.75161331587617,719364,98084760,Keras GPU,measured on local x86 host,analytical estimate,,81,0.0081,,
+ptq_int8,0.8784,0.6629447799787158,0.9366531372070312,23.53408712526316,1508.4212595083795,719034,98080860,TFLite CPU,measured on local x86 host,analytical estimate,,,,latency_optimized,0-255
+qat_int8,0.8449,0.6619670001236955,0.9366531372070312,23.53408712526316,1510.6493221159658,719034,98080860,TFLite CPU,measured on local x86 host,analytical estimate,,,,latency_optimized,0-255
+mixed_precision,0.8926,0.5353844596538693,1.3688468933105469,23.744935165263158,1867.8166352577898,719034,98080860,TFLite CPU,measured on local x86 host,analytical estimate,,,,latency_optimized,0-255
+dynamic_range,0.8861,0.9725343394529773,0.8384857177734375,23.694884005263162,1028.2413272548004,719034,98080860,TFLite CPU,measured on local x86 host,analytical estimate,,,,latency_optimized,0-255

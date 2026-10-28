@@ -1,4 +1,4 @@
-# Part 3: Multi-Platform Analysis (Track B)
+# MobileNetV2 CIFAR-10 Multi-Platform Analysis
 
 This directory implements Track B with four clearly labelled execution
 contexts:
@@ -27,7 +27,7 @@ Verified tool versions:
 
 ## 1. Main analysis
 
-From the submission directory:
+From the project root:
 
 ```bash
 source /home/mywslubuntu/.venvs/maie5532/bin/activate
@@ -43,7 +43,6 @@ reads the saved WebGPU benchmark, produces analytical predictions, and writes:
 - `part3_results/cross_platform_analysis.json`
 - `part3_results/qemu_cortex_m.json`
 - `part3_report.md`
-- `part3_report_zh-CN.md`
 
 ## 2. Cortex-M benchmark
 
@@ -56,7 +55,7 @@ make -f tensorflow/lite/micro/tools/make/Makefile \
   TARGET=cortex_m_qemu TARGET_ARCH=cortex-m3 microlite
 ```
 
-Then rebuild and run the assignment benchmark:
+Then rebuild and run the benchmark:
 
 ```bash
 cd assignment/assignment3/MAIE5532_Assignment3_LuoXiaoyu/part3/cortex_m
